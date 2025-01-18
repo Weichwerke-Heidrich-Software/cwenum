@@ -1,0 +1,16 @@
+[package]
+authors = ["Weichwerke Heidrich Software"]
+description = "A tiny crate to access a strongly typed common weakness enumeration (cwe) object."
+edition = "2021"
+keywords = ["cwe", "common weakness enumeration", "security"]
+license = "MIT"
+name = "cwenum"
+readme = "README.md"
+repository = "https://github.com/Weichwerke-Heidrich-Software/cwenum"
+version = "1.0.0"
+
+[lib]
+name = "cwenum"
+crate-type = ["rlib"]
+
+[dependencies]
