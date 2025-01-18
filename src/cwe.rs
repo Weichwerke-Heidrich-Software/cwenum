@@ -4865,6 +4865,11 @@ pub enum Cwe {
 pub(crate) mod str {
     use super::*;
 
+    #[cfg(feature = "std")]
+    type TryFromError = String;
+    #[cfg(not(feature = "std"))]
+    type TryFromError = &'static str;
+
     impl Cwe {
         /// Returns the CWE ID.
         ///
@@ -7805,11 +7810,6 @@ Cwe::Cwe1426 => "The product invokes a generative AI/ML component whose behavior
 Cwe::Cwe1427 => "The product uses externally-provided data to build prompts provided to large language models (LLMs), but the way these prompts are constructed causes the LLM to fail to distinguish between user-supplied inputs and developer provided system directives.",
             }
         }
-
-        #[cfg(feature = "std")]
-        type TryFromError = String;
-        #[cfg(not(feature = "std"))]
-        type TryFromError = &'static str;
 
         fn try_from_str(value: &str) -> Result<Self, TryFromError> {
             let result = match value {

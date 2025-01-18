@@ -55,6 +55,11 @@ pub enum Cwe {{
 pub(crate) mod str {{
     use super::*;
 
+    #[cfg(feature = "std")]
+    type TryFromError = String;
+    #[cfg(not(feature = "std"))]
+    type TryFromError = &'static str;
+
     impl Cwe {{
         /// Returns the CWE ID.
         ///
@@ -103,11 +108,6 @@ pub(crate) mod str {{
                 {str_descriptions}
             }}
         }}
-
-        #[cfg(feature = "std")]
-        type TryFromError = String;
-        #[cfg(not(feature = "std"))]
-        type TryFromError = &'static str;
 
         fn try_from_str(value: &str) -> Result<Self, TryFromError> {{
             let result = match value {{
