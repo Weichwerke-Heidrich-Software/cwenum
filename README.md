@@ -4,16 +4,17 @@ A tiny crate to access a strongly typed common weakness enumeration (cwe) object
 
 # Usage
 
-Include
+Include something along the lines of
 ```toml
-cwenum = { version = "1.0", default-features = false, features = [] }
+cwenum = { version = "1.0", default-features = false, features = ["std"] }
 ```
-in your Cargo.toml. You now have access to the `cwenum::Cwe` enum.
+in your `Cargo.toml`. You now have access to the `cwenum::Cwe` enum.
 
-Feature flags:
+Available feature flags:
+* `std`: Link against the standard library. Enabled by default. Omit this and compile without default features if you are building `no_std` applications.
 * `iterable`: Offers `Cwe::iterator()`, which can be used to loop through all CWEs.
 * `str`: Offers some conversion functionality to and from `&str`. Roughly doubles artifact size to about 1.5 MB.
-* `serde`: Implements `Deserialize` and `Serialize` for `Cwe`, using the functions behind the `str` flag.
+* `serde`: Implements `Deserialize` and `Serialize` for `Cwe`. Requires the `std` and `str` flags.
 
 # Example
 
@@ -37,7 +38,7 @@ println!("{}", cwe.name());
 println!("{}", cwe.description());
 let cwe_79: Cwe = "CWE-79".try_into().unwrap();
 assert_eq!(cwe_79, Cwe::Cwe79);
-// The conversion is not case sensitive
+// If the `std` feature flag is left active, the conversion is not case sensitive
 let cwe_80: Cwe = "cwe-80".try_into().unwrap();
 assert_eq!(cwe_80, Cwe::Cwe80);
 
