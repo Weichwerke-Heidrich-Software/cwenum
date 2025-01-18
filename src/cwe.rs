@@ -24,7 +24,7 @@
 /// println!("{}", cwe.description());
 /// let cwe_79: Cwe = "CWE-79".try_into().unwrap();
 /// assert_eq!(cwe_79, Cwe::Cwe79);
-/// // The conversion is not case sensitive
+/// // If the `std` feature flag is left active, the conversion is not case sensitive
 /// let cwe_80: Cwe = "cwe-80".try_into().unwrap();
 /// assert_eq!(cwe_80, Cwe::Cwe80);
 ///
@@ -8797,11 +8797,14 @@ Cwe::Cwe1427 => "The product uses externally-provided data to build prompts prov
         type Error = &'static str;
 
         fn try_from(value: &str) -> Result<Self, Self::Error> {
-            match Cwe::try_from_str(value) {
-                Ok(cwe) => return Ok(cwe),
-                Err(_) => (),
+            let result = Cwe::try_from_str(value);
+            if let Ok(cwe) = result {
+                return Ok(cwe);
             }
-            Cwe::try_from_str(&value.to_uppercase())
+            #[cfg(feature = "std")]
+            return Cwe::try_from_str(&value.to_uppercase());
+            #[cfg(not(feature = "std"))]
+            return result;
         }
     }
 }

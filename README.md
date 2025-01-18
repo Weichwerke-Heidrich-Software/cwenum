@@ -38,7 +38,7 @@ println!("{}", cwe.name());
 println!("{}", cwe.description());
 let cwe_79: Cwe = "CWE-79".try_into().unwrap();
 assert_eq!(cwe_79, Cwe::Cwe79);
-// The conversion is not case sensitive
+// If the `std` feature flag is left active, the conversion is not case sensitive
 let cwe_80: Cwe = "cwe-80".try_into().unwrap();
 assert_eq!(cwe_80, Cwe::Cwe80);
 

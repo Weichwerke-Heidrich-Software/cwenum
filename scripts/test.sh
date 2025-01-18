@@ -41,3 +41,5 @@ cargo build --release --no-default-features --features "str"
 print_filesize
 
 cargo test --all-features
+
+cargo clippy
