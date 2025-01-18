@@ -119,6 +119,19 @@ pub(crate) mod str {{
         }}
     }}
 }}
+
+#[cfg(any(feature = "iterable", test))]
+pub(crate) mod iterable {{
+    use super::*;
+
+    impl Cwe {{
+        fn iterator() -> impl Iterator<Item = Cwe> {{
+            [
+                {iter_variants}
+            ].into_iter()
+        }}
+    }}
+}}
 """
 
 VARIANT_TEMPLATE = """
@@ -179,6 +192,7 @@ def write_to_file(cwec):
     str_names = []
     str_descriptions = []
     try_from_str = []
+    iter_variants = []
     for cwe in cwec:
         variants.append(VARIANT_TEMPLATE.format(id=cwe['ID'],
                                                 name=cwe['Name'],
@@ -189,6 +203,7 @@ def write_to_file(cwec):
         sanitized_description = sanitize(cwe['Description'])
         str_descriptions.append(f"Cwe::Cwe{cwe['ID']} => \"{sanitized_description}\",")
         try_from_str.append(f"\"CWE-{cwe['ID']}\" => Ok(Cwe::Cwe{cwe['ID']}),")
+        iter_variants.append(f"Cwe::Cwe{cwe['ID']},")
 
 
 
@@ -197,7 +212,8 @@ def write_to_file(cwec):
                                         str_ids="\n".join(str_ids),
                                         str_names="\n".join(str_names),
                                         str_descriptions="\n".join(str_descriptions),
-                                        try_from_str="\n".join(try_from_str)))
+                                        try_from_str="\n".join(try_from_str),
+                                        iter_variants="\n".join(iter_variants)))
 
 def main():
     assure_file()
