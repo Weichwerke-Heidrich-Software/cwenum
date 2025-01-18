@@ -19,7 +19,9 @@ pub enum CWE {{
 """
 
 VARIANT_TEMPLATE = """
-    /// {name}
+    /// ### {name}
+    ///
+    /// {description}
     Cwe{id},
 """
 
@@ -53,7 +55,11 @@ def parse_cwec_xml():
     for weakness in root.findall('.//cwe:Weakness', namespace):
         cwe_id = weakness.get('ID')
         cwe_name = weakness.get('Name')
-        cwec.append({'ID': cwe_id, 'Name': cwe_name})
+        cwe_description = weakness.find('cwe:Description', namespace).text
+        cwe_description = cwe_description.replace('\n', ' ').replace('\r', ' ').replace('  ', ' ')
+        cwec.append({'ID': cwe_id,
+                     'Name': cwe_name,
+                     'Description': cwe_description})
     
     cwec.sort(key=lambda x: int(x['ID']))
 
@@ -62,7 +68,9 @@ def parse_cwec_xml():
 def write_to_file(cwec):
     variants = []
     for cwe in cwec:
-        variants.append(VARIANT_TEMPLATE.format(id=cwe['ID'], name=cwe['Name']))
+        variants.append(VARIANT_TEMPLATE.format(id=cwe['ID'],
+                                                name=cwe['Name'],
+                                                description=cwe['Description']))
 
     with open(RUSTFILE, 'w') as file:
         file.write(FILE_TEMPLATE.format(variants="\n".join(variants)))
