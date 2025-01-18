@@ -13,6 +13,10 @@ echo Building with iterable feature
 cargo build --release --features "iterable" > /dev/null 2>&1
 print_filesize
 
+echo Building with serde feature
+cargo build --release --features "serde" > /dev/null 2>&1
+print_filesize
+
 echo Building with str feature
 cargo build --release --features "str" > /dev/null 2>&1
 print_filesize

@@ -6,7 +6,7 @@ A tiny crate to access a strongly typed common weakness enumeration (cwe) object
 
 Include
 ```toml
-cwenum = { version = "1.0", default-features = false, features = [<features you like>] }
+cwenum = { version = "1.0", default-features = false, features = [] }
 ```
 in your Cargo.toml. You now have access to the `cwenum::Cwe` enum.
 
