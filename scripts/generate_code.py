@@ -56,7 +56,7 @@ pub(crate) mod str {{
     use super::*;
 
     impl Cwe {{
-        /// Returns the CWE ID as a string.
+        /// Returns the CWE ID.
         ///
         /// # Example
         ///
@@ -104,16 +104,32 @@ pub(crate) mod str {{
             }}
         }}
 
-        fn try_from_str(value: &str) -> Result<Self, String> {{
-            match value {{
+        #[cfg(feature = "std")]
+        type TryFromError = String;
+        #[cfg(not(feature = "std"))]
+        type TryFromError = &'static str;
+
+        fn try_from_str(value: &str) -> Result<Self, TryFromError> {{
+            let result = match value {{
                 {try_from_str}
-                _ => Err(format!("Unknown CWE: {{}}", value))
+                _ => Err(())
+            }};
+            if let Ok(cwe) = result {{
+                return Ok(cwe);
             }}
+            #[cfg(feature = "std")]
+            return Err(format!("Unknown CWE: {{}}", value));
+            #[cfg(not(feature = "std"))]
+            return Err("Unknown CWE");
         }}
+
     }}
 
     impl TryFrom<&str> for Cwe {{
+        #[cfg(feature = "std")]
         type Error = String;
+        #[cfg(not(feature = "std"))]
+        type Error = &'static str;
     
         fn try_from(value: &str) -> Result<Self, Self::Error> {{
             match Cwe::try_from_str(value) {{

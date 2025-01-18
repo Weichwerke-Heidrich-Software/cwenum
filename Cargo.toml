@@ -23,6 +23,6 @@ serde_json = "1.0"
 [features]
 default = ["std"]
 iterable = []
-serde = ["serde_crate", "std", "str"]
+serde = ["serde_crate", "str"]
 std = []
 str = []

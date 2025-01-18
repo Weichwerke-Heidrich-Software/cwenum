@@ -1,28 +1,43 @@
 #!/bin/bash
 
+set -e
+
 print_filesize() {
   size=$(ls -ahl target/release/libcwenum.rlib | awk '{print $5}')
   echo "Filesize: $size"
 }
 
-echo Building without features
-cargo build --release > /dev/null 2>&1
+echo
+echo Building with default features
+cargo build --release
 print_filesize
-
+echo
 echo Building with iterable feature
-cargo build --release --features "iterable" > /dev/null 2>&1
+cargo build --release --features "iterable"
 print_filesize
-
+echo
 echo Building with serde feature
-cargo build --release --features "serde" > /dev/null 2>&1
+cargo build --release --features "serde"
 print_filesize
-
+echo
 echo Building with str feature
-cargo build --release --features "str" > /dev/null 2>&1
+cargo build --release --features "str"
 print_filesize
-
+echo
 echo Building with all features
-cargo build --release --all-features > /dev/null 2>&1
+cargo build --release --all-features
+print_filesize
+echo
+echo Building without std feature
+cargo build --release --no-default-features
+print_filesize
+echo
+echo Building with iterable without std feature
+cargo build --release --no-default-features --features "iterable"
+print_filesize
+echo
+echo Building with str without std feature
+cargo build --release --no-default-features --features "str"
 print_filesize
 
 cargo test --all-features

@@ -4866,7 +4866,7 @@ pub(crate) mod str {
     use super::*;
 
     impl Cwe {
-        /// Returns the CWE ID as a string.
+        /// Returns the CWE ID.
         ///
         /// # Example
         ///
@@ -7806,8 +7806,13 @@ Cwe::Cwe1427 => "The product uses externally-provided data to build prompts prov
             }
         }
 
-        fn try_from_str(value: &str) -> Result<Self, String> {
-            match value {
+        #[cfg(feature = "std")]
+        type TryFromError = String;
+        #[cfg(not(feature = "std"))]
+        type TryFromError = &'static str;
+
+        fn try_from_str(value: &str) -> Result<Self, TryFromError> {
+            let result = match value {
                 "CWE-5" => Ok(Cwe::Cwe5),
                 "CWE-6" => Ok(Cwe::Cwe6),
                 "CWE-7" => Ok(Cwe::Cwe7),
@@ -8773,13 +8778,23 @@ Cwe::Cwe1427 => "The product uses externally-provided data to build prompts prov
                 "CWE-1423" => Ok(Cwe::Cwe1423),
                 "CWE-1426" => Ok(Cwe::Cwe1426),
                 "CWE-1427" => Ok(Cwe::Cwe1427),
-                _ => Err(format!("Unknown CWE: {}", value)),
+                _ => Err(()),
+            };
+            if let Ok(cwe) = result {
+                return Ok(cwe);
             }
+            #[cfg(feature = "std")]
+            return Err(format!("Unknown CWE: {}", value));
+            #[cfg(not(feature = "std"))]
+            return Err("Unknown CWE");
         }
     }
 
     impl TryFrom<&str> for Cwe {
+        #[cfg(feature = "std")]
         type Error = String;
+        #[cfg(not(feature = "std"))]
+        type Error = &'static str;
 
         fn try_from(value: &str) -> Result<Self, Self::Error> {
             match Cwe::try_from_str(value) {
