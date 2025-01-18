@@ -9781,3 +9781,43 @@ pub(crate) mod iterable {
         }
     }
 }
+
+#[cfg(any(feature = "serde", test))]
+pub(crate) mod serde {
+    use serde_crate::{Deserialize, Deserializer, Serialize, Serializer};
+
+    use super::*;
+
+    impl Serialize for Cwe {
+        fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+        where
+            S: Serializer,
+        {
+            serializer.serialize_str(self.id())
+        }
+    }
+
+    impl<'de> Deserialize<'de> for Cwe {
+        fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+        where
+            D: Deserializer<'de>,
+        {
+            let value = String::deserialize(deserializer)?;
+            Cwe::try_from(value.as_str()).map_err(serde_crate::de::Error::custom)
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn serde_roundtrip() {
+        for cwe in Cwe::iterator() {
+            let serialized = serde_json::to_string(&cwe).unwrap();
+            let deserialized: Cwe = serde_json::from_str(&serialized).unwrap();
+            assert_eq!(cwe, deserialized);
+        }
+    }
+}
