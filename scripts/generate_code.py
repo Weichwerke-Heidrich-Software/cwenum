@@ -30,10 +30,94 @@ FILE_TEMPLATE = """
 /// // ...and hashable.
 /// let mut map = std::collections::HashMap::new();
 /// map.insert(cwe, "CWE-89");
+///
+/// // If the crate is compiled with the `str` feature, it offers more functionality:
+/// println!("{{}}", cwe.id());
+/// println!("{{}}", cwe.name());
+/// println!("{{}}", cwe.description());
+/// let cwe_79: Cwe = "CWE-79".try_into().unwrap();
+/// assert_eq!(cwe_79, Cwe::Cwe79);
+/// // The conversion is not case sensitive
+/// let cwe_80: Cwe = "cwe-80".try_into().unwrap();
+/// assert_eq!(cwe_80, Cwe::Cwe80);
 /// ```
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum Cwe {{
     {variants}
+}}
+
+#[cfg(any(feature = "str", test))]
+pub(crate) mod str {{
+    use super::*;
+
+    impl Cwe {{
+        /// Returns the CWE ID as a string.
+        ///
+        /// # Example
+        ///
+        /// ```
+        /// use cwenum::Cwe;
+        ///
+        /// let id = Cwe::Cwe89.id();
+        /// assert_eq!(id, "CWE-89");
+        /// ```
+        pub fn id(&self) -> &'static str {{
+            match self {{
+                {str_ids}
+            }}
+        }}
+
+        /// Returns the CWE name.
+        ///
+        /// # Example
+        ///
+        /// ```
+        /// use cwenum::Cwe;
+        ///
+        /// let name = Cwe::Cwe89.name();
+        /// assert_eq!(name, "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')");
+        /// ```
+        pub fn name(&self) -> &'static str {{
+            match self {{
+                {str_names}
+            }}
+        }}
+
+        /// Returns the (short) CWE description.
+        ///
+        /// # Example
+        ///
+        /// ```
+        /// use cwenum::Cwe;
+        ///
+        /// let description = Cwe::Cwe87.description();
+        /// assert_eq!(description, "The product does not neutralize or incorrectly neutralizes user-controlled input for alternate script syntax.");
+        /// ```
+        pub fn description(&self) -> &'static str {{
+            match self {{
+                {str_descriptions}
+            }}
+        }}
+
+        fn try_from_str(value: &str) -> Result<Self, String> {{
+            match value {{
+                {try_from_str}
+                _ => Err(format!("Unknown CWE: {{}}", value))
+            }}
+        }}
+    }}
+
+    impl TryFrom<&str> for Cwe {{
+        type Error = String;
+    
+        fn try_from(value: &str) -> Result<Self, Self::Error> {{
+            match Cwe::try_from_str(value) {{
+                Ok(cwe) => return Ok(cwe),
+                Err(_) => ()
+            }}
+            Cwe::try_from_str(&value.to_uppercase())
+        }}
+    }}
 }}
 """
 
@@ -86,15 +170,34 @@ def parse_cwec_xml():
 
     return cwec
 
+def sanitize(string):
+    return string.replace('\\', '\\\\').replace('"', '\\"')
+
 def write_to_file(cwec):
     variants = []
+    str_ids = []
+    str_names = []
+    str_descriptions = []
+    try_from_str = []
     for cwe in cwec:
         variants.append(VARIANT_TEMPLATE.format(id=cwe['ID'],
                                                 name=cwe['Name'],
                                                 description=cwe['Description']))
+        str_ids.append(f"Cwe::Cwe{cwe['ID']} => \"CWE-{cwe['ID']}\",")
+        sanitized_name = sanitize(cwe['Name'])
+        str_names.append(f"Cwe::Cwe{cwe['ID']} => \"{sanitized_name}\",")
+        sanitized_description = sanitize(cwe['Description'])
+        str_descriptions.append(f"Cwe::Cwe{cwe['ID']} => \"{sanitized_description}\",")
+        try_from_str.append(f"\"CWE-{cwe['ID']}\" => Ok(Cwe::Cwe{cwe['ID']}),")
+
+
 
     with open(RUSTFILE, 'w') as file:
-        file.write(FILE_TEMPLATE.format(variants="\n".join(variants)))
+        file.write(FILE_TEMPLATE.format(variants="\n".join(variants),
+                                        str_ids="\n".join(str_ids),
+                                        str_names="\n".join(str_names),
+                                        str_descriptions="\n".join(str_descriptions),
+                                        try_from_str="\n".join(try_from_str)))
 
 def main():
     assure_file()
