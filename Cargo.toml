@@ -17,4 +17,5 @@ crate-type = ["rlib"]
 
 [features]
 default = []
+iterable = []
 str = []
