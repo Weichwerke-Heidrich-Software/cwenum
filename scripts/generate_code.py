@@ -18,6 +18,10 @@ pub enum CWE {{
 }}
 """
 
+VARIANT_TEMPLATE = """
+    /// {name}
+    Cwe{id},
+"""
 
 def download_cwec_zip(url):
     response = requests.get(url)
@@ -58,10 +62,10 @@ def parse_cwec_xml():
 def write_to_file(cwec):
     variants = []
     for cwe in cwec:
-        variants.append(f"CWE_{cwe['ID']}")
+        variants.append(VARIANT_TEMPLATE.format(id=cwe['ID'], name=cwe['Name']))
 
     with open(RUSTFILE, 'w') as file:
-        file.write(FILE_TEMPLATE.format(variants=",\n".join(variants)))
+        file.write(FILE_TEMPLATE.format(variants="\n".join(variants)))
 
 def main():
     assure_file()
