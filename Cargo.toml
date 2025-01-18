@@ -14,3 +14,7 @@ name = "cwenum"
 crate-type = ["rlib"]
 
 [dependencies]
+
+[features]
+default = []
+str = []

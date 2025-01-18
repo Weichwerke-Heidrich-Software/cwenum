@@ -35,6 +35,29 @@ FILE_TEMPLATE = """
 pub enum Cwe {{
     {variants}
 }}
+
+#[cfg(any(feature = "str", test))]
+pub(crate) mod str {{
+    use super::*;
+
+    impl Cwe {{
+        /// Returns the CWE ID as a string.
+        ///
+        /// # Example
+        ///
+        /// ```
+        /// use cwenum::Cwe;
+        ///
+        /// let cwe = Cwe::Cwe89;
+        /// assert_eq!(cwe.as_str(), "CWE-89");
+        /// ```
+        pub fn as_str(&self) -> &'static str {{
+            match self {{
+                {as_str_variants}
+            }}
+        }}
+    }}
+}}
 """
 
 VARIANT_TEMPLATE = """
@@ -88,13 +111,18 @@ def parse_cwec_xml():
 
 def write_to_file(cwec):
     variants = []
+    as_str_variants = []
     for cwe in cwec:
         variants.append(VARIANT_TEMPLATE.format(id=cwe['ID'],
                                                 name=cwe['Name'],
                                                 description=cwe['Description']))
+        as_str_variants.append(f"Cwe::Cwe{cwe['ID']} => \"CWE-{cwe['ID']}\",")
+
+
 
     with open(RUSTFILE, 'w') as file:
-        file.write(FILE_TEMPLATE.format(variants="\n".join(variants)))
+        file.write(FILE_TEMPLATE.format(variants="\n".join(variants),
+                                        as_str_variants="\n".join(as_str_variants)))
 
 def main():
     assure_file()
