@@ -10,6 +10,11 @@ cwenum = { version = "1.0", default-features = false, features = [] }
 ```
 in your Cargo.toml. You now have access to the `cwenum::Cwe` enum.
 
+Feature flags:
+* `iterable`: Offers `Cwe::iterator()`, which can be used to loop through all CWEs.
+* `str`: Offers some conversion functionality to and from `&str`. Roughly doubles artifact size to about 1.5 MB.
+* `serde`: Implements `Deserialize` and `Serialize` for `Cwe`, using the functions behind the `str` flag.
+
 # Example
 
 ```rs
