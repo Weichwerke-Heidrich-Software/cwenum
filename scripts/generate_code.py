@@ -34,8 +34,9 @@ def parse_cwec_xml():
     tree = ET.parse(cwec_xml)
     root = tree.getroot()
     cwe_list = []
+    namespace = {'cwe': 'http://cwe.mitre.org/cwe-7'}
     
-    for weakness in root.findall('.//Weakness'):
+    for weakness in root.findall('.//cwe:Weakness', namespace):
         cwe_id = weakness.get('ID')
         cwe_name = weakness.get('Name')
         cwe_list.append({'ID': cwe_id, 'Name': cwe_name})
