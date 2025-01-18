@@ -1,8 +1,8 @@
 #!/bin/bash
 
-cargo build
-ls -ahl target/debug/libcwenum.rlib
-cargo build --features "str"
-ls -ahl target/debug/libcwenum.rlib
+cargo build --release
+ls -ahl target/release/libcwenum.rlib
+cargo build --release --features "str"
+ls -ahl target/release/libcwenum.rlib
 
 cargo test --all-features

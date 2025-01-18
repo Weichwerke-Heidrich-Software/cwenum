@@ -48,12 +48,44 @@ pub(crate) mod str {{
         /// ```
         /// use cwenum::Cwe;
         ///
-        /// let cwe = Cwe::Cwe89;
-        /// assert_eq!(cwe.as_str(), "CWE-89");
+        /// let id = Cwe::Cwe89.id();
+        /// assert_eq!(id, "CWE-89");
         /// ```
-        pub fn as_str(&self) -> &'static str {{
+        pub fn id(&self) -> &'static str {{
             match self {{
-                {as_str_variants}
+                {str_ids}
+            }}
+        }}
+
+        /// Returns the CWE name.
+        ///
+        /// # Example
+        ///
+        /// ```
+        /// use cwenum::Cwe;
+        ///
+        /// let name = Cwe::Cwe89.name();
+        /// assert_eq!(name, "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')");
+        /// ```
+        pub fn name(&self) -> &'static str {{
+            match self {{
+                {str_names}
+            }}
+        }}
+
+        /// Returns the (short) CWE description.
+        ///
+        /// # Example
+        ///
+        /// ```
+        /// use cwenum::Cwe;
+        ///
+        /// let description = Cwe::Cwe87.description();
+        /// assert_eq!(description, "The product does not neutralize or incorrectly neutralizes user-controlled input for alternate script syntax.");
+        /// ```
+        pub fn description(&self) -> &'static str {{
+            match self {{
+                {str_descriptions}
             }}
         }}
     }}
@@ -109,20 +141,31 @@ def parse_cwec_xml():
 
     return cwec
 
+def sanitize(string):
+    return string.replace('\\', '\\\\').replace('"', '\\"')
+
 def write_to_file(cwec):
     variants = []
-    as_str_variants = []
+    str_ids = []
+    str_names = []
+    str_descriptions = []
     for cwe in cwec:
         variants.append(VARIANT_TEMPLATE.format(id=cwe['ID'],
                                                 name=cwe['Name'],
                                                 description=cwe['Description']))
-        as_str_variants.append(f"Cwe::Cwe{cwe['ID']} => \"CWE-{cwe['ID']}\",")
+        str_ids.append(f"Cwe::Cwe{cwe['ID']} => \"CWE-{cwe['ID']}\",")
+        sanitized_name = sanitize(cwe['Name'])
+        str_names.append(f"Cwe::Cwe{cwe['ID']} => \"{sanitized_name}\",")
+        sanitized_description = sanitize(cwe['Description'])
+        str_descriptions.append(f"Cwe::Cwe{cwe['ID']} => \"{sanitized_description}\",")
 
 
 
     with open(RUSTFILE, 'w') as file:
         file.write(FILE_TEMPLATE.format(variants="\n".join(variants),
-                                        as_str_variants="\n".join(as_str_variants)))
+                                        str_ids="\n".join(str_ids),
+                                        str_names="\n".join(str_names),
+                                        str_descriptions="\n".join(str_descriptions)))
 
 def main():
     assure_file()
