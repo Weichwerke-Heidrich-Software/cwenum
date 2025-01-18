@@ -27,6 +27,11 @@
 /// // The conversion is not case sensitive
 /// let cwe_80: Cwe = "cwe-80".try_into().unwrap();
 /// assert_eq!(cwe_80, Cwe::Cwe80);
+///
+/// // If the crate is compiled with the `iterable` feature, the enum offers an iterator:
+/// for cwe in Cwe::iterator().take(3) {
+///     println!("{}", cwe.id())
+/// }
 /// ```
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum Cwe {
@@ -8791,7 +8796,20 @@ pub(crate) mod iterable {
     use super::*;
 
     impl Cwe {
-        fn iterator() -> impl Iterator<Item = Cwe> {
+        /// Returns a sorted iterator over all CWE variants.
+        ///
+        /// # Example
+        ///
+        /// ```
+        /// use cwenum::Cwe;
+        ///
+        /// let mut count = 0;
+        /// for _ in Cwe::iterator() {
+        ///     count += 1;
+        /// }
+        /// assert!(count > 500);
+        /// ```
+        pub fn iterator() -> impl Iterator<Item = Cwe> {
             [
                 Cwe::Cwe5,
                 Cwe::Cwe6,

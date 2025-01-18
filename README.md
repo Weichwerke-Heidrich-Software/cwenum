@@ -35,6 +35,11 @@ assert_eq!(cwe_79, Cwe::Cwe79);
 // The conversion is not case sensitive
 let cwe_80: Cwe = "cwe-80".try_into().unwrap();
 assert_eq!(cwe_80, Cwe::Cwe80);
+
+// If the crate is compiled with the `iterable` feature, the enum offers an iterator:
+for cwe in Cwe::iterator().take(3) {
+    println!("{}", cwe.id())
+}
 ```
 
 ## License
