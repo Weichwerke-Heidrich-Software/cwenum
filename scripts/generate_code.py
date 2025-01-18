@@ -4,7 +4,7 @@ import shutil
 import xml.etree.ElementTree as ET
 import zipfile
 
-url = 'https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip'
+url = 'https://cwe.mitre.org/data/xml/cwec_latest.xml.zip'
 dir = "dev_data"
 cwec_zip = os.path.join(dir, "cwec.zip")
 cwec_xml = os.path.join(dir, "cwec.xml")
