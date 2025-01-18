@@ -88,6 +88,25 @@ pub(crate) mod str {{
                 {str_descriptions}
             }}
         }}
+
+        fn try_from_str(value: &str) -> Result<Self, String> {{
+            match value {{
+                {try_from_str}
+                _ => Err(format!("Unknown CWE: {{}}", value))
+            }}
+        }}
+    }}
+
+    impl TryFrom<&str> for Cwe {{
+        type Error = String;
+    
+        fn try_from(value: &str) -> Result<Self, Self::Error> {{
+            match Cwe::try_from_str(value) {{
+                Ok(cwe) => return Ok(cwe),
+                Err(_) => ()
+            }}
+            Cwe::try_from_str(&value.to_uppercase())
+        }}
     }}
 }}
 """
@@ -149,6 +168,7 @@ def write_to_file(cwec):
     str_ids = []
     str_names = []
     str_descriptions = []
+    try_from_str = []
     for cwe in cwec:
         variants.append(VARIANT_TEMPLATE.format(id=cwe['ID'],
                                                 name=cwe['Name'],
@@ -158,6 +178,7 @@ def write_to_file(cwec):
         str_names.append(f"Cwe::Cwe{cwe['ID']} => \"{sanitized_name}\",")
         sanitized_description = sanitize(cwe['Description'])
         str_descriptions.append(f"Cwe::Cwe{cwe['ID']} => \"{sanitized_description}\",")
+        try_from_str.append(f"\"CWE-{cwe['ID']}\" => Ok(Cwe::Cwe{cwe['ID']}),")
 
 
 
@@ -165,7 +186,8 @@ def write_to_file(cwec):
         file.write(FILE_TEMPLATE.format(variants="\n".join(variants),
                                         str_ids="\n".join(str_ids),
                                         str_names="\n".join(str_names),
-                                        str_descriptions="\n".join(str_descriptions)))
+                                        str_descriptions="\n".join(str_descriptions),
+                                        try_from_str="\n".join(try_from_str)))
 
 def main():
     assure_file()
