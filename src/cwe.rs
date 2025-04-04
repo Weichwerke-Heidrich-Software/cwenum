@@ -537,7 +537,7 @@ pub enum Cwe {
 
     /// ### Improper Output Neutralization for Logs
     ///
-    /// The product does not neutralize or incorrectly neutralizes output that is written to logs.
+    /// The product constructs a log message from external input, but it does not neutralize or incorrectly neutralizes special elements when the message is written to a log file.
     Cwe117,
 
     /// ### Incorrect Access of Indexable Resource ('Range Error')
@@ -1472,7 +1472,7 @@ pub enum Cwe {
 
     /// ### Use of Hard-coded Cryptographic Key
     ///
-    /// The use of a hard-coded cryptographic key significantly increases the possibility that encrypted data may be recovered.
+    /// The product uses a hard-coded, unchangeable cryptographic key.
     Cwe321,
 
     /// ### Key Exchange without Entity Authentication
@@ -1627,7 +1627,7 @@ pub enum Cwe {
 
     /// ### Cross-Site Request Forgery (CSRF)
     ///
-    /// The web application does not, or can not, sufficiently verify whether a well-formed, valid, consistent request was intentionally provided by the user who submitted the request.
+    /// The web application does not, or cannot, sufficiently verify whether a request was intentionally provided by the user who sent the request, which could have originated from an unauthorized actor.
     Cwe352,
 
     /// ### Missing Support for Integrity Check
@@ -1787,7 +1787,7 @@ pub enum Cwe {
 
     /// ### Return of Wrong Status Code
     ///
-    /// A function or operation returns an incorrect return value or status code that does not indicate an error, but causes the product to modify its behavior based on the incorrect result.
+    /// A function or operation returns an incorrect return value or status code that does not indicate the true result of execution, causing the product to modify its behavior based on the incorrect result.
     Cwe393,
 
     /// ### Unexpected Status Code or Return Value
@@ -1807,17 +1807,17 @@ pub enum Cwe {
 
     /// ### Declaration of Throws for Generic Exception
     ///
-    /// Throwing overly broad exceptions promotes complex error handling code that is more likely to contain security vulnerabilities.
+    /// The product throws or raises an overly broad exceptions that can hide important details and produce inappropriate responses to certain conditions.
     Cwe397,
 
     /// ### Uncontrolled Resource Consumption
     ///
-    /// The product does not properly control the allocation and maintenance of a limited resource, thereby enabling an actor to influence the amount of resources consumed, eventually leading to the exhaustion of available resources.
+    /// The product does not properly control the allocation and maintenance of a limited resource.
     Cwe400,
 
     /// ### Missing Release of Memory after Effective Lifetime
     ///
-    /// The product does not sufficiently track and release allocated memory after it has been used, which slowly consumes remaining memory.
+    /// The product does not sufficiently track and release allocated memory after it has been used, making the memory unavailable for reallocation and reuse.
     Cwe401,
 
     /// ### Transmission of Private Resources into a New Sphere ('Resource Leak')
@@ -1882,7 +1882,7 @@ pub enum Cwe {
 
     /// ### Double Free
     ///
-    /// The product calls free() twice on the same memory address, potentially leading to modification of unexpected memory locations.
+    /// The product calls free() twice on the same memory address.
     Cwe415,
 
     /// ### Use After Free
@@ -2457,7 +2457,7 @@ pub enum Cwe {
 
     /// ### Exposure of Information Through Directory Listing
     ///
-    /// A directory listing is inappropriately exposed, yielding potentially sensitive information to attackers.
+    /// The product inappropriately exposes a directory listing with an index of all the resources located inside of the directory.
     Cwe548,
 
     /// ### Missing Password Field Masking
@@ -3710,7 +3710,7 @@ pub enum Cwe {
     /// The product uses a mechanism that automatically optimizes code, e.g. to improve a characteristic such as performance, but the optimizations can have an unintended side effect that might violate an intended security assumption.
     Cwe1038,
 
-    /// ### Automated Recognition Mechanism with Inadequate Detection or Handling of Adversarial Input Perturbations
+    /// ### Inadequate Detection or Handling of Adversarial Input Perturbations in Automated Recognition Mechanism
     ///
     /// The product uses an automated mechanism such as machine learning to recognize complex data inputs (e.g. image or audio) as a particular concept or category, but it does not properly detect or handle inputs that have been modified or constructed in a way that causes the mechanism to detect a different, incorrect concept.
     Cwe1039,
@@ -4859,6 +4859,21 @@ pub enum Cwe {
     ///
     /// The product uses externally-provided data to build prompts provided to large language models (LLMs), but the way these prompts are constructed causes the LLM to fail to distinguish between user-supplied inputs and developer provided system directives.
     Cwe1427,
+
+    /// ### Reliance on HTTP instead of HTTPS
+    ///
+    /// The product provides or relies on use of HTTP communications when HTTPS is available.
+    Cwe1428,
+
+    /// ### Missing Security-Relevant Feedback for Unexecuted Operations in Hardware Interface
+    ///
+    /// The product has a hardware interface that silently discards operations in situations for which feedback would be security-relevant, such as the timely detection of failures or attacks.
+    Cwe1429,
+
+    /// ### Driving Intermediate Cryptographic State/Results to Hardware Module Outputs
+    ///
+    /// The product uses a hardware module implementing a cryptographic algorithm that writes sensitive information about the intermediate state or results of its cryptographic operations via one of its output wires (typically the output port containing the final result).
+    Cwe1431,
 }
 
 #[cfg(any(feature = "str", test))]
@@ -5848,6 +5863,9 @@ pub(crate) mod str {
                 Cwe::Cwe1423 => "CWE-1423",
                 Cwe::Cwe1426 => "CWE-1426",
                 Cwe::Cwe1427 => "CWE-1427",
+                Cwe::Cwe1428 => "CWE-1428",
+                Cwe::Cwe1429 => "CWE-1429",
+                Cwe::Cwe1431 => "CWE-1431",
             }
         }
 
@@ -6709,7 +6727,7 @@ pub(crate) mod str {
                 }
                 Cwe::Cwe1038 => "Insecure Automated Optimizations",
                 Cwe::Cwe1039 => {
-                    "Automated Recognition Mechanism with Inadequate Detection or Handling of Adversarial Input Perturbations"
+                    "Inadequate Detection or Handling of Adversarial Input Perturbations in Automated Recognition Mechanism"
                 }
                 Cwe::Cwe1041 => "Use of Redundant Code",
                 Cwe::Cwe1042 => "Static Member Data Element outside of a Singleton Class Element",
@@ -7038,6 +7056,13 @@ pub(crate) mod str {
                 }
                 Cwe::Cwe1426 => "Improper Validation of Generative AI Output",
                 Cwe::Cwe1427 => "Improper Neutralization of Input Used for LLM Prompting",
+                Cwe::Cwe1428 => "Reliance on HTTP instead of HTTPS",
+                Cwe::Cwe1429 => {
+                    "Missing Security-Relevant Feedback for Unexecuted Operations in Hardware Interface"
+                }
+                Cwe::Cwe1431 => {
+                    "Driving Intermediate Cryptographic State/Results to Hardware Module Outputs"
+                }
             }
         }
 
@@ -7352,7 +7377,7 @@ pub(crate) mod str {
                     "The product prepares a structured message for communication with another component, but encoding or escaping of the data is either missing or done incorrectly. As a result, the intended structure of the message is not preserved."
                 }
                 Cwe::Cwe117 => {
-                    "The product does not neutralize or incorrectly neutralizes output that is written to logs."
+                    "The product constructs a log message from external input, but it does not neutralize or incorrectly neutralizes special elements when the message is written to a log file."
                 }
                 Cwe::Cwe118 => {
                     "The product does not restrict or incorrectly restricts operations within the boundaries of a resource that is accessed using an index or pointer, such as memory or files."
@@ -7898,9 +7923,7 @@ pub(crate) mod str {
                 Cwe::Cwe319 => {
                     "The product transmits sensitive or security-critical data in cleartext in a communication channel that can be sniffed by unauthorized actors."
                 }
-                Cwe::Cwe321 => {
-                    "The use of a hard-coded cryptographic key significantly increases the possibility that encrypted data may be recovered."
-                }
+                Cwe::Cwe321 => "The product uses a hard-coded, unchangeable cryptographic key.",
                 Cwe::Cwe322 => {
                     "The product performs a key exchange with an actor without verifying the identity of that actor."
                 }
@@ -7990,7 +8013,7 @@ pub(crate) mod str {
                     "The product does not properly distinguish between different types of elements in a way that leads to insecure behavior."
                 }
                 Cwe::Cwe352 => {
-                    "The web application does not, or can not, sufficiently verify whether a well-formed, valid, consistent request was intentionally provided by the user who submitted the request."
+                    "The web application does not, or cannot, sufficiently verify whether a request was intentionally provided by the user who sent the request, which could have originated from an unauthorized actor. "
                 }
                 Cwe::Cwe353 => {
                     "The product uses a transmission protocol that does not include a mechanism for verifying the integrity of the data during transmission, such as a checksum."
@@ -8082,7 +8105,7 @@ pub(crate) mod str {
                     "The product encounters an error but does not provide a status code or return value to indicate that an error has occurred."
                 }
                 Cwe::Cwe393 => {
-                    "A function or operation returns an incorrect return value or status code that does not indicate an error, but causes the product to modify its behavior based on the incorrect result."
+                    "A function or operation returns an incorrect return value or status code that does not indicate the true result of execution, causing the product to modify its behavior based on the incorrect result."
                 }
                 Cwe::Cwe394 => {
                     "The product does not properly check when a function or operation returns a value that is legitimate for the function, but is not expected by the product."
@@ -8094,13 +8117,13 @@ pub(crate) mod str {
                     "Catching overly broad exceptions promotes complex error handling code that is more likely to contain security vulnerabilities."
                 }
                 Cwe::Cwe397 => {
-                    "Throwing overly broad exceptions promotes complex error handling code that is more likely to contain security vulnerabilities."
+                    "The product throws or raises an overly broad exceptions that can hide important details and produce inappropriate responses to certain conditions."
                 }
                 Cwe::Cwe400 => {
-                    "The product does not properly control the allocation and maintenance of a limited resource, thereby enabling an actor to influence the amount of resources consumed, eventually leading to the exhaustion of available resources."
+                    "The product does not properly control the allocation and maintenance of a limited resource."
                 }
                 Cwe::Cwe401 => {
-                    "The product does not sufficiently track and release allocated memory after it has been used, which slowly consumes remaining memory."
+                    "The product does not sufficiently track and release allocated memory after it has been used, making the memory unavailable for reallocation and reuse."
                 }
                 Cwe::Cwe402 => {
                     "The product makes resources available to untrusted parties when those resources are only intended to be accessed by the product."
@@ -8138,9 +8161,7 @@ pub(crate) mod str {
                 Cwe::Cwe414 => {
                     "A product does not check to see if a lock is present before performing sensitive operations on a resource."
                 }
-                Cwe::Cwe415 => {
-                    "The product calls free() twice on the same memory address, potentially leading to modification of unexpected memory locations."
-                }
+                Cwe::Cwe415 => "The product calls free() twice on the same memory address.",
                 Cwe::Cwe416 => {
                     "The product reuses or references memory after it has been freed. At some point afterward, the memory may be allocated again and saved in another pointer, while the original pointer references a location somewhere within the new allocation. Any operations using the original pointer are no longer valid because the memory \"belongs\" to the code that operates on the new pointer."
                 }
@@ -8470,7 +8491,7 @@ pub(crate) mod str {
                     "The product uses hard-coded constants instead of symbolic names for security-critical values, which increases the likelihood of mistakes during code maintenance or security policy change."
                 }
                 Cwe::Cwe548 => {
-                    "A directory listing is inappropriately exposed, yielding potentially sensitive information to attackers."
+                    "The product inappropriately exposes a directory listing with an index of all the resources located inside of the directory."
                 }
                 Cwe::Cwe549 => {
                     "The product does not mask passwords during entry, increasing the potential for attackers to observe and capture passwords."
@@ -9890,6 +9911,15 @@ pub(crate) mod str {
                 Cwe::Cwe1427 => {
                     "The product uses externally-provided data to build prompts provided to large language models (LLMs), but the way these prompts are constructed causes the LLM to fail to distinguish between user-supplied inputs and developer provided system directives."
                 }
+                Cwe::Cwe1428 => {
+                    "The product provides or relies on use of HTTP communications when HTTPS is available."
+                }
+                Cwe::Cwe1429 => {
+                    "The product has a hardware interface that silently discards operations in situations for which feedback would be security-relevant, such as the timely detection of failures or attacks."
+                }
+                Cwe::Cwe1431 => {
+                    "The product uses a hardware module implementing a cryptographic algorithm that writes sensitive information about the intermediate state or results of its cryptographic operations via one of its output wires (typically the output port containing the final result)."
+                }
             }
         }
 
@@ -10860,6 +10890,9 @@ pub(crate) mod str {
                 "CWE-1423" => Ok(Cwe::Cwe1423),
                 "CWE-1426" => Ok(Cwe::Cwe1426),
                 "CWE-1427" => Ok(Cwe::Cwe1427),
+                "CWE-1428" => Ok(Cwe::Cwe1428),
+                "CWE-1429" => Ok(Cwe::Cwe1429),
+                "CWE-1431" => Ok(Cwe::Cwe1431),
                 _ => Err(()),
             };
             if let Ok(cwe) = result {
@@ -11876,6 +11909,9 @@ pub(crate) mod iterable {
                 Cwe::Cwe1423,
                 Cwe::Cwe1426,
                 Cwe::Cwe1427,
+                Cwe::Cwe1428,
+                Cwe::Cwe1429,
+                Cwe::Cwe1431,
             ]
             .into_iter()
         }
