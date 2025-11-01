@@ -552,7 +552,7 @@ pub enum Cwe {
 
     /// ### Buffer Copy without Checking Size of Input ('Classic Buffer Overflow')
     ///
-    /// The product copies an input buffer to an output buffer without verifying that the size of the input buffer is less than the size of the output buffer, leading to a buffer overflow.
+    /// The product copies an input buffer to an output buffer without verifying that the size of the input buffer is less than the size of the output buffer.
     Cwe120,
 
     /// ### Stack-based Buffer Overflow
@@ -1172,7 +1172,7 @@ pub enum Cwe {
 
     /// ### Plaintext Storage of a Password
     ///
-    /// Storing a password in plaintext may result in a system compromise.
+    /// The product stores a password in plaintext within resources such as memory or files.
     Cwe256,
 
     /// ### Storing Passwords in a Recoverable Format
@@ -1692,7 +1692,7 @@ pub enum Cwe {
 
     /// ### Time-of-check Time-of-use (TOCTOU) Race Condition
     ///
-    /// The product checks the state of a resource before using that resource, but the resource's state can change between the check and the use in a way that invalidates the results of the check. This can cause the product to perform invalid actions when the resource is in an unexpected state.
+    /// The product checks the state of a resource before using that resource, but the resource's state can change between the check and the use in a way that invalidates the results of the check.
     Cwe367,
 
     /// ### Context Switching Race Condition
@@ -2202,7 +2202,7 @@ pub enum Cwe {
 
     /// ### Active Debug Code
     ///
-    /// The product is deployed to unauthorized actors with debugging code still enabled or active, which can create unintended entry points or expose sensitive information.
+    /// The product is released with debugging code still enabled or active.
     Cwe489,
 
     /// ### Public cloneable() Method Without Final ('Object Hijack')
@@ -2767,7 +2767,7 @@ pub enum Cwe {
 
     /// ### Sensitive Cookie in HTTPS Session Without 'Secure' Attribute
     ///
-    /// The Secure attribute for sensitive cookies in HTTPS sessions is not set, which could cause the user agent to send those cookies in plaintext over an HTTP session.
+    /// The Secure attribute for sensitive cookies in HTTPS sessions is not set.
     Cwe614,
 
     /// ### Inclusion of Sensitive Information in Source Code Comments
@@ -3252,7 +3252,7 @@ pub enum Cwe {
 
     /// ### Allocation of Resources Without Limits or Throttling
     ///
-    /// The product allocates a reusable resource or group of resources on behalf of an actor without imposing any restrictions on the size or number of resources that can be allocated, in violation of the intended security policy for that actor.
+    /// The product allocates a reusable resource or group of resources on behalf of an actor without imposing any intended restrictions on the size or number of resources that can be allocated.
     Cwe770,
 
     /// ### Missing Reference to Active Allocated Resource
@@ -3655,9 +3655,9 @@ pub enum Cwe {
     /// The product creates a communication channel to initiate an outgoing request to an actor, but it does not correctly specify the intended destination for that actor.
     Cwe941,
 
-    /// ### Permissive Cross-domain Policy with Untrusted Domains
+    /// ### Permissive Cross-domain Security Policy with Untrusted Domains
     ///
-    /// The product uses a cross-domain policy file that includes domains that should not be trusted.
+    /// The product uses a web-client protection mechanism such as a Content Security Policy (CSP) or cross-domain policy file, but the policy includes untrusted domains with which the web client is allowed to communicate.
     Cwe942,
 
     /// ### Improper Neutralization of Special Elements in Data Query Logic
@@ -4652,7 +4652,7 @@ pub enum Cwe {
 
     /// ### Missing Support for Security Features in On-chip Fabrics or Buses
     ///
-    ///  On-chip fabrics or buses either do not support or are not configured to support privilege separation or other security features, such as access control.
+    /// On-chip fabrics or buses either do not support or are not configured to support privilege separation or other security features, such as access control.
     Cwe1318,
 
     /// ### Improper Protection against Electromagnetic Fault Injection (EM-FI)
@@ -4874,6 +4874,11 @@ pub enum Cwe {
     ///
     /// The product uses a hardware module implementing a cryptographic algorithm that writes sensitive information about the intermediate state or results of its cryptographic operations via one of its output wires (typically the output port containing the final result).
     Cwe1431,
+
+    /// ### Insecure Setting of Generative AI/ML Model Inference Parameters
+    ///
+    /// The product has a component that relies on a generative AI/ML model configured with inference parameters that produce an unacceptably high rate of erroneous or unexpected outputs.
+    Cwe1434,
 }
 
 #[cfg(any(feature = "str", test))]
@@ -5866,6 +5871,7 @@ pub(crate) mod str {
                 Cwe::Cwe1428 => "CWE-1428",
                 Cwe::Cwe1429 => "CWE-1429",
                 Cwe::Cwe1431 => "CWE-1431",
+                Cwe::Cwe1434 => "CWE-1434",
             }
         }
 
@@ -6713,7 +6719,7 @@ pub(crate) mod str {
                 Cwe::Cwe939 => "Improper Authorization in Handler for Custom URL Scheme",
                 Cwe::Cwe940 => "Improper Verification of Source of a Communication Channel",
                 Cwe::Cwe941 => "Incorrectly Specified Destination in a Communication Channel",
-                Cwe::Cwe942 => "Permissive Cross-domain Policy with Untrusted Domains",
+                Cwe::Cwe942 => "Permissive Cross-domain Security Policy with Untrusted Domains",
                 Cwe::Cwe943 => "Improper Neutralization of Special Elements in Data Query Logic",
                 Cwe::Cwe1004 => "Sensitive Cookie Without 'HttpOnly' Flag",
                 Cwe::Cwe1007 => "Insufficient Visual Distinction of Homoglyphs Presented to User",
@@ -7063,6 +7069,7 @@ pub(crate) mod str {
                 Cwe::Cwe1431 => {
                     "Driving Intermediate Cryptographic State/Results to Hardware Module Outputs"
                 }
+                Cwe::Cwe1434 => "Insecure Setting of Generative AI/ML Model Inference Parameters",
             }
         }
 
@@ -7386,7 +7393,7 @@ pub(crate) mod str {
                     "The product performs operations on a memory buffer, but it reads from or writes to a memory location outside the buffer's intended boundary. This may result in read or write operations on unexpected memory locations that could be linked to other variables, data structures, or internal program data."
                 }
                 Cwe::Cwe120 => {
-                    "The product copies an input buffer to an output buffer without verifying that the size of the input buffer is less than the size of the output buffer, leading to a buffer overflow."
+                    "The product copies an input buffer to an output buffer without verifying that the size of the input buffer is less than the size of the output buffer."
                 }
                 Cwe::Cwe121 => {
                     "A stack-based buffer overflow condition is a condition where the buffer being overwritten is allocated on the stack (i.e., is a local variable or, rarely, a parameter to a function)."
@@ -7753,7 +7760,9 @@ pub(crate) mod str {
                 Cwe::Cwe253 => {
                     "The product incorrectly checks a return value from a function, which prevents it from detecting errors or exceptional conditions."
                 }
-                Cwe::Cwe256 => "Storing a password in plaintext may result in a system compromise.",
+                Cwe::Cwe256 => {
+                    "The product stores a password in plaintext within resources such as memory or files."
+                }
                 Cwe::Cwe257 => {
                     "The storage of passwords in a recoverable format makes them subject to password reuse attacks by malicious users. In fact, it should be noted that recoverable encrypted passwords provide no significant benefit over plaintext passwords since they are subject not only to reuse by malicious attackers but also by malicious insiders. If a system administrator can recover a password directly, or use a brute force search on the available information, the administrator can use the password on other accounts."
                 }
@@ -8050,7 +8059,7 @@ pub(crate) mod str {
                     "If two threads of execution use a resource simultaneously, there exists the possibility that resources may be used while invalid, in turn making the state of execution undefined."
                 }
                 Cwe::Cwe367 => {
-                    "The product checks the state of a resource before using that resource, but the resource's state can change between the check and the use in a way that invalidates the results of the check. This can cause the product to perform invalid actions when the resource is in an unexpected state."
+                    "The product checks the state of a resource before using that resource, but the resource's state can change between the check and the use in a way that invalidates the results of the check."
                 }
                 Cwe::Cwe368 => {
                     "A product performs a series of non-atomic actions to switch between contexts that cross privilege or other security boundaries, but a race condition allows an attacker to modify or misrepresent the product's behavior during the switch."
@@ -8344,7 +8353,7 @@ pub(crate) mod str {
                     "The product does not sufficiently enforce boundaries between the states of different sessions, causing data to be provided to, or used by, the wrong session."
                 }
                 Cwe::Cwe489 => {
-                    "The product is deployed to unauthorized actors with debugging code still enabled or active, which can create unintended entry points or expose sensitive information."
+                    "The product is released with debugging code still enabled or active."
                 }
                 Cwe::Cwe491 => {
                     "A class has a cloneable() method that is not declared final, which allows an object to be created without calling the constructor. This can cause the object to be in an unexpected state."
@@ -8671,7 +8680,7 @@ pub(crate) mod str {
                     "According to WASC, \"Insufficient Session Expiration is when a web site permits an attacker to reuse old session credentials or session IDs for authorization.\""
                 }
                 Cwe::Cwe614 => {
-                    "The Secure attribute for sensitive cookies in HTTPS sessions is not set, which could cause the user agent to send those cookies in plaintext over an HTTP session."
+                    "The Secure attribute for sensitive cookies in HTTPS sessions is not set."
                 }
                 Cwe::Cwe615 => {
                     "While adding general comments is very useful, some programmers tend to leave important data, such as: filenames related to the web application, old links or links which were not meant to be browsed by users, old code fragments, etc."
@@ -8962,7 +8971,7 @@ pub(crate) mod str {
                     "This entry has been deprecated because it was a duplicate of CWE-774. All content has been transferred to CWE-774."
                 }
                 Cwe::Cwe770 => {
-                    "The product allocates a reusable resource or group of resources on behalf of an actor without imposing any restrictions on the size or number of resources that can be allocated, in violation of the intended security policy for that actor."
+                    "The product allocates a reusable resource or group of resources on behalf of an actor without imposing any intended restrictions on the size or number of resources that can be allocated."
                 }
                 Cwe::Cwe771 => {
                     "The product does not properly maintain a reference to a resource that has been allocated, which prevents the resource from being reclaimed."
@@ -9201,7 +9210,7 @@ pub(crate) mod str {
                     "The product creates a communication channel to initiate an outgoing request to an actor, but it does not correctly specify the intended destination for that actor."
                 }
                 Cwe::Cwe942 => {
-                    "The product uses a cross-domain policy file that includes domains that should not be trusted."
+                    "The product uses a web-client protection mechanism such as a Content Security Policy (CSP) or cross-domain policy file, but the policy includes untrusted domains with which the web client is allowed to communicate."
                 }
                 Cwe::Cwe943 => {
                     "The product generates a query intended to access or manipulate data in a data store such as a database, but it does not neutralize or incorrectly neutralizes special elements that can modify the intended logic of the query."
@@ -9786,7 +9795,7 @@ pub(crate) mod str {
                     "The product uses a fabric bridge for transactions between two Intellectual Property (IP) blocks, but the bridge does not properly perform the expected privilege, identity, or other access control checks between those IP blocks."
                 }
                 Cwe::Cwe1318 => {
-                    " On-chip fabrics or buses either do not support or are not configured to support privilege separation or other security features, such as access control. "
+                    "On-chip fabrics or buses either do not support or are not configured to support privilege separation or other security features, such as access control."
                 }
                 Cwe::Cwe1319 => {
                     "The device is susceptible to electromagnetic fault injection attacks, causing device internal information to be compromised or security mechanisms to be bypassed."
@@ -9919,6 +9928,9 @@ pub(crate) mod str {
                 }
                 Cwe::Cwe1431 => {
                     "The product uses a hardware module implementing a cryptographic algorithm that writes sensitive information about the intermediate state or results of its cryptographic operations via one of its output wires (typically the output port containing the final result)."
+                }
+                Cwe::Cwe1434 => {
+                    "The product has a component that relies on a generative AI/ML model configured with inference parameters that produce an unacceptably high rate of erroneous or unexpected outputs."
                 }
             }
         }
@@ -10893,6 +10905,7 @@ pub(crate) mod str {
                 "CWE-1428" => Ok(Cwe::Cwe1428),
                 "CWE-1429" => Ok(Cwe::Cwe1429),
                 "CWE-1431" => Ok(Cwe::Cwe1431),
+                "CWE-1434" => Ok(Cwe::Cwe1434),
                 _ => Err(()),
             };
             if let Ok(cwe) = result {
@@ -11912,6 +11925,7 @@ pub(crate) mod iterable {
                 Cwe::Cwe1428,
                 Cwe::Cwe1429,
                 Cwe::Cwe1431,
+                Cwe::Cwe1434,
             ]
             .into_iter()
         }

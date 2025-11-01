@@ -42,4 +42,9 @@ print_filesize
 
 cargo test --all-features
 
-cargo clippy
+cargo clippy --all-features
+
+if [ "$(uname -s)" = "Linux" ]; then
+  repo_root=$(git rev-parse --show-toplevel)
+  "$repo_root/scripts/test_readme.sh"
+fi

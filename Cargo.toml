@@ -8,7 +8,7 @@ license = "MIT"
 name = "cwenum"
 readme = "README.md"
 repository = "https://github.com/Weichwerke-Heidrich-Software/cwenum"
-version = "1.1.0"
+version = "1.2.0"
 
 [lib]
 name = "cwenum"

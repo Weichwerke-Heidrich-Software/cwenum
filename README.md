@@ -8,7 +8,7 @@ A tiny crate to access a strongly typed common weakness enumeration (cwe) object
 
 Include something along the lines of
 ```toml
-cwenum = { version = "1.0", default-features = false, features = ["std"] }
+cwenum = { version = "1.0", features = ["std", "iterable", "str", "serde"] }
 ```
 in your `Cargo.toml`. You now have access to the `cwenum::Cwe` enum.
 
@@ -24,15 +24,13 @@ Available feature flags:
 use cwenum::Cwe;
 
 let cwe = Cwe::Cwe89;
-// The enum is cloneable...
-let _cwe_clone = cwe.clone();
-// ...copyable...
+// The enum is copyable...
 let _cwe_copy = cwe;
 // ...comparable...
 assert_eq!(cwe, Cwe::Cwe89);
 // ...and hashable.
 let mut map = std::collections::HashMap::new();
-map.insert(cwe, "CWE-89");
+map.insert(cwe, "I like this CWE best!");
 
 // If the crate is compiled with the `str` feature, it offers more functionality:
 println!("{}", cwe.id());
@@ -40,7 +38,7 @@ println!("{}", cwe.name());
 println!("{}", cwe.description());
 let cwe_79: Cwe = "CWE-79".try_into().unwrap();
 assert_eq!(cwe_79, Cwe::Cwe79);
-// If the `std` feature flag is left active, the conversion is not case sensitive
+// If the `std` feature flag is left active, the conversion is not case sensitive:
 let cwe_80: Cwe = "cwe-80".try_into().unwrap();
 assert_eq!(cwe_80, Cwe::Cwe80);
 
@@ -48,6 +46,12 @@ assert_eq!(cwe_80, Cwe::Cwe80);
 for cwe in Cwe::iterator().take(3) {
     println!("{}", cwe.id())
 }
+
+// With the `serde` feature, CWEs can be (de)serialized:
+let serialized = serde_json::to_string(&Cwe::Cwe89).unwrap();
+assert_eq!(serialized, "CWE-89");
+let deserialized: Cwe = serde_json::from_str("CWE-90").unwrap();
+assert_eq!(deserialized, Cwe::Cwe90);
 ```
 
 ## License
