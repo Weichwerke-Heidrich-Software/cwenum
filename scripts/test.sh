@@ -44,5 +44,7 @@ cargo test --all-features
 
 cargo clippy --all-features
 
-repo_root=$(git rev-parse --show-toplevel)
-"$repo_root/scripts/test_readme.sh"
+if [ "$(uname -s)" = "Linux" ]; then
+  repo_root=$(git rev-parse --show-toplevel)
+  "$repo_root/scripts/test_readme.sh"
+fi
