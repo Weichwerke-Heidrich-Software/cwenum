@@ -8,7 +8,7 @@ A tiny crate to access a strongly typed common weakness enumeration (cwe) object
 
 Include something along the lines of
 ```toml
-cwenum = { version = "1.0", default-features = false, features = ["std"] }
+cwenum = { version = "1.0", features = ["std", "iterable", "str", "serde"] }
 ```
 in your `Cargo.toml`. You now have access to the `cwenum::Cwe` enum.
 
@@ -24,9 +24,7 @@ Available feature flags:
 use cwenum::Cwe;
 
 let cwe = Cwe::Cwe89;
-// The enum is cloneable...
-let _cwe_clone = cwe.clone();
-// ...copyable...
+// The enum is copyable...
 let _cwe_copy = cwe;
 // ...comparable...
 assert_eq!(cwe, Cwe::Cwe89);
@@ -50,7 +48,7 @@ for cwe in Cwe::iterator().take(3) {
 }
 
 // With the `serde` feature, CWEs can be (de)serialized:
-let serialized = serde_json::to_string(Cwe::Cwe89).unwrap();
+let serialized = serde_json::to_string(&Cwe::Cwe89).unwrap();
 assert_eq!(serialized, "CWE-89");
 let deserialized: Cwe = serde_json::from_str("CWE-90").unwrap();
 assert_eq!(deserialized, Cwe::Cwe90);
