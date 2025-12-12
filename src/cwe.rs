@@ -1417,7 +1417,7 @@ pub enum Cwe {
 
     /// ### Use of Single-factor Authentication
     ///
-    /// The use of single-factor authentication can lead to unnecessary risk of compromise when compared with the benefits of a dual-factor authentication scheme.
+    /// The product uses an authentication algorithm that uses a single factor (e.g., a password) in a security context that should require more than one factor.
     Cwe308,
 
     /// ### Use of Password System for Primary Authentication
@@ -2322,7 +2322,7 @@ pub enum Cwe {
 
     /// ### Weak Password Requirements
     ///
-    /// The product does not require that users should have strong passwords, which makes it easier for attackers to compromise user accounts.
+    /// The product does not require that users should have strong passwords.
     Cwe521,
 
     /// ### Insufficiently Protected Credentials
@@ -2397,7 +2397,7 @@ pub enum Cwe {
 
     /// ### Servlet Runtime Error Message Containing Sensitive Information
     ///
-    /// A servlet error message indicates that there exists an unhandled exception in your web application code and may provide useful information to an attacker.
+    /// A servlet error message indicates that there exists an unhandled exception in the web application code and may provide useful information to an attacker.
     Cwe536,
 
     /// ### Java Runtime Error Message Containing Sensitive Information
@@ -2952,7 +2952,7 @@ pub enum Cwe {
 
     /// ### Improper Synchronization
     ///
-    /// The product utilizes multiple threads or processes to allow temporary access to a shared resource that can only be exclusive to one process at a time, but it does not properly synchronize these actions, which might cause simultaneous accesses of this resource by multiple threads or processes.
+    /// The product utilizes multiple threads, processes, components, or systems to allow temporary access to a shared resource that can only be exclusive to one process at a time, but it does not properly synchronize these actions, which might cause simultaneous accesses of this resource by multiple threads or processes.
     Cwe662,
 
     /// ### Use of a Non-reentrant Function in a Concurrent Context
@@ -3107,12 +3107,12 @@ pub enum Cwe {
 
     /// ### Incorrect Behavior Order
     ///
-    /// The product performs multiple related behaviors, but the behaviors are performed in the wrong order in ways which may produce resultant weaknesses.
+    /// The product performs multiple related behaviors, but the behaviors are performed in the wrong order in ways that may produce resultant weaknesses.
     Cwe696,
 
     /// ### Incorrect Comparison
     ///
-    /// The product compares two entities in a security-relevant context, but the comparison is incorrect, which may lead to resultant weaknesses.
+    /// The product compares two entities in a security-relevant context, but the comparison is incorrect.
     Cwe697,
 
     /// ### Execution After Redirect (EAR)
@@ -4085,7 +4085,7 @@ pub enum Cwe {
     /// The source code contains elements such as source files that do not consistently provide a prologue or header that has been standardized for the project.
     Cwe1115,
 
-    /// ### Inaccurate Comments
+    /// ### Inaccurate Source Code Comments
     ///
     /// The source code contains comments that do not accurately describe or explain aspects of the portion of the code with which the comment is associated.
     Cwe1116,
@@ -4177,7 +4177,7 @@ pub enum Cwe {
 
     /// ### Initialization of a Resource with an Insecure Default
     ///
-    /// The product initializes or sets a resource with a default that is intended to be changed by the administrator, but the default is not secure.
+    /// The product initializes or sets a resource with a default that is intended to be changed by the product's installer, administrator, or maintainer, but the default is not secure.
     Cwe1188,
 
     /// ### Improper Isolation of Shared Resources on System-on-a-Chip (SoC)
@@ -4352,7 +4352,7 @@ pub enum Cwe {
 
     /// ### Incorrect Selection of Fuse Values
     ///
-    /// The logic level used to set a system to a secure state relies on a fuse being unblown. An attacker can set the system to an insecure state merely by blowing the fuse.
+    /// The logic level used to set a system to a secure state relies on a fuse being unblown.
     Cwe1253,
 
     /// ### Incorrect Comparison Logic Granularity
@@ -4412,7 +4412,7 @@ pub enum Cwe {
 
     /// ### Unintended Reentrant Invocation of Non-reentrant Code Via Nested Calls
     ///
-    /// During execution of non-reentrant code, the product performs a call that unintentionally produces a nested invocation of the non-reentrant code.
+    /// The product invokes code that is believed to be reentrant, but the code performs a call that unintentionally produces a nested invocation of the non-reentrant code.
     Cwe1265,
 
     /// ### Improper Scrubbing of Sensitive Data from Decommissioned Device
@@ -6841,7 +6841,7 @@ pub(crate) mod str {
                 Cwe::Cwe1113 => "Inappropriate Comment Style",
                 Cwe::Cwe1114 => "Inappropriate Whitespace Style",
                 Cwe::Cwe1115 => "Source Code Element without Standard Prologue",
-                Cwe::Cwe1116 => "Inaccurate Comments",
+                Cwe::Cwe1116 => "Inaccurate Source Code Comments",
                 Cwe::Cwe1117 => "Callable with Insufficient Behavioral Summary",
                 Cwe::Cwe1118 => "Insufficient Documentation of Error Handling Techniques",
                 Cwe::Cwe1119 => "Excessive Use of Unconditional Branching",
@@ -7904,7 +7904,7 @@ pub(crate) mod str {
                     "The product does not implement sufficient measures to prevent multiple failed authentication attempts within a short time frame."
                 }
                 Cwe::Cwe308 => {
-                    "The use of single-factor authentication can lead to unnecessary risk of compromise when compared with the benefits of a dual-factor authentication scheme."
+                    "The product uses an authentication algorithm that uses a single factor (e.g., a password) in a security context that should require more than one factor."
                 }
                 Cwe::Cwe309 => {
                     "The use of password systems as the primary means of authentication may be subject to several flaws or shortcomings, each reducing the effectiveness of the mechanism."
@@ -8421,7 +8421,7 @@ pub(crate) mod str {
                     "Allowing a .NET application to run at potentially escalated levels of access to the underlying operating and file systems can be dangerous and result in various forms of attacks."
                 }
                 Cwe::Cwe521 => {
-                    "The product does not require that users should have strong passwords, which makes it easier for attackers to compromise user accounts."
+                    "The product does not require that users should have strong passwords."
                 }
                 Cwe::Cwe522 => {
                     "The product transmits or stores authentication credentials, but it uses an insecure method that is susceptible to unauthorized interception and/or retrieval."
@@ -8464,7 +8464,7 @@ pub(crate) mod str {
                     "A command shell error message indicates that there exists an unhandled exception in the web application code. In many cases, an attacker can leverage the conditions that cause these errors in order to gain unauthorized access to the system."
                 }
                 Cwe::Cwe536 => {
-                    "A servlet error message indicates that there exists an unhandled exception in your web application code and may provide useful information to an attacker."
+                    "A servlet error message indicates that there exists an unhandled exception in the web application code and may provide useful information to an attacker."
                 }
                 Cwe::Cwe537 => {
                     "In many cases, an attacker can leverage the conditions that cause unhandled exception errors in order to gain unauthorized access to the system."
@@ -8791,7 +8791,7 @@ pub(crate) mod str {
                     "The product violates well-established principles for secure design."
                 }
                 Cwe::Cwe662 => {
-                    "The product utilizes multiple threads or processes to allow temporary access to a shared resource that can only be exclusive to one process at a time, but it does not properly synchronize these actions, which might cause simultaneous accesses of this resource by multiple threads or processes."
+                    "The product utilizes multiple threads, processes, components, or systems to allow temporary access to a shared resource that can only be exclusive to one process at a time, but it does not properly synchronize these actions, which might cause simultaneous accesses of this resource by multiple threads or processes."
                 }
                 Cwe::Cwe663 => {
                     "The product calls a non-reentrant function in a concurrent context in which a competing code sequence (e.g. thread or signal handler) may have an opportunity to call the same function or otherwise influence its state."
@@ -8884,10 +8884,10 @@ pub(crate) mod str {
                     "The product uses low-level functionality that is explicitly prohibited by the framework or specification under which the product is supposed to operate."
                 }
                 Cwe::Cwe696 => {
-                    "The product performs multiple related behaviors, but the behaviors are performed in the wrong order in ways which may produce resultant weaknesses."
+                    "The product performs multiple related behaviors, but the behaviors are performed in the wrong order in ways that may produce resultant weaknesses."
                 }
                 Cwe::Cwe697 => {
-                    "The product compares two entities in a security-relevant context, but the comparison is incorrect, which may lead to resultant weaknesses."
+                    "The product compares two entities in a security-relevant context, but the comparison is incorrect."
                 }
                 Cwe::Cwe698 => {
                     "The web application sends a redirect to another location, but instead of exiting, it executes additional code."
@@ -9512,7 +9512,7 @@ pub(crate) mod str {
                     "This entry has been deprecated because it was a duplicate of CWE-908. All content has been transferred to CWE-908."
                 }
                 Cwe::Cwe1188 => {
-                    "The product initializes or sets a resource with a default that is intended to be changed by the administrator, but the default is not secure."
+                    "The product initializes or sets a resource with a default that is intended to be changed by the product's installer, administrator, or maintainer, but the default is not secure."
                 }
                 Cwe::Cwe1189 => {
                     "The System-On-a-Chip (SoC) does not properly isolate shared resources between trusted and untrusted agents."
@@ -9617,7 +9617,7 @@ pub(crate) mod str {
                     "The CPU is not configured to provide hardware support for exclusivity of write and execute operations on memory. This allows an attacker to execute data from all of memory."
                 }
                 Cwe::Cwe1253 => {
-                    "The logic level used to set a system to a secure state relies on a fuse being unblown. An attacker can set the system to an insecure state merely by blowing the fuse."
+                    "The logic level used to set a system to a secure state relies on a fuse being unblown."
                 }
                 Cwe::Cwe1254 => {
                     "The product's comparison logic is performed over a series of steps rather than across the entire string in one operation. If there is a comparison logic failure on one of these steps, the operation may be vulnerable to a timing attack that can result in the interception of the process for nefarious purposes."
@@ -9653,7 +9653,7 @@ pub(crate) mod str {
                     "The hardware logic for error handling and security checks can incorrectly forward data before the security check is complete."
                 }
                 Cwe::Cwe1265 => {
-                    "During execution of non-reentrant code, the product performs a call that unintentionally produces a nested invocation of the non-reentrant code."
+                    "The product invokes code that is believed to be reentrant, but the code performs a call that unintentionally produces a nested invocation of the non-reentrant code."
                 }
                 Cwe::Cwe1266 => {
                     "The product does not properly provide a capability for the product administrator to remove sensitive data at the time the product is decommissioned. A scrubbing capability could be missing, insufficient, or incorrect."
