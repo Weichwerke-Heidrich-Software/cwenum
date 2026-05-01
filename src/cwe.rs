@@ -927,7 +927,7 @@ pub enum Cwe {
 
     /// ### Observable Discrepancy
     ///
-    /// The product behaves differently or sends different responses under different circumstances in a way that is observable to an unauthorized actor, which exposes security-relevant information about the state of the product, such as whether a particular operation was successful or not.
+    /// The product behaves differently or sends different responses under different circumstances in a way that is observable to an unauthorized actor.
     Cwe203,
 
     /// ### Observable Response Discrepancy
@@ -1357,7 +1357,7 @@ pub enum Cwe {
 
     /// ### Improper Following of a Certificate's Chain of Trust
     ///
-    /// The product does not follow, or incorrectly follows, the chain of trust for a certificate back to a trusted root certificate, resulting in incorrect trust of any resource that is associated with that certificate.
+    /// The product does not follow, or incorrectly follows, the chain of trust for a certificate back to a trusted root certificate.
     Cwe296,
 
     /// ### Improper Validation of Certificate with Host Mismatch
@@ -1367,7 +1367,7 @@ pub enum Cwe {
 
     /// ### Improper Validation of Certificate Expiration
     ///
-    /// A certificate expiration is not validated or is incorrectly validated, so trust may be assigned to certificates that have been abandoned due to age.
+    /// A certificate expiration is not validated or is incorrectly validated.
     Cwe298,
 
     /// ### Improper Check for Certificate Revocation
@@ -2690,9 +2690,9 @@ pub enum Cwe {
     /// The product uses the wrong operator when comparing a string, such as using "==" when the .equals() method should be used instead.
     Cwe597,
 
-    /// ### Use of GET Request Method With Sensitive Query Strings
+    /// ### Use of HTTP Request With Sensitive Query String
     ///
-    /// The web application uses the HTTP GET method to process a request and includes sensitive information in the query string of that request.
+    /// The web application uses an HTTP method to process a request, but the request includes sensitive information in the query string.
     Cwe598,
 
     /// ### Missing Validation of OpenSSL Certificate
@@ -3677,7 +3677,7 @@ pub enum Cwe {
 
     /// ### Improper Restriction of Rendered UI Layers or Frames
     ///
-    /// The web application does not restrict or incorrectly restricts frame objects or UI layers that belong to another application or domain, which can lead to user confusion about which interface the user is interacting with.
+    /// The web application does not restrict or incorrectly restricts frame objects or UI layers that belong to another application or domain.
     Cwe1021,
 
     /// ### Use of Web Link to Untrusted Target with window.opener Access
@@ -4727,7 +4727,7 @@ pub enum Cwe {
 
     /// ### Inefficient Regular Expression Complexity
     ///
-    /// The product uses a regular expression with an inefficient, possibly exponential worst-case computational complexity that consumes excessive CPU cycles.
+    /// The product uses a regular expression with a worst-case computational complexity that is inefficient and possibly exponential.
     Cwe1333,
 
     /// ### Unauthorized Error Injection Can Degrade Hardware Redundancy
@@ -6179,7 +6179,7 @@ pub(crate) mod str {
                 Cwe::Cwe277 => "Insecure Inherited Permissions",
                 Cwe::Cwe278 => "Insecure Preserved Inherited Permissions",
                 Cwe::Cwe279 => "Incorrect Execution-Assigned Permissions",
-                Cwe::Cwe280 => "Improper Handling of Insufficient Permissions or Privileges ",
+                Cwe::Cwe280 => "Improper Handling of Insufficient Permissions or Privileges",
                 Cwe::Cwe281 => "Improper Preservation of Permissions",
                 Cwe::Cwe282 => "Improper Ownership Management",
                 Cwe::Cwe283 => "Unverified Ownership",
@@ -6494,9 +6494,9 @@ pub(crate) mod str {
                 Cwe::Cwe595 => "Comparison of Object References Instead of Object Contents",
                 Cwe::Cwe596 => "DEPRECATED: Incorrect Semantic Object Comparison",
                 Cwe::Cwe597 => "Use of Wrong Operator in String Comparison",
-                Cwe::Cwe598 => "Use of GET Request Method With Sensitive Query Strings",
+                Cwe::Cwe598 => "Use of HTTP Request With Sensitive Query String",
                 Cwe::Cwe599 => "Missing Validation of OpenSSL Certificate",
-                Cwe::Cwe600 => "Uncaught Exception in Servlet ",
+                Cwe::Cwe600 => "Uncaught Exception in Servlet",
                 Cwe::Cwe601 => "URL Redirection to Untrusted Site ('Open Redirect')",
                 Cwe::Cwe602 => "Client-Side Enforcement of Server-Side Security",
                 Cwe::Cwe603 => "Use of Client-Side Authentication",
@@ -6967,7 +6967,7 @@ pub(crate) mod str {
                 Cwe::Cwe1287 => "Improper Validation of Specified Type of Input",
                 Cwe::Cwe1288 => "Improper Validation of Consistency within Input",
                 Cwe::Cwe1289 => "Improper Validation of Unsafe Equivalence in Input",
-                Cwe::Cwe1290 => "Incorrect Decoding of Security Identifiers ",
+                Cwe::Cwe1290 => "Incorrect Decoding of Security Identifiers",
                 Cwe::Cwe1291 => "Public Key Re-Use for Signing both Debug and Production Code",
                 Cwe::Cwe1292 => "Incorrect Conversion of Security Identifiers",
                 Cwe::Cwe1293 => "Missing Source Correlation of Multiple Independent Data",
@@ -7618,7 +7618,7 @@ pub(crate) mod str {
                     "When trying to keep information confidential, an attacker can often infer some of the information by using statistics."
                 }
                 Cwe::Cwe203 => {
-                    "The product behaves differently or sends different responses under different circumstances in a way that is observable to an unauthorized actor, which exposes security-relevant information about the state of the product, such as whether a particular operation was successful or not."
+                    "The product behaves differently or sends different responses under different circumstances in a way that is observable to an unauthorized actor."
                 }
                 Cwe::Cwe204 => {
                     "The product provides different responses to incoming requests in a way that reveals internal state information to an unauthorized actor outside of the intended control sphere."
@@ -7868,13 +7868,13 @@ pub(crate) mod str {
                     "The product does not validate, or incorrectly validates, a certificate."
                 }
                 Cwe::Cwe296 => {
-                    "The product does not follow, or incorrectly follows, the chain of trust for a certificate back to a trusted root certificate, resulting in incorrect trust of any resource that is associated with that certificate."
+                    "The product does not follow, or incorrectly follows, the chain of trust for a certificate back to a trusted root certificate."
                 }
                 Cwe::Cwe297 => {
                     "The product communicates with a host that provides a certificate, but the product does not properly ensure that the certificate is actually associated with that host."
                 }
                 Cwe::Cwe298 => {
-                    "A certificate expiration is not validated or is incorrectly validated, so trust may be assigned to certificates that have been abandoned due to age."
+                    "A certificate expiration is not validated or is incorrectly validated."
                 }
                 Cwe::Cwe299 => {
                     "The product does not check or incorrectly checks the revocation status of a certificate, which may cause it to use a certificate that has been compromised."
@@ -8635,7 +8635,7 @@ pub(crate) mod str {
                     "The product uses the wrong operator when comparing a string, such as using \"==\" when the .equals() method should be used instead."
                 }
                 Cwe::Cwe598 => {
-                    "The web application uses the HTTP GET method to process a request and includes sensitive information in the query string of that request."
+                    "The web application uses an HTTP method to process a request, but the request includes sensitive information in the query string."
                 }
                 Cwe::Cwe599 => {
                     "The product uses OpenSSL and trusts or uses a certificate without using the SSL_get_verify_result() function to ensure that the certificate satisfies all necessary security requirements."
@@ -9222,7 +9222,7 @@ pub(crate) mod str {
                     "The product displays information or identifiers to a user, but the display mechanism does not make it easy for the user to distinguish between visually similar or identical glyphs (homoglyphs), which may cause the user to misinterpret a glyph and perform an unintended, insecure action."
                 }
                 Cwe::Cwe1021 => {
-                    "The web application does not restrict or incorrectly restricts frame objects or UI layers that belong to another application or domain, which can lead to user confusion about which interface the user is interacting with."
+                    "The web application does not restrict or incorrectly restricts frame objects or UI layers that belong to another application or domain."
                 }
                 Cwe::Cwe1022 => {
                     "The web application produces links to untrusted external sites outside of its sphere of control, but it does not properly prevent the external site from modifying security-critical properties of the window.opener object, such as the location property."
@@ -9840,7 +9840,7 @@ pub(crate) mod str {
                     "The device is missing or incorrectly implements circuitry or sensors that detect and mitigate the skipping of security-critical CPU instructions when they occur."
                 }
                 Cwe::Cwe1333 => {
-                    "The product uses a regular expression with an inefficient, possibly exponential worst-case computational complexity that consumes excessive CPU cycles."
+                    "The product uses a regular expression with a worst-case computational complexity that is inefficient and possibly exponential."
                 }
                 Cwe::Cwe1334 => {
                     "An unauthorized agent can inject errors into a redundant block to deprive the system of redundancy or put the system in a degraded operating mode."
