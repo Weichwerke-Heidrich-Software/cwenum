@@ -37,7 +37,7 @@
 pub enum Cwe {
     /// ### J2EE Misconfiguration: Data Transmission Without Encryption
     ///
-    /// Information sent over a network can be compromised while in transit. An attacker may be able to read or modify the contents if the data are sent in plaintext or are weakly encrypted.
+    /// The product uses J2EE with a configuration that transmits data without encryption.
     Cwe5,
 
     /// ### J2EE Misconfiguration: Insufficient Session-ID Length
@@ -47,12 +47,12 @@ pub enum Cwe {
 
     /// ### J2EE Misconfiguration: Missing Custom Error Page
     ///
-    /// The default error page of a web application should not display sensitive information about the product.
+    /// The product has a J2EE component that does not have a custom error page.
     Cwe7,
 
     /// ### J2EE Misconfiguration: Entity Bean Declared Remote
     ///
-    /// When an application exposes a remote interface for an entity bean, it might also expose methods that get or set the bean's data. These methods could be leveraged to read sensitive information, or to change data in ways that violate the application's expectations, potentially leading to other vulnerabilities.
+    /// The J2EE application exposes a remote interface for an entity bean, but it also exposes methods that get or set the bean's data.
     Cwe8,
 
     /// ### J2EE Misconfiguration: Weak Access Permissions for EJB Methods
@@ -62,7 +62,7 @@ pub enum Cwe {
 
     /// ### ASP.NET Misconfiguration: Creating Debug Binary
     ///
-    /// Debugging messages help attackers learn about the system and plan a form of attack.
+    /// The product has an ASP .NET component that contains a debug binary.
     Cwe11,
 
     /// ### ASP.NET Misconfiguration: Missing Custom Error Page
@@ -90,7 +90,7 @@ pub enum Cwe {
     /// The product receives input or data, but it does not validate or incorrectly validates that the input has the properties that are required to process the data safely and correctly.
     Cwe20,
 
-    /// ### Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')
+    /// ### Improper Limitation of a Pathname to a Restricted Directory
     ///
     /// The product uses external input to construct a pathname that is intended to identify a file or directory that is located underneath a restricted parent directory, but the product does not properly neutralize special elements within the pathname that can cause the pathname to resolve to a location that is outside of the restricted directory.
     Cwe22,
@@ -167,12 +167,12 @@ pub enum Cwe {
 
     /// ### Path Traversal: '/absolute/pathname/here'
     ///
-    /// The product accepts input in the form of a slash absolute path ('/absolute/pathname/here') without appropriate validation, which can allow an attacker to traverse the file system to unintended locations or access arbitrary files.
+    /// The product accepts input in the form of a slash absolute path ('/absolute/pathname/here') without appropriate neutralization.
     Cwe37,
 
     /// ### Path Traversal: '\absolute\pathname\here'
     ///
-    /// The product accepts input in the form of a backslash absolute path ('\absolute\pathname\here') without appropriate validation, which can allow an attacker to traverse the file system to unintended locations or access arbitrary files.
+    /// The product accepts input in the form of a backslash absolute path ('\absolute\pathname\here') without appropriate neutralization.
     Cwe38,
 
     /// ### Path Traversal: 'C:dirname'
@@ -275,7 +275,7 @@ pub enum Cwe {
     /// The product contains a protection mechanism that restricts access to a long filename on a Windows operating system, but it does not properly restrict access to the equivalent short "8.3" filename.
     Cwe58,
 
-    /// ### Improper Link Resolution Before File Access ('Link Following')
+    /// ### Improper Link Resolution Before File Access
     ///
     /// The product attempts to access a file based on the filename, but it does not properly prevent that filename from identifying a link or shortcut that resolves to an unintended resource.
     Cwe59,
@@ -302,7 +302,7 @@ pub enum Cwe {
 
     /// ### Improper Handling of File Names that Identify Virtual Resources
     ///
-    /// The product does not handle or incorrectly handles a file name that identifies a "virtual" resource that is not directly specified within the directory that is associated with the file name, causing the product to perform file-based operations on a resource that is not a file.
+    /// The product does not handle or incorrectly handles a file name that identifies a "virtual" resource that is not directly specified within the directory that is associated with the file name.
     Cwe66,
 
     /// ### Improper Handling of Windows Device Names
@@ -330,12 +330,12 @@ pub enum Cwe {
     /// The product allows user input to control or influence paths or file names that are used in filesystem operations.
     Cwe73,
 
-    /// ### Improper Neutralization of Special Elements in Output Used by a Downstream Component ('Injection')
+    /// ### Improper Neutralization of Special Elements in Output Used by a Downstream Component
     ///
     /// The product constructs all or part of a command, data structure, or record using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify how it is parsed or interpreted when it is sent to a downstream component.
     Cwe74,
 
-    /// ### Failure to Sanitize Special Elements into a Different Plane (Special Element Injection)
+    /// ### Failure to Sanitize Special Elements into a Different Plane
     ///
     /// The product does not adequately filter user-controlled input for special elements with control implications.
     Cwe75,
@@ -345,22 +345,22 @@ pub enum Cwe {
     /// The product correctly neutralizes certain special elements, but it improperly neutralizes equivalent special elements.
     Cwe76,
 
-    /// ### Improper Neutralization of Special Elements used in a Command ('Command Injection')
+    /// ### Improper Neutralization of Special Elements used in a Command
     ///
     /// The product constructs all or part of a command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended command when it is sent to a downstream component.
     Cwe77,
 
-    /// ### Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')
+    /// ### Improper Neutralization of Special Elements used in an OS Command
     ///
-    /// The product constructs all or part of an OS command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended OS command when it is sent to a downstream component.
+    /// The product constructs all or part of an OS command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended OS command before it is sent to a downstream component.
     Cwe78,
 
-    /// ### Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')
+    /// ### Improper Neutralization of Input During Web Page Generation
     ///
     /// The product does not neutralize or incorrectly neutralizes user-controllable input before it is placed in output that is used as a web page that is served to other users.
     Cwe79,
 
-    /// ### Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS)
+    /// ### Improper Neutralization of Script-Related HTML Tags in a Web Page
     ///
     /// The product receives input from an upstream component, but it does not neutralize or incorrectly neutralizes special characters such as "<", ">", and "&" that could be interpreted as web-scripting elements when they are sent to a downstream component that processes web pages.
     Cwe80,
@@ -400,22 +400,22 @@ pub enum Cwe {
     /// The product does not neutralize or incorrectly neutralizes user-controlled input for alternate script syntax.
     Cwe87,
 
-    /// ### Improper Neutralization of Argument Delimiters in a Command ('Argument Injection')
+    /// ### Improper Neutralization of Argument Delimiters in a Command
     ///
     /// The product constructs a string for a command to be executed by a separate component in another control sphere, but it does not properly delimit the intended arguments, options, or switches within that command string.
     Cwe88,
 
-    /// ### Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+    /// ### Improper Neutralization of Special Elements used in an SQL Command
     ///
     /// The product constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component. Without sufficient removal or quoting of SQL syntax in user-controllable inputs, the generated SQL query can cause those inputs to be interpreted as SQL instead of ordinary user data.
     Cwe89,
 
-    /// ### Improper Neutralization of Special Elements used in an LDAP Query ('LDAP Injection')
+    /// ### Improper Neutralization of Special Elements used in an LDAP Query
     ///
     /// The product constructs all or part of an LDAP query using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended LDAP query when it is sent to a downstream component.
     Cwe90,
 
-    /// ### XML Injection (aka Blind XPath Injection)
+    /// ### XML Injection
     ///
     /// The product does not properly neutralize special elements that are used in XML, allowing attackers to modify the syntax, content, or commands of the XML before it is processed by an end system.
     Cwe91,
@@ -425,22 +425,22 @@ pub enum Cwe {
     /// This entry has been deprecated. It originally came from PLOVER, which sometimes defined "other" and "miscellaneous" categories in order to satisfy exhaustiveness requirements for taxonomies. Within the context of CWE, the use of a more abstract entry is preferred in mapping situations. CWE-75 is a more appropriate mapping.
     Cwe92,
 
-    /// ### Improper Neutralization of CRLF Sequences ('CRLF Injection')
+    /// ### Improper Neutralization of CRLF Sequences
     ///
     /// The product uses CRLF (carriage return line feeds) as a special element, e.g. to separate lines or records, but it does not neutralize or incorrectly neutralizes CRLF sequences from inputs.
     Cwe93,
 
-    /// ### Improper Control of Generation of Code ('Code Injection')
+    /// ### Improper Control of Generation of Code
     ///
     /// The product constructs all or part of a code segment using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the syntax or behavior of the intended code segment.
     Cwe94,
 
-    /// ### Improper Neutralization of Directives in Dynamically Evaluated Code ('Eval Injection')
+    /// ### Improper Neutralization of Directives in Dynamically Evaluated Code
     ///
     /// The product receives input from an upstream component, but it does not neutralize or incorrectly neutralizes code syntax before using the input in a dynamic evaluation call (e.g. "eval").
     Cwe95,
 
-    /// ### Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection')
+    /// ### Improper Neutralization of Directives in Statically Saved Code
     ///
     /// The product receives input from an upstream component, but it does not neutralize or incorrectly neutralizes code syntax before inserting the input into an executable resource, such as a library, configuration file, or template.
     Cwe96,
@@ -450,19 +450,19 @@ pub enum Cwe {
     /// The product generates a web page, but does not neutralize or incorrectly neutralizes user-controllable input that could be interpreted as a server-side include (SSI) directive.
     Cwe97,
 
-    /// ### Improper Control of Filename for Include/Require Statement in PHP Program ('PHP Remote File Inclusion')
+    /// ### Improper Control of Filename for Include/Require Statement in PHP Program
     ///
     /// The PHP application receives input from an upstream component, but it does not restrict or incorrectly restricts the input before its usage in "require," "include," or similar functions.
     Cwe98,
 
-    /// ### Improper Control of Resource Identifiers ('Resource Injection')
+    /// ### Improper Control of Resource Identifiers
     ///
-    /// The product receives input from an upstream component, but it does not restrict or incorrectly restricts the input before it is used as an identifier for a resource that may be outside the intended sphere of control.
+    /// The product receives input from an upstream component, but it does not restrict or incorrectly restricts the input before it is used as an identifier for a resource that may be outside the intended control sphere.
     Cwe99,
 
     /// ### Struts: Duplicate Validation Forms
     ///
-    /// The product uses multiple validation forms with the same name, which might cause the Struts Validator to validate a form that the programmer does not expect.
+    /// The product uses multiple Struts validation forms with the same name.
     Cwe102,
 
     /// ### Struts: Incomplete validate() Method Definition
@@ -492,7 +492,7 @@ pub enum Cwe {
 
     /// ### Struts: Unvalidated Action Form
     ///
-    /// Every Action Form must have a corresponding validation form.
+    /// The product contains a Struts Action Form that does not have a corresponding validation form.
     Cwe108,
 
     /// ### Struts: Validator Turned Off
@@ -515,7 +515,7 @@ pub enum Cwe {
     /// The product accepts XML from an untrusted source but does not validate the XML against the proper schema.
     Cwe112,
 
-    /// ### Improper Neutralization of CRLF Sequences in HTTP Headers ('HTTP Request/Response Splitting')
+    /// ### Improper Neutralization of CRLF Sequences in HTTP Headers
     ///
     /// The product receives data from an HTTP agent/component (e.g., web server, proxy, browser, etc.), but it does not neutralize or incorrectly neutralizes CR and LF characters before the data is included in outgoing HTTP headers.
     Cwe113,
@@ -540,29 +540,29 @@ pub enum Cwe {
     /// The product constructs a log message from external input, but it does not neutralize or incorrectly neutralizes special elements when the message is written to a log file.
     Cwe117,
 
-    /// ### Incorrect Access of Indexable Resource ('Range Error')
+    /// ### Incorrect Access of Indexable Resource
     ///
     /// The product does not restrict or incorrectly restricts operations within the boundaries of a resource that is accessed using an index or pointer, such as memory or files.
     Cwe118,
 
     /// ### Improper Restriction of Operations within the Bounds of a Memory Buffer
     ///
-    /// The product performs operations on a memory buffer, but it reads from or writes to a memory location outside the buffer's intended boundary. This may result in read or write operations on unexpected memory locations that could be linked to other variables, data structures, or internal program data.
+    /// The product performs operations on a memory buffer, but it reads from or writes to a memory location outside the buffer's intended boundary.
     Cwe119,
 
-    /// ### Buffer Copy without Checking Size of Input ('Classic Buffer Overflow')
+    /// ### Buffer Copy without Checking Size of Input
     ///
     /// The product copies an input buffer to an output buffer without verifying that the size of the input buffer is less than the size of the output buffer.
     Cwe120,
 
     /// ### Stack-based Buffer Overflow
     ///
-    /// A stack-based buffer overflow condition is a condition where the buffer being overwritten is allocated on the stack (i.e., is a local variable or, rarely, a parameter to a function).
+    /// The product writes past the end of a buffer that was allocated on the stack.
     Cwe121,
 
     /// ### Heap-based Buffer Overflow
     ///
-    /// A heap overflow condition is a buffer overflow, where the buffer that can be overwritten is allocated in the heap portion of memory, generally meaning that the buffer was allocated using a routine such as malloc().
+    /// The product writes past the end of a buffer that was allocated on the heap.
     Cwe122,
 
     /// ### Write-what-where Condition
@@ -570,7 +570,7 @@ pub enum Cwe {
     /// Any condition where the attacker has the ability to write an arbitrary value to an arbitrary location, often as the result of a buffer overflow.
     Cwe123,
 
-    /// ### Buffer Underwrite ('Buffer Underflow')
+    /// ### Buffer Underwrite
     ///
     /// The product writes to a buffer using an index or pointer that references a memory location prior to the beginning of the buffer.
     Cwe124,
@@ -607,7 +607,7 @@ pub enum Cwe {
 
     /// ### Incorrect Calculation of Buffer Size
     ///
-    /// The product does not correctly calculate the size to be used when allocating a buffer, which could lead to a buffer overflow.
+    /// The product does not correctly calculate the size to be used when allocating a buffer.
     Cwe131,
 
     /// ### DEPRECATED: Miscalculated Null Termination
@@ -702,7 +702,7 @@ pub enum Cwe {
 
     /// ### Improper Neutralization of Variable Name Delimiters
     ///
-    /// The product receives input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could be interpreted as variable name delimiters when they are sent to a downstream component.
+    /// The product receives input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could be interpreted as variable name delimiters when they are sent to a downstream component, such as a "$" that could be used to access an environment variable.
     Cwe154,
 
     /// ### Improper Neutralization of Wildcards or Matching Symbols
@@ -712,7 +712,7 @@ pub enum Cwe {
 
     /// ### Improper Neutralization of Whitespace
     ///
-    /// The product receives input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could be interpreted as whitespace when they are sent to a downstream component.
+    /// The product receives input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could be interpreted as whitespace when they are sent to a downstream component, e.g., space or tab.
     Cwe156,
 
     /// ### Failure to Sanitize Paired Delimiters
@@ -780,9 +780,9 @@ pub enum Cwe {
     /// The product does not terminate or incorrectly terminates a string or array with a null character or equivalent terminator.
     Cwe170,
 
-    /// ### Encoding Error
+    /// ### Improper Encoding or Decoding of Data
     ///
-    /// The product does not properly encode or decode the data, resulting in unexpected values.
+    /// The product does not properly encode or decode data, resulting in unexpected values that are not equivalent to the original data.
     Cwe172,
 
     /// ### Improper Handling of Alternate Encoding
@@ -792,7 +792,7 @@ pub enum Cwe {
 
     /// ### Double Decoding of the Same Data
     ///
-    /// The product decodes the same input twice, which can limit the effectiveness of any protection mechanism that occurs in between the decoding operations.
+    /// The product decodes the same input twice.
     Cwe174,
 
     /// ### Improper Handling of Mixed Encoding
@@ -817,12 +817,12 @@ pub enum Cwe {
 
     /// ### Incorrect Behavior Order: Early Validation
     ///
-    /// The product validates input before applying protection mechanisms that modify the input, which could allow an attacker to bypass the validation via dangerous inputs that only arise after the modification.
+    /// The product validates input before applying protection mechanisms that modify the input.
     Cwe179,
 
     /// ### Incorrect Behavior Order: Validate Before Canonicalize
     ///
-    /// The product validates input before it is canonicalized, which prevents the product from detecting data that becomes invalid after the canonicalization step.
+    /// The product validates input before it is canonicalized.
     Cwe180,
 
     /// ### Incorrect Behavior Order: Validate Before Filter
@@ -852,17 +852,17 @@ pub enum Cwe {
 
     /// ### Overly Restrictive Regular Expression
     ///
-    /// A regular expression is overly restrictive, which prevents dangerous values from being detected.
+    /// A regular expression is overly restrictive in a way that does not match all intended values.
     Cwe186,
 
     /// ### Partial String Comparison
     ///
-    /// The product performs a comparison that only examines a portion of a factor before determining whether there is a match, such as a substring, leading to resultant weaknesses.
+    /// The product performs a string comparison that only examines a portion of the string before determining whether there is a match.
     Cwe187,
 
     /// ### Reliance on Data/Memory Layout
     ///
-    /// The product makes invalid assumptions about how protocol data or memory is organized at a lower level, resulting in unintended program behavior.
+    /// The product makes invalid assumptions about how protocol data or memory is organized at a lower level.
     Cwe188,
 
     /// ### Integer Overflow or Wraparound
@@ -887,7 +887,7 @@ pub enum Cwe {
 
     /// ### Unexpected Sign Extension
     ///
-    /// The product performs an operation on a number that causes it to be sign extended when it is transformed into a larger data type. When the original number is negative, this can produce unexpected values that lead to resultant weaknesses.
+    /// The product performs an operation on a number that causes it to be sign extended when it is transformed into a larger data type.
     Cwe194,
 
     /// ### Signed to Unsigned Conversion Error
@@ -987,7 +987,7 @@ pub enum Cwe {
 
     /// ### Insertion of Sensitive Information Into Debugging Code
     ///
-    /// The product inserts sensitive information into debugging code, which could expose this information if the debugging code is not disabled in production.
+    /// The product inserts sensitive information into debugging code.
     Cwe215,
 
     /// ### DEPRECATED: Containment Errors (Container Errors)
@@ -1117,17 +1117,17 @@ pub enum Cwe {
 
     /// ### Use of Inherently Dangerous Function
     ///
-    /// The product calls a function that can never be guaranteed to work safely.
+    /// The product calls a function that can never be guaranteed to work safely, regardless of how it is used.
     Cwe242,
 
     /// ### Creation of chroot Jail Without Changing Working Directory
     ///
-    /// The product uses the chroot() system call to create a jail, but does not change the working directory afterward. This does not prevent access to files outside of the jail.
+    /// The product uses the chroot() system call to create a jail, but it does not change the working directory afterward.
     Cwe243,
 
-    /// ### Improper Clearing of Heap Memory Before Release ('Heap Inspection')
+    /// ### Improper Clearing of Heap Memory Before Release
     ///
-    /// Using realloc() to resize buffers that store sensitive information can leave the sensitive information exposed to attack, because it is not removed from memory.
+    /// The product uses realloc() to resize buffers that contain sensitive information.
     Cwe244,
 
     /// ### J2EE Bad Practices: Direct Management of Connections
@@ -1162,7 +1162,7 @@ pub enum Cwe {
 
     /// ### Unchecked Return Value
     ///
-    /// The product does not check the return value from a method or function, which can prevent it from detecting unexpected states and conditions.
+    /// The product does not check the return value from a method or function.
     Cwe252,
 
     /// ### Incorrect Check of Function Return Value
@@ -1187,7 +1187,7 @@ pub enum Cwe {
 
     /// ### Use of Hard-coded Password
     ///
-    /// The product contains a hard-coded password, which it uses for its own inbound authentication or for outbound communication to external components.
+    /// The product contains a hard-coded password, which it uses for its own inbound authentication or for outbound authentication to external components.
     Cwe259,
 
     /// ### Password in Configuration File
@@ -1197,7 +1197,7 @@ pub enum Cwe {
 
     /// ### Weak Encoding for Password
     ///
-    /// Obscuring a password with a trivial encoding does not protect the password.
+    /// The product uses a weak or trivial encoding for a password.
     Cwe261,
 
     /// ### Not Using Password Aging
@@ -1252,7 +1252,7 @@ pub enum Cwe {
 
     /// ### Improper Handling of Insufficient Privileges
     ///
-    /// The product does not handle or incorrectly handles when it has insufficient privileges to perform an operation, leading to resultant weaknesses.
+    /// The product does not handle or incorrectly handles when it has insufficient privileges to perform an operation.
     Cwe274,
 
     /// ### Incorrect Default Permissions
@@ -1372,7 +1372,7 @@ pub enum Cwe {
 
     /// ### Improper Check for Certificate Revocation
     ///
-    /// The product does not check or incorrectly checks the revocation status of a certificate, which may cause it to use a certificate that has been compromised.
+    /// The product does not check or incorrectly checks the revocation status of a certificate.
     Cwe299,
 
     /// ### Channel Accessible by Non-Endpoint
@@ -1405,7 +1405,7 @@ pub enum Cwe {
     /// The authentication algorithm is sound, but the implemented mechanism can be bypassed as the result of a separate weakness that is primary to the authentication error.
     Cwe305,
 
-    /// ### Missing Authentication for Critical Function
+    /// ### Missing Authentication for Critical Functionality
     ///
     /// The product does not perform any authentication for functionality that requires a provable user identity or consumes a significant amount of resources.
     Cwe306,
@@ -1487,7 +1487,7 @@ pub enum Cwe {
 
     /// ### Use of a Key Past its Expiration Date
     ///
-    /// The product uses a cryptographic key or password past its expiration date, which diminishes its safety significantly by increasing the timing window for cracking attacks against that key.
+    /// The product uses a cryptographic key past its expiration date.
     Cwe324,
 
     /// ### Missing Cryptographic Step
@@ -1547,7 +1547,7 @@ pub enum Cwe {
 
     /// ### Same Seed in Pseudo-Random Number Generator (PRNG)
     ///
-    /// A Pseudo-Random Number Generator (PRNG) uses the same seed each time the product is initialized.
+    /// The product uses a Pseudo-Random Number Generator (PRNG) that uses the same seed each time the product is initialized.
     Cwe336,
 
     /// ### Predictable Seed in Pseudo-Random Number Generator (PRNG)
@@ -1625,7 +1625,7 @@ pub enum Cwe {
     /// The product does not properly distinguish between different types of elements in a way that leads to insecure behavior.
     Cwe351,
 
-    /// ### Cross-Site Request Forgery (CSRF)
+    /// ### Cross-Site Request Forgery
     ///
     /// The web application does not, or cannot, sufficiently verify whether a request was intentionally provided by the user who sent the request, which could have originated from an unauthorized actor.
     Cwe352,
@@ -1637,12 +1637,12 @@ pub enum Cwe {
 
     /// ### Improper Validation of Integrity Check Value
     ///
-    /// The product does not validate or incorrectly validates the integrity check values or "checksums" of a message. This may prevent it from detecting if the data has been modified or corrupted in transmission.
+    /// The product does not validate or incorrectly validates the integrity check values or "checksums" of a message.
     Cwe354,
 
-    /// ### Product UI does not Warn User of Unsafe Actions
+    /// ### Missing User Interaction for Potentially Unsafe Action
     ///
-    /// The product's user interface does not warn the user before undertaking an unsafe action on behalf of that user. This makes it easier for attackers to trick users into inflicting damage to their system.
+    /// The product encounters a situation in which some of its behavior is security-critical and should be authorized by a human before progressing, but it does not properly consult with the human user or its proxy (such as UI approval dialogues or pre-set policies) to determine whether it is allowed to perform the potentially dangerous behavior.
     Cwe356,
 
     /// ### Insufficient UI Warning of Dangerous Operations
@@ -1665,7 +1665,7 @@ pub enum Cwe {
     /// Security based on event locations are insecure and can be spoofed.
     Cwe360,
 
-    /// ### Concurrent Execution using Shared Resource with Improper Synchronization ('Race Condition')
+    /// ### Concurrent Execution using Shared Resource with Improper Synchronization
     ///
     /// The product contains a concurrent code sequence that requires temporary, exclusive access to a shared resource, but a timing window exists in which the shared resource can be modified by another code sequence operating concurrently.
     Cwe362,
@@ -1727,12 +1727,12 @@ pub enum Cwe {
 
     /// ### Returning a Mutable Object to an Untrusted Caller
     ///
-    /// Sending non-cloned mutable data as a return value may result in that data being altered or deleted by the calling function.
+    /// The code sends non-cloned mutable data as a return value may result in that data being altered or deleted by the calling function.
     Cwe375,
 
-    /// ### Insecure Temporary File
+    /// ### DEPRECATED: Insecure Temporary File
     ///
-    /// Creating and using insecure temporary files can leave application and system data vulnerable to attack.
+    /// This entry has been deprecated. It was focused only on the affected resource (temporary file) and not the behavior or mistake that produced the insecure temporary file, which caused confusion and incorrect mappings.
     Cwe377,
 
     /// ### Creation of Temporary File With Insecure Permissions
@@ -1747,7 +1747,7 @@ pub enum Cwe {
 
     /// ### J2EE Bad Practices: Use of System.exit()
     ///
-    /// A J2EE application uses System.exit(), which also shuts down its container.
+    /// A J2EE application uses System.exit().
     Cwe382,
 
     /// ### J2EE Bad Practices: Direct Use of Threads
@@ -1775,9 +1775,9 @@ pub enum Cwe {
     /// The product detects a specific error, but takes no actions to handle the error.
     Cwe390,
 
-    /// ### Unchecked Error Condition
+    /// ### DEPRECATED: Unchecked Error Condition
     ///
-    /// [PLANNED FOR DEPRECATION. SEE MAINTENANCE NOTES AND CONSIDER CWE-252, CWE-248, OR CWE-1069.] Ignoring exceptions and other error conditions may allow an attacker to induce unexpected behavior unnoticed.
+    /// This entry has been deprecated because it used ambiguous terminology and incorporated and confused multiple weaknesses. See Mapping Notes for other recommendations, and see Maintenance Notes for more detailed explanations.
     Cwe391,
 
     /// ### Missing Report of Error Condition
@@ -1807,7 +1807,7 @@ pub enum Cwe {
 
     /// ### Declaration of Throws for Generic Exception
     ///
-    /// The product throws or raises an overly broad exceptions that can hide important details and produce inappropriate responses to certain conditions.
+    /// The product throws or raises an overly broad exception that can hide important details and produce inappropriate responses to certain conditions.
     Cwe397,
 
     /// ### Uncontrolled Resource Consumption
@@ -1820,12 +1820,12 @@ pub enum Cwe {
     /// The product does not sufficiently track and release allocated memory after it has been used, making the memory unavailable for reallocation and reuse.
     Cwe401,
 
-    /// ### Transmission of Private Resources into a New Sphere ('Resource Leak')
+    /// ### Transmission of Private Resources into a New Sphere
     ///
     /// The product makes resources available to untrusted parties when those resources are only intended to be accessed by the product.
     Cwe402,
 
-    /// ### Exposure of File Descriptor to Unintended Control Sphere ('File Descriptor Leak')
+    /// ### Exposure of File Descriptor to Unintended Control Sphere
     ///
     /// A process does not close sensitive file descriptors before invoking a child process, which allows the child to perform unauthorized I/O operations using those descriptors.
     Cwe403,
@@ -1862,7 +1862,7 @@ pub enum Cwe {
 
     /// ### Insufficient Resource Pool
     ///
-    /// The product's resource pool is not large enough to handle peak demand, which allows an attacker to prevent others from accessing the resource by using a (relatively) large number of requests for resources.
+    /// The product's resource pool is not large enough to handle peak demand.
     Cwe410,
 
     /// ### Unrestricted Externally Accessible Lock
@@ -1872,7 +1872,7 @@ pub enum Cwe {
 
     /// ### Improper Resource Locking
     ///
-    /// The product does not lock or does not correctly lock a resource when the product must have exclusive access to the resource.
+    /// The product must have exclusive access to a resource, but it does not lock or does not correctly lock that resource.
     Cwe413,
 
     /// ### Missing Lock Check
@@ -1905,7 +1905,7 @@ pub enum Cwe {
     /// The product opens an alternate channel to communicate with an authorized user, but the channel is accessible to other actors.
     Cwe421,
 
-    /// ### Unprotected Windows Messaging Channel ('Shatter')
+    /// ### Unprotected Windows Messaging Channel
     ///
     /// The product does not properly verify the source of a message in the Windows Messaging System while running at elevated privileges, creating an alternate channel through which an attacker can directly send a message to the product.
     Cwe422,
@@ -1920,7 +1920,7 @@ pub enum Cwe {
     /// The product does not sufficiently protect all possible paths that a user can take to access restricted functionality or resources.
     Cwe424,
 
-    /// ### Direct Request ('Forced Browsing')
+    /// ### Direct Request
     ///
     /// The web application does not adequately enforce appropriate authorization on all restricted URLs, scripts, or files.
     Cwe425,
@@ -1942,7 +1942,7 @@ pub enum Cwe {
 
     /// ### Deployment of Wrong Handler
     ///
-    /// The wrong "handler" is assigned to process an object.
+    /// The wrong "handler" is assigned to process an object or request.
     Cwe430,
 
     /// ### Missing Handler
@@ -1990,9 +1990,9 @@ pub enum Cwe {
     /// A feature, API, or function does not perform according to its specification.
     Cwe440,
 
-    /// ### Unintended Proxy or Intermediary ('Confused Deputy')
+    /// ### Unintended Proxy or Intermediary
     ///
-    /// The product receives a request, message, or directive from an upstream component, but the product does not sufficiently preserve the original source of the request before forwarding the request to an external actor that is outside of the product's control sphere. This causes the product to appear to be the source of the request, leading it to act as a proxy or other intermediary between the upstream component and the external actor.
+    /// The product receives a request, message, or directive from an upstream component, but the product does not sufficiently preserve the original source of the request before forwarding the request to an external actor that is outside of the product's control sphere.
     Cwe441,
 
     /// ### DEPRECATED: HTTP response splitting
@@ -2000,7 +2000,7 @@ pub enum Cwe {
     /// This weakness can be found at CWE-113.
     Cwe443,
 
-    /// ### Inconsistent Interpretation of HTTP Requests ('HTTP Request/Response Smuggling')
+    /// ### Inconsistent Interpretation of HTTP Requests
     ///
     /// The product acts as an intermediary HTTP agent (such as a proxy or firewall) in the data flow between two entities such as a client and server, but it does not interpret malformed HTTP requests or responses in ways that are consistent with how the messages will be processed by those entities that are at the ultimate destination.
     Cwe444,
@@ -2052,7 +2052,7 @@ pub enum Cwe {
 
     /// ### Missing Initialization of a Variable
     ///
-    /// The product does not initialize critical variables, which causes the execution environment to use unexpected values.
+    /// The product does not initialize critical variables.
     Cwe456,
 
     /// ### Use of Uninitialized Variable
@@ -2072,7 +2072,7 @@ pub enum Cwe {
 
     /// ### Improper Cleanup on Thrown Exception
     ///
-    /// The product does not clean up its state or incorrectly cleans up its state when an exception is thrown, leading to unexpected state or control flow.
+    /// The product does not clean up its state or incorrectly cleans up its state when an exception is thrown.
     Cwe460,
 
     /// ### Duplicate Key in Associative List (Alist)
@@ -2097,7 +2097,7 @@ pub enum Cwe {
 
     /// ### Use of sizeof() on a Pointer Type
     ///
-    /// The code calls sizeof() on a pointer type, which can be an incorrect calculation if the programmer intended to determine the size of the data that is being pointed to.
+    /// The code calls sizeof() on a pointer type, when the programmer intended to determine the size of the data that is being pointed to.
     Cwe467,
 
     /// ### Incorrect Pointer Scaling
@@ -2110,7 +2110,7 @@ pub enum Cwe {
     /// The product subtracts one pointer from another in order to determine size, but this calculation can be incorrect if the pointers do not exist in the same memory chunk.
     Cwe469,
 
-    /// ### Use of Externally-Controlled Input to Select Classes or Code ('Unsafe Reflection')
+    /// ### Use of Externally-Controlled Input to Select Classes or Code
     ///
     /// The product uses external input with reflection to select which classes or code to use, but it does not sufficiently prevent the input from selecting improper classes or code.
     Cwe470,
@@ -2177,7 +2177,7 @@ pub enum Cwe {
 
     /// ### Incorrect Block Delimitation
     ///
-    /// The code does not explicitly delimit a block that is intended to contain 2 or more statements, creating a logic error.
+    /// The code does not explicitly delimit a block that is intended to contain 2 or more statements.
     Cwe483,
 
     /// ### Omitted Break Statement in Switch
@@ -2187,7 +2187,7 @@ pub enum Cwe {
 
     /// ### Comparison of Classes by Name
     ///
-    /// The product compares classes by name, which can cause it to use the wrong class when multiple classes can have the same name.
+    /// The product compares classes by name.
     Cwe486,
 
     /// ### Reliance on Package-level Scope
@@ -2205,7 +2205,7 @@ pub enum Cwe {
     /// The product is released with debugging code still enabled or active.
     Cwe489,
 
-    /// ### Public cloneable() Method Without Final ('Object Hijack')
+    /// ### Public cloneable() Method Without Final
     ///
     /// A class has a cloneable() method that is not declared final, which allows an object to be created without calling the constructor. This can cause the object to be in an unexpected state.
     Cwe491,
@@ -2217,7 +2217,7 @@ pub enum Cwe {
 
     /// ### Critical Public Variable Without Final Modifier
     ///
-    /// The product has a critical public variable that is not final, which allows the variable to be modified to contain unexpected values.
+    /// The product has a critical public variable that is not final.
     Cwe493,
 
     /// ### Download of Code Without Integrity Check
@@ -2247,12 +2247,12 @@ pub enum Cwe {
 
     /// ### Serializable Class Containing Sensitive Data
     ///
-    /// The code contains a class with sensitive data, but the class does not explicitly deny serialization. The data can be accessed by serializing the class through another class.
+    /// The code contains a class with sensitive data, but the class does not explicitly deny serialization.
     Cwe499,
 
     /// ### Public Static Field Not Marked Final
     ///
-    /// An object contains a public static field that is not marked final, which might allow it to be modified in unexpected ways.
+    /// An object contains a public static field that is not marked final.
     Cwe500,
 
     /// ### Trust Boundary Violation
@@ -2352,7 +2352,7 @@ pub enum Cwe {
 
     /// ### Exposure of Version-Control Repository to an Unauthorized Control Sphere
     ///
-    /// The product stores a CVS, git, or other repository in a directory, archive, or other resource that is stored, transferred, or otherwise made accessible to unauthorized actors.
+    /// The product stores a CVS, git, or other source-control repository in a directory, archive, or other resource that is stored, transferred, or otherwise made accessible to unauthorized actors.
     Cwe527,
 
     /// ### Exposure of Core Dump File to an Unauthorized Control Sphere
@@ -2417,7 +2417,7 @@ pub enum Cwe {
 
     /// ### Inclusion of Sensitive Information in Source Code
     ///
-    /// Source code on a web server or repository often contains sensitive information and should generally not be accessible to users.
+    /// The product (such as a web server or repository) provides access to source code is not intended to be accessible to users but contains sensitive information.
     Cwe540,
 
     /// ### Inclusion of Sensitive Information in an Include File
@@ -2437,7 +2437,7 @@ pub enum Cwe {
 
     /// ### Missing Standardized Error Handling Mechanism
     ///
-    /// The product does not use a standardized method for handling errors throughout the code, which might introduce inconsistent error handling and resultant weaknesses.
+    /// The product does not use a standardized method for handling errors throughout the code.
     Cwe544,
 
     /// ### DEPRECATED: Use of Dynamic Class Loading
@@ -2517,17 +2517,17 @@ pub enum Cwe {
 
     /// ### Return of Stack Variable Address
     ///
-    /// A function returns the address of a stack variable, which will cause unintended program behavior, typically in the form of a crash.
+    /// A function returns the address of a stack variable.
     Cwe562,
 
     /// ### Assignment to Variable without Use
     ///
-    /// The variable's value is assigned but never used, making it a dead store.
+    /// The variable's value is assigned but never used, i.e., is a dead store. That is, after the assignment, the variable is either assigned another value or goes out of scope.
     Cwe563,
 
-    /// ### SQL Injection: Hibernate
+    /// ### Use of Hibernate with HQL/SQL Query String Containing External Input
     ///
-    /// Using Hibernate to execute a dynamic SQL statement built with user-controlled input can allow an attacker to modify the statement's meaning or to execute arbitrary SQL commands.
+    /// The product uses Hibernate to execute a dynamic HQL or SQL statement, but the statement is built with user-controlled input.
     Cwe564,
 
     /// ### Reliance on Cookies without Validation and Integrity Checking
@@ -2562,7 +2562,7 @@ pub enum Cwe {
 
     /// ### Call to Thread run() instead of start()
     ///
-    /// The product calls a thread's run() method instead of calling start(), which causes the code to run in the thread of the caller instead of the callee.
+    /// The product calls a thread's run() method instead of calling start().
     Cwe572,
 
     /// ### Improper Following of Specification by Caller
@@ -2597,7 +2597,7 @@ pub enum Cwe {
 
     /// ### J2EE Bad Practices: Non-serializable Object Stored in Session
     ///
-    /// The product stores a non-serializable object as an HttpSession attribute, which can hurt reliability.
+    /// The product stores a non-serializable object as an HttpSession attribute.
     Cwe579,
 
     /// ### clone() Method Without super.clone()
@@ -2622,7 +2622,7 @@ pub enum Cwe {
 
     /// ### Return Inside Finally Block
     ///
-    /// The code has a return statement inside a finally block, which will cause any thrown exception in the try block to be discarded.
+    /// The code has a return statement inside a finally block.
     Cwe584,
 
     /// ### Empty Synchronized Block
@@ -2642,12 +2642,12 @@ pub enum Cwe {
 
     /// ### Attempt to Access Child of a Non-structure Pointer
     ///
-    /// Casting a non-structure type to a structure type and accessing a field can lead to memory access errors or data corruption.
+    /// The product casts a non-structure type to a structure type, then accesses a field within the structure.
     Cwe588,
 
     /// ### Call to Non-ubiquitous API
     ///
-    /// The product uses an API function that does not exist on all versions of the target platform. This could cause portability problems or inconsistencies that allow denial of service or other consequences.
+    /// The product uses an API function that does not exist on all versions of the target platform.
     Cwe589,
 
     /// ### Free of Memory not on the Heap
@@ -2657,7 +2657,7 @@ pub enum Cwe {
 
     /// ### Sensitive Data Storage in Improperly Locked Memory
     ///
-    /// The product stores sensitive data in memory that is not locked, or that has been incorrectly locked, which might cause the memory to be written to swap files on disk by the virtual memory manager. This can make the data more accessible to external actors.
+    /// The product stores sensitive data in memory that is not locked, or that has been incorrectly locked.
     Cwe591,
 
     /// ### DEPRECATED: Authentication Bypass Issues
@@ -2672,7 +2672,7 @@ pub enum Cwe {
 
     /// ### J2EE Framework: Saving Unserializable Objects to Disk
     ///
-    /// When the J2EE container attempts to write unserializable objects to disk there is no guarantee that the process will complete successfully.
+    /// The J2EE container attempts to write unserializable objects to disk.
     Cwe594,
 
     /// ### Comparison of Object References Instead of Object Contents
@@ -2702,17 +2702,17 @@ pub enum Cwe {
 
     /// ### Uncaught Exception in Servlet
     ///
-    /// The Servlet does not catch all exceptions, which may reveal sensitive debugging information.
+    /// The Servlet does not catch all exceptions.
     Cwe600,
 
-    /// ### URL Redirection to Untrusted Site ('Open Redirect')
+    /// ### URL Redirection to Untrusted Site
     ///
     /// The web application accepts a user-controlled input that specifies a link to an external site, and uses that link in a redirect.
     Cwe601,
 
     /// ### Client-Side Enforcement of Server-Side Security
     ///
-    /// The product is composed of a server that relies on the client to implement a mechanism that is intended to protect the server.
+    /// The product includes a server that relies on the client to implement a protection mechanism that is intended to protect the server.
     Cwe602,
 
     /// ### Use of Client-Side Authentication
@@ -2737,7 +2737,7 @@ pub enum Cwe {
 
     /// ### Struts: Non-private Field in ActionForm Class
     ///
-    /// An ActionForm class contains a field that has not been declared private, which can be accessed without using a setter or getter.
+    /// The product uses an ActionForm class that contains a field that has not been declared private.
     Cwe608,
 
     /// ### Double-Checked Locking
@@ -2760,9 +2760,9 @@ pub enum Cwe {
     /// The product creates a search index of private or sensitive documents, but it does not properly limit index access to actors who are authorized to see the original information.
     Cwe612,
 
-    /// ### Insufficient Session Expiration
+    /// ### DEPRECATED: Insufficient Session Expiration
     ///
-    /// According to WASC, "Insufficient Session Expiration is when a web site permits an attacker to reuse old session credentials or session IDs for authorization."
+    /// This entry has been deprecated because it was insufficiently clear. Consider CWE-1462 and its descendants.
     Cwe613,
 
     /// ### Sensitive Cookie in HTTPS Session Without 'Secure' Attribute
@@ -2772,12 +2772,12 @@ pub enum Cwe {
 
     /// ### Inclusion of Sensitive Information in Source Code Comments
     ///
-    /// While adding general comments is very useful, some programmers tend to leave important data, such as: filenames related to the web application, old links or links which were not meant to be browsed by users, old code fragments, etc.
+    /// The product's source code includes comments that contain sensitive information, such as filenames related to the application, old links or links that were not meant to be browsed by users, old code fragments, etc.
     Cwe615,
 
     /// ### Incomplete Identification of Uploaded File Variables (PHP)
     ///
-    /// The PHP application uses an old method for processing uploaded files by referencing the four global variables that are set for each file (e.g. $varname, $varname_size, $varname_name, $varname_type). These variables could be overwritten by attackers, causing the application to process unauthorized files.
+    /// The PHP application uses an old method for processing uploaded files by referencing the four global variables that are set for each file (e.g. $varname, $varname_size, $varname_name, $varname_type).
     Cwe616,
 
     /// ### Reachable Assertion
@@ -2790,9 +2790,9 @@ pub enum Cwe {
     /// An ActiveX control is intended for use in a web browser, but it exposes dangerous methods that perform actions that are outside of the browser's security model (e.g. the zone or domain).
     Cwe618,
 
-    /// ### Dangling Database Cursor ('Cursor Injection')
+    /// ### Dangling Database Cursor
     ///
-    /// If a database cursor is not closed properly, then it could become accessible to other users while retaining the same privileges that were originally assigned, leaving the cursor "dangling."
+    /// The product does not close a database cursor properly, leaving the cursor "dangling."
     Cwe619,
 
     /// ### Unverified Password Change
@@ -2802,17 +2802,17 @@ pub enum Cwe {
 
     /// ### Variable Extraction Error
     ///
-    /// The product uses external input to determine the names of variables into which information is extracted, without verifying that the names of the specified variables are valid. This could cause the program to overwrite unintended variables.
+    /// The product uses external input to determine the names of variables into which information is extracted, without verifying that the names of the specified variables are valid.
     Cwe621,
 
     /// ### Improper Validation of Function Hook Arguments
     ///
-    /// The product adds hooks to user-accessible API functions, but it does not properly validate the arguments. This could lead to resultant vulnerabilities.
+    /// The product adds hooks to user-accessible API functions, but it does not properly validate the arguments.
     Cwe622,
 
     /// ### Unsafe ActiveX Control Marked Safe For Scripting
     ///
-    /// An ActiveX control is intended for restricted use, but it has been marked as safe-for-scripting.
+    /// The product includes an ActiveX control that is intended for restricted use, but the control has been marked as safe-for-scripting.
     Cwe623,
 
     /// ### Executable Regular Expression Error
@@ -2837,10 +2837,10 @@ pub enum Cwe {
 
     /// ### Function Call with Incorrectly Specified Arguments
     ///
-    /// The product calls a function, procedure, or routine with arguments that are not correctly specified, leading to always-incorrect behavior and resultant weaknesses.
+    /// The product calls a function, procedure, or routine with arguments that are not correctly specified.
     Cwe628,
 
-    /// ### Not Failing Securely ('Failing Open')
+    /// ### Not Failing Securely
     ///
     /// When the product encounters an error condition or failure, its design requires it to fall back to a state that is less secure than other options that are available, such as selecting the weakest encryption algorithm or using the most permissive access control restrictions.
     Cwe636,
@@ -2875,9 +2875,9 @@ pub enum Cwe {
     /// The product stores security-critical state information about its users, or the product itself, in a location that is accessible to unauthorized actors.
     Cwe642,
 
-    /// ### Improper Neutralization of Data within XPath Expressions ('XPath Injection')
+    /// ### Improper Neutralization of Data within XPath Expressions
     ///
-    /// The product uses external input to dynamically construct an XPath expression used to retrieve data from an XML database, but it does not neutralize or incorrectly neutralizes that input. This allows an attacker to control the structure of the query.
+    /// The product uses external input to dynamically construct an XPath expression used to retrieve data from an XML database, but it does not neutralize or incorrectly neutralizes that input.
     Cwe643,
 
     /// ### Improper Neutralization of HTTP Headers for Scripting Syntax
@@ -2892,12 +2892,12 @@ pub enum Cwe {
 
     /// ### Reliance on File Name or Extension of Externally-Supplied File
     ///
-    /// The product allows a file to be uploaded, but it relies on the file name or extension of the file to determine the appropriate behaviors. This could be used by attackers to cause the file to be misclassified and processed in a dangerous fashion.
+    /// The product allows a file to be uploaded, but it relies on the file name or extension of the file to determine the appropriate behaviors.
     Cwe646,
 
     /// ### Use of Non-Canonical URL Paths for Authorization Decisions
     ///
-    /// The product defines policy namespaces and makes authorization decisions based on the assumption that a URL is canonical. This can allow a non-canonical URL to bypass the authorization.
+    /// The product defines policy namespaces and makes authorization decisions based on the assumption that a URL is canonical.
     Cwe647,
 
     /// ### Incorrect Use of Privileged APIs
@@ -2912,7 +2912,7 @@ pub enum Cwe {
 
     /// ### Trusting HTTP Permission Methods on the Server Side
     ///
-    /// The server contains a protection mechanism that assumes that any URI that is accessed using HTTP GET will not cause a state change to the associated resource. This might allow attackers to bypass intended access restrictions and conduct resource modification and deletion attacks, since some applications allow GET to modify state.
+    /// The server contains a protection mechanism that assumes that any URI that is accessed using HTTP GET will not cause a state change to the associated resource.
     Cwe650,
 
     /// ### Exposure of WSDL File Containing Sensitive Information
@@ -2920,9 +2920,9 @@ pub enum Cwe {
     /// The Web services architecture may require exposing a Web Service Definition Language (WSDL) file that contains information on the publicly accessible services and how callers of these services should interact with them (e.g. what parameters they expect and what types they return).
     Cwe651,
 
-    /// ### Improper Neutralization of Data within XQuery Expressions ('XQuery Injection')
+    /// ### Improper Neutralization of Data within XQuery Expressions
     ///
-    /// The product uses external input to dynamically construct an XQuery expression used to retrieve data from an XML database, but it does not neutralize or incorrectly neutralizes that input. This allows an attacker to control the structure of the query.
+    /// The product uses external input to dynamically construct an XQuery expression used to retrieve data from an XML database, but it does not neutralize or incorrectly neutralizes that input.
     Cwe652,
 
     /// ### Improper Isolation or Compartmentalization
@@ -2967,7 +2967,7 @@ pub enum Cwe {
 
     /// ### Improper Initialization
     ///
-    /// The product does not initialize or incorrectly initializes a resource, which might leave the resource in an unexpected state when it is accessed or used.
+    /// The product does not initialize or incorrectly initializes a resource.
     Cwe665,
 
     /// ### Operation on Resource in Wrong Phase of Lifetime
@@ -2997,7 +2997,7 @@ pub enum Cwe {
 
     /// ### Lack of Administrator Control over Security
     ///
-    /// The product uses security features in a way that prevents the product's administrator from tailoring security settings to reflect the environment in which the product is being used. This introduces resultant weaknesses or prevents it from operating at a level of security that is desired by the administrator.
+    /// The product uses security features in a way that prevents the product's administrator from tailoring security settings to reflect the environment in which the product is being used.
     Cwe671,
 
     /// ### Operation on a Resource after Expiration or Release
@@ -3042,7 +3042,7 @@ pub enum Cwe {
 
     /// ### Function Call With Incorrect Order of Arguments
     ///
-    /// The product calls a function, procedure, or routine, but the caller specifies the arguments in an incorrect order, leading to resultant weaknesses.
+    /// The product calls a function, procedure, or routine, but the caller specifies the arguments in an incorrect order.
     Cwe683,
 
     /// ### Incorrect Provision of Specified Functionality
@@ -3087,7 +3087,7 @@ pub enum Cwe {
 
     /// ### Incomplete Denylist to Cross-Site Scripting
     ///
-    /// The product uses a denylist-based protection mechanism to defend against XSS attacks, but the denylist is incomplete, allowing XSS variants to succeed.
+    /// The product uses a denylist-based protection mechanism to defend against XSS attacks, but the denylist is incomplete.
     Cwe692,
 
     /// ### Protection Mechanism Failure
@@ -3142,7 +3142,7 @@ pub enum Cwe {
 
     /// ### Improper Neutralization
     ///
-    /// The product does not ensure or incorrectly ensures that structured messages or data are well-formed and that certain security properties are met before being read from an upstream component or sent to a downstream component.
+    /// The product does not ensure or incorrectly ensures that structured messages or data are well-formed and that certain security properties are met before being used when received from an upstream component, or before being sent to a downstream component.
     Cwe707,
 
     /// ### Incorrect Ownership Assignment
@@ -3152,7 +3152,7 @@ pub enum Cwe {
 
     /// ### Improper Adherence to Coding Standards
     ///
-    /// The product does not follow certain coding rules for development, which can lead to resultant weaknesses or increase the severity of the associated vulnerabilities.
+    /// The product does not follow certain coding rules for development.
     Cwe710,
 
     /// ### Incorrect Permission Assignment for Critical Resource
@@ -3185,9 +3185,9 @@ pub enum Cwe {
     /// The product does not return custom error pages to the user, possibly exposing sensitive information.
     Cwe756,
 
-    /// ### Selection of Less-Secure Algorithm During Negotiation ('Algorithm Downgrade')
+    /// ### Selection of Less-Secure Algorithm During Negotiation
     ///
-    /// A protocol or its implementation supports interaction between multiple actors and allows those actors to negotiate which algorithm should be used as a protection mechanism such as encryption or authentication, but it does not select the strongest algorithm that is available to both parties.
+    /// A protocol or its implementation supports interaction between multiple actors and allows those actors to negotiate which algorithm should be used in a protection mechanism such as encryption or authentication, but it does not select the strongest algorithm that is available to both parties.
     Cwe757,
 
     /// ### Reliance on Undefined, Unspecified, or Implementation-Defined Behavior
@@ -3242,7 +3242,7 @@ pub enum Cwe {
 
     /// ### Incorrect Short Circuit Evaluation
     ///
-    /// The product contains a conditional statement with multiple logical expressions in which one of the non-leading expressions may produce side effects. This may lead to an unexpected state in the program after the execution of the conditional, because short-circuiting logic may prevent the side effects from occurring.
+    /// The product contains a conditional statement with multiple logical expressions in which one of the non-leading expressions may produce side effects.
     Cwe768,
 
     /// ### DEPRECATED: Uncontrolled File Descriptor Consumption
@@ -3280,14 +3280,14 @@ pub enum Cwe {
     /// The product does not release a file descriptor or handle after its effective lifetime has ended, i.e., after the file descriptor/handle is no longer needed.
     Cwe775,
 
-    /// ### Improper Restriction of Recursive Entity References in DTDs ('XML Entity Expansion')
+    /// ### Improper Restriction of Recursive Entity References in DTDs
     ///
     /// The product uses XML documents and allows their structure to be defined with a Document Type Definition (DTD), but it does not properly control the number of recursive definitions of entities.
     Cwe776,
 
     /// ### Regular Expression without Anchors
     ///
-    /// The product uses a regular expression to perform neutralization, but the regular expression is not anchored and may allow malicious or malformed data to slip through.
+    /// The product uses a regular expression to perform neutralization, but the regular expression omits one or more anchors that may allow malicious or malformed data to slip through.
     Cwe777,
 
     /// ### Insufficient Logging
@@ -3302,7 +3302,7 @@ pub enum Cwe {
 
     /// ### Use of RSA Algorithm without OAEP
     ///
-    /// The product uses the RSA algorithm but does not incorporate Optimal Asymmetric Encryption Padding (OAEP), which might weaken the encryption.
+    /// The product uses the RSA algorithm but does not incorporate Optimal Asymmetric Encryption Padding (OAEP).
     Cwe780,
 
     /// ### Improper Address Validation in IOCTL with METHOD_NEITHER I/O Control Code
@@ -3352,12 +3352,12 @@ pub enum Cwe {
 
     /// ### Improper Filtering of Special Elements
     ///
-    /// The product receives data from an upstream component, but does not filter or incorrectly filters special elements before sending it to a downstream component.
+    /// The product receives data from an upstream component, but it does not filter or incorrectly filters special elements before sending it to a downstream component.
     Cwe790,
 
     /// ### Incomplete Filtering of Special Elements
     ///
-    /// The product receives data from an upstream component, but does not completely filter special elements before sending it to a downstream component.
+    /// The product receives data from an upstream component, but it does not completely filter special elements before sending it to a downstream component.
     Cwe791,
 
     /// ### Incomplete Filtering of One or More Instances of Special Elements
@@ -3372,7 +3372,7 @@ pub enum Cwe {
 
     /// ### Incomplete Filtering of Multiple Instances of Special Elements
     ///
-    /// The product receives data from an upstream component, but does not filter all instances of a special element before sending it to a downstream component.
+    /// The product receives data from an upstream component, but it does not filter all instances of a special element before sending it to a downstream component.
     Cwe794,
 
     /// ### Only Filtering Special Elements at a Specified Location
@@ -3472,7 +3472,7 @@ pub enum Cwe {
 
     /// ### Inclusion of Web Functionality from an Untrusted Source
     ///
-    /// The product includes web functionality (such as a web widget) from another domain, which causes it to operate within the domain of the product, potentially granting total access and control of the product to the untrusted source.
+    /// The product includes web functionality (such as a web widget) from another domain in a way that causes the functionality to operate within the domain of the product, potentially granting total access and control of the product to the untrusted source.
     Cwe830,
 
     /// ### Signal Handler Function Associated with Multiple Signals
@@ -3495,19 +3495,19 @@ pub enum Cwe {
     /// The product performs an iteration or loop without sufficiently limiting the number of times that the loop is executed.
     Cwe834,
 
-    /// ### Loop with Unreachable Exit Condition ('Infinite Loop')
+    /// ### Loop with Unreachable Exit Condition
     ///
     /// The product contains an iteration or loop with an exit condition that cannot be reached, i.e., an infinite loop.
     Cwe835,
 
     /// ### Use of Password Hash Instead of Password for Authentication
     ///
-    /// The product records password hashes in a data store, receives a hash of a password from a client, and compares the supplied hash to the hash obtained from the data store.
+    /// The product includes a client that computes a hash of a password and sends the hash to another component, which compares the supplied hash to the hash obtained from a data store of password hashes.
     Cwe836,
 
     /// ### Improper Enforcement of a Single, Unique Action
     ///
-    /// The product requires that an actor should only be able to perform an action once, or to have only one unique action, but the product does not enforce or improperly enforces this restriction.
+    /// The product requires that an actor should only be able to perform an action once, or to have only one unique action, but the product does not enforce or incorrectly enforces this restriction.
     Cwe837,
 
     /// ### Inappropriate Encoding for Output Context
@@ -3522,7 +3522,7 @@ pub enum Cwe {
 
     /// ### Improper Enforcement of Behavioral Workflow
     ///
-    /// The product supports a session in which more than one behavior must be performed by an actor, but it does not properly ensure that the actor performs the behaviors in the required sequence.
+    /// The product supports a session in which more than one behavior must be performed by an actor, but it does not properly ensure that the actor performs the behaviors in the required sequence or timeframe.
     Cwe841,
 
     /// ### Placement of User into Incorrect Group
@@ -3530,7 +3530,7 @@ pub enum Cwe {
     /// The product or the administrator places a user into an incorrect group.
     Cwe842,
 
-    /// ### Access of Resource Using Incompatible Type ('Type Confusion')
+    /// ### Access of Resource Using Incompatible Type
     ///
     /// The product allocates or initializes a resource such as a pointer, object, or variable using one type, but it later accesses that resource using a type that is incompatible with the original type.
     Cwe843,
@@ -3590,19 +3590,19 @@ pub enum Cwe {
     /// The product generates a hash for a password, but it uses a scheme that does not provide a sufficient level of computational effort that would make password cracking attacks infeasible or expensive.
     Cwe916,
 
-    /// ### Improper Neutralization of Special Elements used in an Expression Language Statement ('Expression Language Injection')
+    /// ### Improper Neutralization of Special Elements used in an Expression Language Statement
     ///
     /// The product constructs all or part of an expression language (EL) statement in a framework such as a Java Server Page (JSP) using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended EL statement before it is executed.
     Cwe917,
 
-    /// ### Server-Side Request Forgery (SSRF)
+    /// ### Server-Side Request Forgery
     ///
     /// The web server receives a URL or similar request from an upstream component and retrieves the contents of this URL, but it does not sufficiently ensure that the request is being sent to the expected destination.
     Cwe918,
 
     /// ### Improper Restriction of Power Consumption
     ///
-    /// The product operates in an environment in which power is a limited resource that cannot be automatically replenished, but the product does not properly restrict the amount of power that its operation consumes.
+    /// The product operates in an environment in which power is a limited resource that cannot be automatically replenished - or has financial restrictions - but the product does not properly restrict the amount of power that its operation consumes.
     Cwe920,
 
     /// ### Storage of Sensitive Data in a Mechanism without Access Control
@@ -3697,7 +3697,7 @@ pub enum Cwe {
 
     /// ### Comparison Using Wrong Factors
     ///
-    /// The code performs a comparison between two entities, but the comparison examines the wrong factors or characteristics of the entities, which can lead to incorrect results and resultant weaknesses.
+    /// The code performs a comparison between two entities, but the comparison examines the wrong factors or characteristics of the entities.
     Cwe1025,
 
     /// ### Processor Optimization Removal or Modification of Security-critical Code
@@ -3717,7 +3717,7 @@ pub enum Cwe {
 
     /// ### Use of Redundant Code
     ///
-    /// The product has multiple functions, methods, procedures, macros, etc. that contain the same code.
+    /// The product has multiple functions, methods, procedures, macros, etc. that contain the same code, i.e., the code has been copied or duplicated.
     Cwe1041,
 
     /// ### Static Member Data Element outside of a Singleton Class Element
@@ -3807,7 +3807,7 @@ pub enum Cwe {
 
     /// ### Insufficient Technical Documentation
     ///
-    /// The product does not contain sufficient technical or engineering documentation (whether on paper or in electronic form) that contains descriptions of all the relevant software/hardware elements of the product, such as its usage, structure, architectural components, interfaces, design, implementation, configuration, operation, etc.
+    /// The product does not contain sufficient technical or engineering documentation (whether on paper or in electronic form) that contains descriptions of all of the relevant software/hardware elements of the product.
     Cwe1059,
 
     /// ### Excessive Number of Inefficient Server-Side Data Accesses
@@ -3817,7 +3817,7 @@ pub enum Cwe {
 
     /// ### Insufficient Encapsulation
     ///
-    /// The product does not sufficiently hide the internal representation and implementation details of data or methods, which might allow external components or modules to modify data unexpectedly, invoke unexpected functionality, or introduce dependencies that the programmer did not intend.
+    /// The product does not sufficiently hide the internal representation and implementation details of data or methods.
     Cwe1061,
 
     /// ### Parent Class with References to Child Class
@@ -3917,7 +3917,7 @@ pub enum Cwe {
 
     /// ### Class Instance Self Destruction Control Element
     ///
-    /// The code contains a class instance that calls the method or function to delete or destroy itself.
+    /// The code contains a class instance that calls the method or function to delete or destroy itself, e.g., use of "delete this" in C++.
     Cwe1082,
 
     /// ### Data Access from Outside Expected Data Manager Component
@@ -3937,7 +3937,7 @@ pub enum Cwe {
 
     /// ### Class with Excessive Number of Child Classes
     ///
-    /// A class contains an unnecessarily large number of children.
+    /// A class contains an unnecessarily large number of child classes.
     Cwe1086,
 
     /// ### Class with Virtual Method without a Virtual Destructor
@@ -4067,7 +4067,7 @@ pub enum Cwe {
 
     /// ### Incomplete Documentation of Program Execution
     ///
-    /// The document does not fully define all mechanisms that are used to control or influence how product-specific programs are executed.
+    /// The document does not fully define all mechanisms that are used to control or influence how product-specific programs are executed, such as environmental variables, configuration files, registry keys, command-line switches or options, or system settings.
     Cwe1112,
 
     /// ### Inappropriate Comment Style
@@ -4142,17 +4142,17 @@ pub enum Cwe {
 
     /// ### Compilation with Insufficient Warnings or Errors
     ///
-    /// The code is compiled without sufficient warnings enabled, which may prevent the detection of subtle bugs or quality issues.
+    /// The code is compiled without sufficient warnings enabled.
     Cwe1127,
 
     /// ### Irrelevant Code
     ///
-    /// The product contains code that is not essential for execution, i.e. makes no state changes and has no side effects that alter data or control flow, such that removal of the code would have no impact to functionality or correctness.
+    /// The product contains code that is not essential for execution, i.e., makes no state changes and has no side effects that alter data or control flow - or is unreachable under any circumstances - such that removal of the code would have no impact to intended functionality or correctness.
     Cwe1164,
 
     /// ### Improper Use of Validation Framework
     ///
-    /// The product does not use, or incorrectly uses, an input validation framework that is provided by the source language or an independent library.
+    /// The product does not use, or incorrectly uses, an input validation framework that is provided by the source language, framework, or an independent library.
     Cwe1173,
 
     /// ### ASP.NET Misconfiguration: Improper Model Validation
@@ -4212,12 +4212,12 @@ pub enum Cwe {
 
     /// ### Failure to Disable Reserved Bits
     ///
-    /// The reserved bits in a hardware design are not disabled prior to production. Typically, reserved bits are used for future capabilities and should not support any functional logic in the design. However, designers might covertly use these bits to debug or further develop new capabilities in production hardware. Adversaries with access to these bits will write to them in hopes of compromising hardware state.
+    /// The reserved bits in a hardware design are not disabled prior to production.
     Cwe1209,
 
     /// ### Insufficient Granularity of Access Control
     ///
-    /// The product implements access controls via a policy or other feature with the intention to disable or restrict accesses (reads and/or writes) to assets in a system from untrusted agents. However, implemented access controls lack required granularity, which renders the control policy too broad because it allows accesses from unauthorized agents to the security-sensitive assets.
+    /// The product implements access controls via a policy or other feature with the intention to disable or restrict accesses (reads and/or writes) to assets in a system from untrusted agents. However, implemented access controls lack the required granularity
     Cwe1220,
 
     /// ### Incorrect Register Defaults or Module Parameters
@@ -4372,17 +4372,17 @@ pub enum Cwe {
 
     /// ### Improper Access Control Applied to Mirrored or Aliased Memory Regions
     ///
-    /// Aliased or mirrored memory regions in hardware designs may have inconsistent read/write permissions enforced by the hardware. A possible result is that an untrusted agent is blocked from accessing a memory region but is not blocked from accessing the corresponding aliased memory region.
+    /// Aliased or mirrored memory regions in hardware designs may have inconsistent read/write permissions enforced by the hardware.
     Cwe1257,
 
     /// ### Exposure of Sensitive System Information Due to Uncleared Debug Information
     ///
-    /// The hardware does not fully clear security-sensitive values, such as keys and intermediate values in cryptographic operations, when debug mode is entered.
+    /// The hardware product enters debug mode but does not fully clear security-sensitive values, such as keys and intermediate values in cryptographic operations.
     Cwe1258,
 
     /// ### Improper Restriction of Security Token Assignment
     ///
-    /// The System-On-A-Chip (SoC) implements a Security Token mechanism to differentiate what actions are allowed or disallowed when a transaction originates from an entity. However, the Security Tokens are improperly protected.
+    /// The System-On-A-Chip (SoC) implements a Security Token mechanism to differentiate what actions are allowed or disallowed when a transaction originates from an entity. However, the Security Tokens are improperly protected, such as improperly restricting the assignment to trusted components.
     Cwe1259,
 
     /// ### Improper Handling of Overlap Between Protected Memory Ranges
@@ -4412,7 +4412,7 @@ pub enum Cwe {
 
     /// ### Unintended Reentrant Invocation of Non-reentrant Code Via Nested Calls
     ///
-    /// The product invokes code that is believed to be reentrant, but the code performs a call that unintentionally produces a nested invocation of the non-reentrant code.
+    /// The product invokes code that is believed to be reentrant, but the code performs a call that unintentionally produces a nested invocation of non-reentrant code.
     Cwe1265,
 
     /// ### Improper Scrubbing of Sensitive Data from Decommissioned Device
@@ -4422,7 +4422,7 @@ pub enum Cwe {
 
     /// ### Policy Uses Obsolete Encoding
     ///
-    /// The product uses an obsolete encoding mechanism to implement access controls.
+    /// The product uses an encoding mechanism that is no longer trusted, i.e., an obsolete encoding, to implement access controls.
     Cwe1267,
 
     /// ### Policy Privileges are not Assigned Consistently Between Control and Data Agents
@@ -4467,7 +4467,7 @@ pub enum Cwe {
 
     /// ### Hardware Child Block Incorrectly Connected to Parent System
     ///
-    /// Signals between a hardware IP and the parent system design are incorrectly connected causing security risks.
+    /// Signals between a hardware IP and the parent system design are incorrectly connected.
     Cwe1276,
 
     /// ### Firmware Not Updateable
@@ -4480,7 +4480,7 @@ pub enum Cwe {
     /// Information stored in hardware may be recovered by an attacker with the capability to capture and analyze images of the integrated circuit using techniques such as scanning electron microscopy.
     Cwe1278,
 
-    /// ### Cryptographic Operations are run Before Supporting Units are Ready
+    /// ### Cryptographic Operations are Run Before Supporting Units are Ready
     ///
     /// Performing cryptographic operations without ensuring that the supporting inputs are ready to supply valid data may compromise the cryptographic result.
     Cwe1279,
@@ -4537,7 +4537,7 @@ pub enum Cwe {
 
     /// ### Incorrect Decoding of Security Identifiers
     ///
-    /// The product implements a decoding mechanism to decode certain bus-transaction signals to security identifiers. If the decoding is implemented incorrectly, then untrusted agents can now gain unauthorized access to the asset.
+    /// The product implements a decoding mechanism to decode certain bus-transaction signals to security identifiers, but it decodes an untrusted agent's security identifier into a trusted agent's security identifier.
     Cwe1290,
 
     /// ### Public Key Re-Use for Signing both Debug and Production Code
@@ -4547,7 +4547,7 @@ pub enum Cwe {
 
     /// ### Incorrect Conversion of Security Identifiers
     ///
-    /// The product implements a conversion mechanism to map certain bus-transaction signals to security identifiers. However, if the conversion is incorrectly implemented, untrusted agents can gain unauthorized access to the asset.
+    /// The product implements a conversion mechanism to map certain bus-transaction signals to security identifiers, but this conversion between protocols is incorrectly implemented.
     Cwe1292,
 
     /// ### Missing Source Correlation of Multiple Independent Data
@@ -4597,7 +4597,7 @@ pub enum Cwe {
 
     /// ### Missing Source Identifier in Entity Transactions on a System-On-Chip (SOC)
     ///
-    /// The product implements a security identifier mechanism to differentiate what actions are allowed or disallowed when a transaction originates from an entity. A transaction is sent without a security identifier.
+    /// The product implements a security identifier mechanism to differentiate what actions are allowed or disallowed when a transaction originates from an entity, but the entity does not consistently include the necessary Security Identifier with a security-critical transaction.
     Cwe1302,
 
     /// ### Non-Transparent Sharing of Microarchitectural Resources
@@ -4617,7 +4617,7 @@ pub enum Cwe {
 
     /// ### Improper Translation of Security Attributes by Fabric Bridge
     ///
-    /// The bridge incorrectly translates security attributes from either trusted to untrusted or from untrusted to trusted when converting from one fabric protocol to another.
+    /// The fabric bridge incorrectly translates security attributes from either trusted to untrusted or from untrusted to trusted when converting from one fabric protocol to another.
     Cwe1311,
 
     /// ### Missing Protection for Mirrored Regions in On-Chip Fabric Firewall
@@ -4665,7 +4665,7 @@ pub enum Cwe {
     /// Untrusted agents can disable alerts about signal conditions exceeding limits or the response mechanism that handles such alerts.
     Cwe1320,
 
-    /// ### Improperly Controlled Modification of Object Prototype Attributes ('Prototype Pollution')
+    /// ### Improperly Controlled Modification of Object Prototype Attributes
     ///
     /// The product receives input from an upstream component that specifies attributes that are to be initialized or updated in an object, but it does not properly control modifications of attributes of the object prototype.
     Cwe1321,
@@ -4702,7 +4702,7 @@ pub enum Cwe {
 
     /// ### Security Version Number Mutable to Older Versions
     ///
-    /// Security-version number in hardware is mutable, resulting in the ability to downgrade (roll-back) the boot firmware to vulnerable code versions.
+    /// The security version number in the hardware product is mutable, resulting in the ability to downgrade (roll-back) the boot firmware to vulnerable code versions.
     Cwe1328,
 
     /// ### Reliance on Component That is Not Updateable
@@ -4712,7 +4712,7 @@ pub enum Cwe {
 
     /// ### Remanent Data Readable after Memory Erase
     ///
-    /// Confidential information stored in memory circuits is readable or recoverable after being cleared or erased.
+    /// Confidential information stored in memory circuits is readable or recoverable after being cleared or erased, i.e., there is data remanence.
     Cwe1330,
 
     /// ### Improper Isolation of Shared Resources in Network On Chip (NoC)
@@ -4737,7 +4737,7 @@ pub enum Cwe {
 
     /// ### Incorrect Bitwise Shift of Integer
     ///
-    /// An integer value is specified to be shifted by a negative amount or an amount greater than or equal to the number of bits contained in the value causing an unexpected or indeterminate result.
+    /// An integer value is specified to be shifted by a negative amount or an amount greater than or equal to the number of bits contained in the value.
     Cwe1335,
 
     /// ### Improper Neutralization of Special Elements Used in a Template Engine
@@ -4767,7 +4767,7 @@ pub enum Cwe {
 
     /// ### Improper Handling of Hardware Behavior in Exceptionally Cold Environments
     ///
-    /// A hardware device, or the firmware running on it, is missing or has incorrect protection features to maintain goals of security primitives when the device is cooled below standard operating temperatures.
+    /// The hardware device, or the firmware running on it, is missing or has incorrect protection mechanisms to maintain goals of security primitives when the device is cooled below standard operating temperatures.
     Cwe1351,
 
     /// ### Reliance on Insufficiently Trustworthy Component
@@ -4879,6 +4879,81 @@ pub enum Cwe {
     ///
     /// The product has a component that relies on a generative AI/ML model configured with inference parameters that produce an unacceptably high rate of erroneous or unexpected outputs.
     Cwe1434,
+
+    /// ### Hardware Simulation / Synthesis Mismatch
+    ///
+    ///  The hardware design contains structures that are interpreted differently during synthesis than during simulation, which cause inconsistencies in security-relevant behavior between the synthesized implementation and the simulation.
+    Cwe1461,
+
+    /// ### Improper Session Management
+    ///
+    /// The product does not properly manage user-related sessions such as setting appropriate configurations and settings for sessions on creation and handling sessions throughout their lifetime.
+    Cwe1462,
+
+    /// ### Insufficient Session Timeout Value
+    ///
+    /// The product establishes an authenticated user session, but it does not properly set a timeout for the session. That is, the timeout is set to an excessively large value or is not set at all.
+    Cwe1463,
+
+    /// ### Improper Session Invalidation
+    ///
+    /// The product establishes a session for an authenticated user, but it does not properly invalidate or terminate the session when it is required.
+    Cwe1464,
+
+    /// ### Improper Session Invalidation after User Logout
+    ///
+    /// The product provides a logout functionality or otherwise attempts to end an active session for a user, but it does not properly invalidate the session upon logout.
+    Cwe1465,
+
+    /// ### Improper Session Invalidation after Authentication Credential Change
+    ///
+    /// The product provides a capability for users to change their authentication credentials, such as username or password, but it does not properly invalidate any current authenticated sessions after this authentication credential change.
+    Cwe1466,
+
+    /// ### Use of Singular Authentication Artifact for Multiple User Sessions
+    ///
+    /// The product provides an authentication artifact, such as an authentication token, for an authenticated user session, but the same artifact is used for every authenticated user session, potentially across multiple different applications.
+    Cwe1467,
+
+    /// ### Improper Check for Credential Expiration
+    ///
+    /// The product receives a request that includes a credential such as a key, certificate, password, confirmation code, or token, but the product does not check whether the credential is expired.
+    Cwe1469,
+
+    /// ### Improper External Identity Verification
+    ///
+    ///  The product supports user accounts that include a user's external identifier or communications channel - such as email, phone number, social media account, or domain name - but it does not properly verify that the user actually controls the associated identifier or channel.
+    Cwe1470,
+
+    /// ### Insufficiently Controlled Parser Differential
+    ///
+    /// The product uses a common specification or format that is shared between multiple components or entities, but the components have different parsers that can interpret the same input in different, security-relevant ways.
+    Cwe1471,
+
+    /// ### Generation of Credential with Long Expiration
+    ///
+    /// The product generates or relies on a credential such as a key, certificate, password, confirmation code, or token, but the credential does not expire or has an expiration that is too long, i.e., the expiration is insufficient for the intended security policy of the product.
+    Cwe1472,
+
+    /// ### Improper Expiration of Cached Data
+    ///
+    ///  The product uses or supports data in a cache, but it does not properly specify an expiration with a date, time, or time period that is sufficient for the intended security policy of the product or its adminstrators.
+    Cwe1473,
+
+    /// ### Non-Equivalent Data Transformation
+    ///
+    ///  The product parses or transforms data into another format, structure, or representation, but the newly-produced data is not semantically equivalent to the original data.
+    Cwe1474,
+
+    /// ### Incomplete Data/State Propagation
+    ///
+    /// The product passes control to another component or function, or it performs a state transition, but it does not provide some security-critical data/state that is needed by the receiving component/function.
+    Cwe1475,
+
+    /// ### Improper Request Propagation before Data Reception in Write Transactions in a Bus Architecture
+    ///
+    ///  The product uses a multi-manager shared bus architecture with an on-chip interconnect that speculatively propagates a request for a write transaction, but it does not ensure that the remaining steps required by the manager module to complete the request are fulfilled in a timely manner.
+    Cwe1476,
 }
 
 #[cfg(any(feature = "str", test))]
@@ -5872,6 +5947,21 @@ pub(crate) mod str {
                 Cwe::Cwe1429 => "CWE-1429",
                 Cwe::Cwe1431 => "CWE-1431",
                 Cwe::Cwe1434 => "CWE-1434",
+                Cwe::Cwe1461 => "CWE-1461",
+                Cwe::Cwe1462 => "CWE-1462",
+                Cwe::Cwe1463 => "CWE-1463",
+                Cwe::Cwe1464 => "CWE-1464",
+                Cwe::Cwe1465 => "CWE-1465",
+                Cwe::Cwe1466 => "CWE-1466",
+                Cwe::Cwe1467 => "CWE-1467",
+                Cwe::Cwe1469 => "CWE-1469",
+                Cwe::Cwe1470 => "CWE-1470",
+                Cwe::Cwe1471 => "CWE-1471",
+                Cwe::Cwe1472 => "CWE-1472",
+                Cwe::Cwe1473 => "CWE-1473",
+                Cwe::Cwe1474 => "CWE-1474",
+                Cwe::Cwe1475 => "CWE-1475",
+                Cwe::Cwe1476 => "CWE-1476",
             }
         }
 
@@ -5883,7 +5973,7 @@ pub(crate) mod str {
         /// use cwenum::Cwe;
         ///
         /// let name = Cwe::Cwe89.name();
-        /// assert_eq!(name, "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')");
+        /// assert_eq!(name, "Improper Neutralization of Special Elements used in an SQL Command");
         /// ```
         pub fn name(&self) -> &'static str {
             match self {
@@ -5898,9 +5988,7 @@ pub(crate) mod str {
                 Cwe::Cwe14 => "Compiler Removal of Code to Clear Buffers",
                 Cwe::Cwe15 => "External Control of System or Configuration Setting",
                 Cwe::Cwe20 => "Improper Input Validation",
-                Cwe::Cwe22 => {
-                    "Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')"
-                }
+                Cwe::Cwe22 => "Improper Limitation of a Pathname to a Restricted Directory",
                 Cwe::Cwe23 => "Relative Path Traversal",
                 Cwe::Cwe24 => "Path Traversal: '../filedir'",
                 Cwe::Cwe25 => "Path Traversal: '/../filedir'",
@@ -5937,7 +6025,7 @@ pub(crate) mod str {
                 Cwe::Cwe56 => "Path Equivalence: 'filedir*' (Wildcard)",
                 Cwe::Cwe57 => "Path Equivalence: 'fakedir/../realdir/filename'",
                 Cwe::Cwe58 => "Path Equivalence: Windows 8.3 Filename",
-                Cwe::Cwe59 => "Improper Link Resolution Before File Access ('Link Following')",
+                Cwe::Cwe59 => "Improper Link Resolution Before File Access",
                 Cwe::Cwe61 => "UNIX Symbolic Link (Symlink) Following",
                 Cwe::Cwe62 => "UNIX Hard Link",
                 Cwe::Cwe64 => "Windows Shortcut Following (.LNK)",
@@ -5949,24 +6037,14 @@ pub(crate) mod str {
                 Cwe::Cwe72 => "Improper Handling of Apple HFS+ Alternate Data Stream Path",
                 Cwe::Cwe73 => "External Control of File Name or Path",
                 Cwe::Cwe74 => {
-                    "Improper Neutralization of Special Elements in Output Used by a Downstream Component ('Injection')"
+                    "Improper Neutralization of Special Elements in Output Used by a Downstream Component"
                 }
-                Cwe::Cwe75 => {
-                    "Failure to Sanitize Special Elements into a Different Plane (Special Element Injection)"
-                }
+                Cwe::Cwe75 => "Failure to Sanitize Special Elements into a Different Plane",
                 Cwe::Cwe76 => "Improper Neutralization of Equivalent Special Elements",
-                Cwe::Cwe77 => {
-                    "Improper Neutralization of Special Elements used in a Command ('Command Injection')"
-                }
-                Cwe::Cwe78 => {
-                    "Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')"
-                }
-                Cwe::Cwe79 => {
-                    "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')"
-                }
-                Cwe::Cwe80 => {
-                    "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS)"
-                }
+                Cwe::Cwe77 => "Improper Neutralization of Special Elements used in a Command",
+                Cwe::Cwe78 => "Improper Neutralization of Special Elements used in an OS Command",
+                Cwe::Cwe79 => "Improper Neutralization of Input During Web Page Generation",
+                Cwe::Cwe80 => "Improper Neutralization of Script-Related HTML Tags in a Web Page",
                 Cwe::Cwe81 => "Improper Neutralization of Script in an Error Message Web Page",
                 Cwe::Cwe82 => {
                     "Improper Neutralization of Script in Attributes of IMG Tags in a Web Page"
@@ -5978,32 +6056,22 @@ pub(crate) mod str {
                     "Improper Neutralization of Invalid Characters in Identifiers in Web Pages"
                 }
                 Cwe::Cwe87 => "Improper Neutralization of Alternate XSS Syntax",
-                Cwe::Cwe88 => {
-                    "Improper Neutralization of Argument Delimiters in a Command ('Argument Injection')"
-                }
-                Cwe::Cwe89 => {
-                    "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
-                }
-                Cwe::Cwe90 => {
-                    "Improper Neutralization of Special Elements used in an LDAP Query ('LDAP Injection')"
-                }
-                Cwe::Cwe91 => "XML Injection (aka Blind XPath Injection)",
+                Cwe::Cwe88 => "Improper Neutralization of Argument Delimiters in a Command",
+                Cwe::Cwe89 => "Improper Neutralization of Special Elements used in an SQL Command",
+                Cwe::Cwe90 => "Improper Neutralization of Special Elements used in an LDAP Query",
+                Cwe::Cwe91 => "XML Injection",
                 Cwe::Cwe92 => "DEPRECATED: Improper Sanitization of Custom Special Characters",
-                Cwe::Cwe93 => "Improper Neutralization of CRLF Sequences ('CRLF Injection')",
-                Cwe::Cwe94 => "Improper Control of Generation of Code ('Code Injection')",
-                Cwe::Cwe95 => {
-                    "Improper Neutralization of Directives in Dynamically Evaluated Code ('Eval Injection')"
-                }
-                Cwe::Cwe96 => {
-                    "Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection')"
-                }
+                Cwe::Cwe93 => "Improper Neutralization of CRLF Sequences",
+                Cwe::Cwe94 => "Improper Control of Generation of Code",
+                Cwe::Cwe95 => "Improper Neutralization of Directives in Dynamically Evaluated Code",
+                Cwe::Cwe96 => "Improper Neutralization of Directives in Statically Saved Code",
                 Cwe::Cwe97 => {
                     "Improper Neutralization of Server-Side Includes (SSI) Within a Web Page"
                 }
                 Cwe::Cwe98 => {
-                    "Improper Control of Filename for Include/Require Statement in PHP Program ('PHP Remote File Inclusion')"
+                    "Improper Control of Filename for Include/Require Statement in PHP Program"
                 }
-                Cwe::Cwe99 => "Improper Control of Resource Identifiers ('Resource Injection')",
+                Cwe::Cwe99 => "Improper Control of Resource Identifiers",
                 Cwe::Cwe102 => "Struts: Duplicate Validation Forms",
                 Cwe::Cwe103 => "Struts: Incomplete validate() Method Definition",
                 Cwe::Cwe104 => "Struts: Form Bean Does Not Extend Validation Class",
@@ -6015,24 +6083,20 @@ pub(crate) mod str {
                 Cwe::Cwe110 => "Struts: Validator Without Form Field",
                 Cwe::Cwe111 => "Direct Use of Unsafe JNI",
                 Cwe::Cwe112 => "Missing XML Validation",
-                Cwe::Cwe113 => {
-                    "Improper Neutralization of CRLF Sequences in HTTP Headers ('HTTP Request/Response Splitting')"
-                }
+                Cwe::Cwe113 => "Improper Neutralization of CRLF Sequences in HTTP Headers",
                 Cwe::Cwe114 => "Process Control",
                 Cwe::Cwe115 => "Misinterpretation of Input",
                 Cwe::Cwe116 => "Improper Encoding or Escaping of Output",
                 Cwe::Cwe117 => "Improper Output Neutralization for Logs",
-                Cwe::Cwe118 => "Incorrect Access of Indexable Resource ('Range Error')",
+                Cwe::Cwe118 => "Incorrect Access of Indexable Resource",
                 Cwe::Cwe119 => {
                     "Improper Restriction of Operations within the Bounds of a Memory Buffer"
                 }
-                Cwe::Cwe120 => {
-                    "Buffer Copy without Checking Size of Input ('Classic Buffer Overflow')"
-                }
+                Cwe::Cwe120 => "Buffer Copy without Checking Size of Input",
                 Cwe::Cwe121 => "Stack-based Buffer Overflow",
                 Cwe::Cwe122 => "Heap-based Buffer Overflow",
                 Cwe::Cwe123 => "Write-what-where Condition",
-                Cwe::Cwe124 => "Buffer Underwrite ('Buffer Underflow')",
+                Cwe::Cwe124 => "Buffer Underwrite",
                 Cwe::Cwe125 => "Out-of-bounds Read",
                 Cwe::Cwe126 => "Buffer Over-read",
                 Cwe::Cwe127 => "Buffer Under-read",
@@ -6074,7 +6138,7 @@ pub(crate) mod str {
                 Cwe::Cwe167 => "Improper Handling of Additional Special Element",
                 Cwe::Cwe168 => "Improper Handling of Inconsistent Special Elements",
                 Cwe::Cwe170 => "Improper Null Termination",
-                Cwe::Cwe172 => "Encoding Error",
+                Cwe::Cwe172 => "Improper Encoding or Decoding of Data",
                 Cwe::Cwe173 => "Improper Handling of Alternate Encoding",
                 Cwe::Cwe174 => "Double Decoding of the Same Data",
                 Cwe::Cwe175 => "Improper Handling of Mixed Encoding",
@@ -6147,9 +6211,7 @@ pub(crate) mod str {
                 Cwe::Cwe241 => "Improper Handling of Unexpected Data Type",
                 Cwe::Cwe242 => "Use of Inherently Dangerous Function",
                 Cwe::Cwe243 => "Creation of chroot Jail Without Changing Working Directory",
-                Cwe::Cwe244 => {
-                    "Improper Clearing of Heap Memory Before Release ('Heap Inspection')"
-                }
+                Cwe::Cwe244 => "Improper Clearing of Heap Memory Before Release",
                 Cwe::Cwe245 => "J2EE Bad Practices: Direct Management of Connections",
                 Cwe::Cwe246 => "J2EE Bad Practices: Direct Use of Sockets",
                 Cwe::Cwe247 => "DEPRECATED: Reliance on DNS Lookups in a Security Decision",
@@ -6205,7 +6267,7 @@ pub(crate) mod str {
                 Cwe::Cwe303 => "Incorrect Implementation of Authentication Algorithm",
                 Cwe::Cwe304 => "Missing Critical Step in Authentication",
                 Cwe::Cwe305 => "Authentication Bypass by Primary Weakness",
-                Cwe::Cwe306 => "Missing Authentication for Critical Function",
+                Cwe::Cwe306 => "Missing Authentication for Critical Functionality",
                 Cwe::Cwe307 => "Improper Restriction of Excessive Authentication Attempts",
                 Cwe::Cwe308 => "Use of Single-factor Authentication",
                 Cwe::Cwe309 => "Use of Password System for Primary Authentication",
@@ -6251,16 +6313,16 @@ pub(crate) mod str {
                 Cwe::Cwe349 => "Acceptance of Extraneous Untrusted Data With Trusted Data",
                 Cwe::Cwe350 => "Reliance on Reverse DNS Resolution for a Security-Critical Action",
                 Cwe::Cwe351 => "Insufficient Type Distinction",
-                Cwe::Cwe352 => "Cross-Site Request Forgery (CSRF)",
+                Cwe::Cwe352 => "Cross-Site Request Forgery",
                 Cwe::Cwe353 => "Missing Support for Integrity Check",
                 Cwe::Cwe354 => "Improper Validation of Integrity Check Value",
-                Cwe::Cwe356 => "Product UI does not Warn User of Unsafe Actions",
+                Cwe::Cwe356 => "Missing User Interaction for Potentially Unsafe Action",
                 Cwe::Cwe357 => "Insufficient UI Warning of Dangerous Operations",
                 Cwe::Cwe358 => "Improperly Implemented Security Check for Standard",
                 Cwe::Cwe359 => "Exposure of Private Personal Information to an Unauthorized Actor",
                 Cwe::Cwe360 => "Trust of System Event Data",
                 Cwe::Cwe362 => {
-                    "Concurrent Execution using Shared Resource with Improper Synchronization ('Race Condition')"
+                    "Concurrent Execution using Shared Resource with Improper Synchronization"
                 }
                 Cwe::Cwe363 => "Race Condition Enabling Link Following",
                 Cwe::Cwe364 => "Signal Handler Race Condition",
@@ -6274,7 +6336,7 @@ pub(crate) mod str {
                 Cwe::Cwe373 => "DEPRECATED: State Synchronization Error",
                 Cwe::Cwe374 => "Passing Mutable Objects to an Untrusted Method",
                 Cwe::Cwe375 => "Returning a Mutable Object to an Untrusted Caller",
-                Cwe::Cwe377 => "Insecure Temporary File",
+                Cwe::Cwe377 => "DEPRECATED: Insecure Temporary File",
                 Cwe::Cwe378 => "Creation of Temporary File With Insecure Permissions",
                 Cwe::Cwe379 => "Creation of Temporary File in Directory with Insecure Permissions",
                 Cwe::Cwe382 => "J2EE Bad Practices: Use of System.exit()",
@@ -6283,7 +6345,7 @@ pub(crate) mod str {
                 Cwe::Cwe385 => "Covert Timing Channel",
                 Cwe::Cwe386 => "Symbolic Name not Mapping to Correct Object",
                 Cwe::Cwe390 => "Detection of Error Condition Without Action",
-                Cwe::Cwe391 => "Unchecked Error Condition",
+                Cwe::Cwe391 => "DEPRECATED: Unchecked Error Condition",
                 Cwe::Cwe392 => "Missing Report of Error Condition",
                 Cwe::Cwe393 => "Return of Wrong Status Code",
                 Cwe::Cwe394 => "Unexpected Status Code or Return Value",
@@ -6294,12 +6356,8 @@ pub(crate) mod str {
                 Cwe::Cwe397 => "Declaration of Throws for Generic Exception",
                 Cwe::Cwe400 => "Uncontrolled Resource Consumption",
                 Cwe::Cwe401 => "Missing Release of Memory after Effective Lifetime",
-                Cwe::Cwe402 => {
-                    "Transmission of Private Resources into a New Sphere ('Resource Leak')"
-                }
-                Cwe::Cwe403 => {
-                    "Exposure of File Descriptor to Unintended Control Sphere ('File Descriptor Leak')"
-                }
+                Cwe::Cwe402 => "Transmission of Private Resources into a New Sphere",
+                Cwe::Cwe403 => "Exposure of File Descriptor to Unintended Control Sphere",
                 Cwe::Cwe404 => "Improper Resource Shutdown or Release",
                 Cwe::Cwe405 => "Asymmetric Resource Consumption (Amplification)",
                 Cwe::Cwe406 => {
@@ -6317,10 +6375,10 @@ pub(crate) mod str {
                 Cwe::Cwe419 => "Unprotected Primary Channel",
                 Cwe::Cwe420 => "Unprotected Alternate Channel",
                 Cwe::Cwe421 => "Race Condition During Access to Alternate Channel",
-                Cwe::Cwe422 => "Unprotected Windows Messaging Channel ('Shatter')",
+                Cwe::Cwe422 => "Unprotected Windows Messaging Channel",
                 Cwe::Cwe423 => "DEPRECATED: Proxied Trusted Channel",
                 Cwe::Cwe424 => "Improper Protection of Alternate Path",
-                Cwe::Cwe425 => "Direct Request ('Forced Browsing')",
+                Cwe::Cwe425 => "Direct Request",
                 Cwe::Cwe426 => "Untrusted Search Path",
                 Cwe::Cwe427 => "Uncontrolled Search Path Element",
                 Cwe::Cwe428 => "Unquoted Search Path or Element",
@@ -6334,11 +6392,9 @@ pub(crate) mod str {
                 Cwe::Cwe437 => "Incomplete Model of Endpoint Features",
                 Cwe::Cwe439 => "Behavioral Change in New Version or Environment",
                 Cwe::Cwe440 => "Expected Behavior Violation",
-                Cwe::Cwe441 => "Unintended Proxy or Intermediary ('Confused Deputy')",
+                Cwe::Cwe441 => "Unintended Proxy or Intermediary",
                 Cwe::Cwe443 => "DEPRECATED: HTTP response splitting",
-                Cwe::Cwe444 => {
-                    "Inconsistent Interpretation of HTTP Requests ('HTTP Request/Response Smuggling')"
-                }
+                Cwe::Cwe444 => "Inconsistent Interpretation of HTTP Requests",
                 Cwe::Cwe446 => "UI Discrepancy for Security Feature",
                 Cwe::Cwe447 => "Unimplemented or Unsupported Feature in UI",
                 Cwe::Cwe448 => "Obsolete Feature in UI",
@@ -6360,9 +6416,7 @@ pub(crate) mod str {
                 Cwe::Cwe467 => "Use of sizeof() on a Pointer Type",
                 Cwe::Cwe468 => "Incorrect Pointer Scaling",
                 Cwe::Cwe469 => "Use of Pointer Subtraction to Determine Size",
-                Cwe::Cwe470 => {
-                    "Use of Externally-Controlled Input to Select Classes or Code ('Unsafe Reflection')"
-                }
+                Cwe::Cwe470 => "Use of Externally-Controlled Input to Select Classes or Code",
                 Cwe::Cwe471 => "Modification of Assumed-Immutable Data (MAID)",
                 Cwe::Cwe472 => "External Control of Assumed-Immutable Web Parameter",
                 Cwe::Cwe473 => "PHP External Variable Modification",
@@ -6381,7 +6435,7 @@ pub(crate) mod str {
                 Cwe::Cwe487 => "Reliance on Package-level Scope",
                 Cwe::Cwe488 => "Exposure of Data Element to Wrong Session",
                 Cwe::Cwe489 => "Active Debug Code",
-                Cwe::Cwe491 => "Public cloneable() Method Without Final ('Object Hijack')",
+                Cwe::Cwe491 => "Public cloneable() Method Without Final",
                 Cwe::Cwe492 => "Use of Inner Class Containing Sensitive Data",
                 Cwe::Cwe493 => "Critical Public Variable Without Final Modifier",
                 Cwe::Cwe494 => "Download of Code Without Integrity Check",
@@ -6459,7 +6513,9 @@ pub(crate) mod str {
                 Cwe::Cwe561 => "Dead Code",
                 Cwe::Cwe562 => "Return of Stack Variable Address",
                 Cwe::Cwe563 => "Assignment to Variable without Use",
-                Cwe::Cwe564 => "SQL Injection: Hibernate",
+                Cwe::Cwe564 => {
+                    "Use of Hibernate with HQL/SQL Query String Containing External Input"
+                }
                 Cwe::Cwe565 => "Reliance on Cookies without Validation and Integrity Checking",
                 Cwe::Cwe566 => "Authorization Bypass Through User-Controlled SQL Primary Key",
                 Cwe::Cwe567 => "Unsynchronized Access to Shared Data in a Multithreaded Context",
@@ -6497,7 +6553,7 @@ pub(crate) mod str {
                 Cwe::Cwe598 => "Use of HTTP Request With Sensitive Query String",
                 Cwe::Cwe599 => "Missing Validation of OpenSSL Certificate",
                 Cwe::Cwe600 => "Uncaught Exception in Servlet",
-                Cwe::Cwe601 => "URL Redirection to Untrusted Site ('Open Redirect')",
+                Cwe::Cwe601 => "URL Redirection to Untrusted Site",
                 Cwe::Cwe602 => "Client-Side Enforcement of Server-Side Security",
                 Cwe::Cwe603 => "Use of Client-Side Authentication",
                 Cwe::Cwe605 => "Multiple Binds to the Same Port",
@@ -6508,13 +6564,13 @@ pub(crate) mod str {
                 Cwe::Cwe610 => "Externally Controlled Reference to a Resource in Another Sphere",
                 Cwe::Cwe611 => "Improper Restriction of XML External Entity Reference",
                 Cwe::Cwe612 => "Improper Authorization of Index Containing Sensitive Information",
-                Cwe::Cwe613 => "Insufficient Session Expiration",
+                Cwe::Cwe613 => "DEPRECATED: Insufficient Session Expiration",
                 Cwe::Cwe614 => "Sensitive Cookie in HTTPS Session Without 'Secure' Attribute",
                 Cwe::Cwe615 => "Inclusion of Sensitive Information in Source Code Comments",
                 Cwe::Cwe616 => "Incomplete Identification of Uploaded File Variables (PHP)",
                 Cwe::Cwe617 => "Reachable Assertion",
                 Cwe::Cwe618 => "Exposed Unsafe ActiveX Method",
-                Cwe::Cwe619 => "Dangling Database Cursor ('Cursor Injection')",
+                Cwe::Cwe619 => "Dangling Database Cursor",
                 Cwe::Cwe620 => "Unverified Password Change",
                 Cwe::Cwe621 => "Variable Extraction Error",
                 Cwe::Cwe622 => "Improper Validation of Function Hook Arguments",
@@ -6524,7 +6580,7 @@ pub(crate) mod str {
                 Cwe::Cwe626 => "Null Byte Interaction Error (Poison Null Byte)",
                 Cwe::Cwe627 => "Dynamic Variable Evaluation",
                 Cwe::Cwe628 => "Function Call with Incorrectly Specified Arguments",
-                Cwe::Cwe636 => "Not Failing Securely ('Failing Open')",
+                Cwe::Cwe636 => "Not Failing Securely",
                 Cwe::Cwe637 => {
                     "Unnecessary Complexity in Protection Mechanism (Not Using 'Economy of Mechanism')"
                 }
@@ -6533,9 +6589,7 @@ pub(crate) mod str {
                 Cwe::Cwe640 => "Weak Password Recovery Mechanism for Forgotten Password",
                 Cwe::Cwe641 => "Improper Restriction of Names for Files and Other Resources",
                 Cwe::Cwe642 => "External Control of Critical State Data",
-                Cwe::Cwe643 => {
-                    "Improper Neutralization of Data within XPath Expressions ('XPath Injection')"
-                }
+                Cwe::Cwe643 => "Improper Neutralization of Data within XPath Expressions",
                 Cwe::Cwe644 => "Improper Neutralization of HTTP Headers for Scripting Syntax",
                 Cwe::Cwe645 => "Overly Restrictive Account Lockout Mechanism",
                 Cwe::Cwe646 => "Reliance on File Name or Extension of Externally-Supplied File",
@@ -6546,9 +6600,7 @@ pub(crate) mod str {
                 }
                 Cwe::Cwe650 => "Trusting HTTP Permission Methods on the Server Side",
                 Cwe::Cwe651 => "Exposure of WSDL File Containing Sensitive Information",
-                Cwe::Cwe652 => {
-                    "Improper Neutralization of Data within XQuery Expressions ('XQuery Injection')"
-                }
+                Cwe::Cwe652 => "Improper Neutralization of Data within XQuery Expressions",
                 Cwe::Cwe653 => "Improper Isolation or Compartmentalization",
                 Cwe::Cwe654 => "Reliance on a Single Factor in a Security Decision",
                 Cwe::Cwe655 => "Insufficient Psychological Acceptability",
@@ -6603,9 +6655,7 @@ pub(crate) mod str {
                 Cwe::Cwe754 => "Improper Check for Unusual or Exceptional Conditions",
                 Cwe::Cwe755 => "Improper Handling of Exceptional Conditions",
                 Cwe::Cwe756 => "Missing Custom Error Page",
-                Cwe::Cwe757 => {
-                    "Selection of Less-Secure Algorithm During Negotiation ('Algorithm Downgrade')"
-                }
+                Cwe::Cwe757 => "Selection of Less-Secure Algorithm During Negotiation",
                 Cwe::Cwe758 => {
                     "Reliance on Undefined, Unspecified, or Implementation-Defined Behavior"
                 }
@@ -6630,9 +6680,7 @@ pub(crate) mod str {
                 Cwe::Cwe775 => {
                     "Missing Release of File Descriptor or Handle after Effective Lifetime"
                 }
-                Cwe::Cwe776 => {
-                    "Improper Restriction of Recursive Entity References in DTDs ('XML Entity Expansion')"
-                }
+                Cwe::Cwe776 => "Improper Restriction of Recursive Entity References in DTDs",
                 Cwe::Cwe777 => "Regular Expression without Anchors",
                 Cwe::Cwe778 => "Insufficient Logging",
                 Cwe::Cwe779 => "Logging of Excessive Data",
@@ -6679,14 +6727,14 @@ pub(crate) mod str {
                 Cwe::Cwe832 => "Unlock of a Resource that is not Locked",
                 Cwe::Cwe833 => "Deadlock",
                 Cwe::Cwe834 => "Excessive Iteration",
-                Cwe::Cwe835 => "Loop with Unreachable Exit Condition ('Infinite Loop')",
+                Cwe::Cwe835 => "Loop with Unreachable Exit Condition",
                 Cwe::Cwe836 => "Use of Password Hash Instead of Password for Authentication",
                 Cwe::Cwe837 => "Improper Enforcement of a Single, Unique Action",
                 Cwe::Cwe838 => "Inappropriate Encoding for Output Context",
                 Cwe::Cwe839 => "Numeric Range Comparison Without Minimum Check",
                 Cwe::Cwe841 => "Improper Enforcement of Behavioral Workflow",
                 Cwe::Cwe842 => "Placement of User into Incorrect Group",
-                Cwe::Cwe843 => "Access of Resource Using Incompatible Type ('Type Confusion')",
+                Cwe::Cwe843 => "Access of Resource Using Incompatible Type",
                 Cwe::Cwe862 => "Missing Authorization",
                 Cwe::Cwe863 => "Incorrect Authorization",
                 Cwe::Cwe908 => "Use of Uninitialized Resource",
@@ -6701,9 +6749,9 @@ pub(crate) mod str {
                 }
                 Cwe::Cwe916 => "Use of Password Hash With Insufficient Computational Effort",
                 Cwe::Cwe917 => {
-                    "Improper Neutralization of Special Elements used in an Expression Language Statement ('Expression Language Injection')"
+                    "Improper Neutralization of Special Elements used in an Expression Language Statement"
                 }
-                Cwe::Cwe918 => "Server-Side Request Forgery (SSRF)",
+                Cwe::Cwe918 => "Server-Side Request Forgery",
                 Cwe::Cwe920 => "Improper Restriction of Power Consumption",
                 Cwe::Cwe921 => "Storage of Sensitive Data in a Mechanism without Access Control",
                 Cwe::Cwe922 => "Insecure Storage of Sensitive Information",
@@ -6953,7 +7001,7 @@ pub(crate) mod str {
                     "Missing Protection Against Hardware Reverse Engineering Using Integrated Circuit (IC) Imaging Techniques"
                 }
                 Cwe::Cwe1279 => {
-                    "Cryptographic Operations are run Before Supporting Units are Ready"
+                    "Cryptographic Operations are Run Before Supporting Units are Ready"
                 }
                 Cwe::Cwe1280 => "Access Control Check Implemented After Asset is Accessed",
                 Cwe::Cwe1281 => "Sequence of Processor Instructions Leads to Unexpected Behavior",
@@ -7007,9 +7055,7 @@ pub(crate) mod str {
                     "Improper Protection against Electromagnetic Fault Injection (EM-FI)"
                 }
                 Cwe::Cwe1320 => "Improper Protection for Outbound Error Messages and Alert Signals",
-                Cwe::Cwe1321 => {
-                    "Improperly Controlled Modification of Object Prototype Attributes ('Prototype Pollution')"
-                }
+                Cwe::Cwe1321 => "Improperly Controlled Modification of Object Prototype Attributes",
                 Cwe::Cwe1322 => "Use of Blocking Code in Single-threaded, Non-blocking Context",
                 Cwe::Cwe1323 => "Improper Management of Sensitive Trace Data",
                 Cwe::Cwe1324 => {
@@ -7070,6 +7116,27 @@ pub(crate) mod str {
                     "Driving Intermediate Cryptographic State/Results to Hardware Module Outputs"
                 }
                 Cwe::Cwe1434 => "Insecure Setting of Generative AI/ML Model Inference Parameters",
+                Cwe::Cwe1461 => "Hardware Simulation / Synthesis Mismatch",
+                Cwe::Cwe1462 => "Improper Session Management",
+                Cwe::Cwe1463 => "Insufficient Session Timeout Value",
+                Cwe::Cwe1464 => "Improper Session Invalidation",
+                Cwe::Cwe1465 => "Improper Session Invalidation after User Logout",
+                Cwe::Cwe1466 => {
+                    "Improper Session Invalidation after Authentication Credential Change"
+                }
+                Cwe::Cwe1467 => {
+                    "Use of Singular Authentication Artifact for Multiple User Sessions"
+                }
+                Cwe::Cwe1469 => "Improper Check for Credential Expiration",
+                Cwe::Cwe1470 => "Improper External Identity Verification",
+                Cwe::Cwe1471 => "Insufficiently Controlled Parser Differential",
+                Cwe::Cwe1472 => "Generation of Credential with Long Expiration",
+                Cwe::Cwe1473 => "Improper Expiration of Cached Data",
+                Cwe::Cwe1474 => "Non-Equivalent Data Transformation",
+                Cwe::Cwe1475 => "Incomplete Data/State Propagation",
+                Cwe::Cwe1476 => {
+                    "Improper Request Propagation before Data Reception in Write Transactions in a Bus Architecture"
+                }
             }
         }
 
@@ -7086,23 +7153,21 @@ pub(crate) mod str {
         pub fn description(&self) -> &'static str {
             match self {
                 Cwe::Cwe5 => {
-                    "Information sent over a network can be compromised while in transit. An attacker may be able to read or modify the contents if the data are sent in plaintext or are weakly encrypted."
+                    "The product uses J2EE with a configuration that transmits data without encryption."
                 }
                 Cwe::Cwe6 => {
                     "The J2EE application is configured to use an insufficient session ID length."
                 }
                 Cwe::Cwe7 => {
-                    "The default error page of a web application should not display sensitive information about the product."
+                    "The product has a J2EE component that does not have a custom error page."
                 }
                 Cwe::Cwe8 => {
-                    "When an application exposes a remote interface for an entity bean, it might also expose methods that get or set the bean's data. These methods could be leveraged to read sensitive information, or to change data in ways that violate the application's expectations, potentially leading to other vulnerabilities."
+                    "The J2EE application exposes a remote interface for an entity bean, but it also exposes methods that get or set the bean's data."
                 }
                 Cwe::Cwe9 => {
                     "If elevated access rights are assigned to EJB methods, then an attacker can take advantage of the permissions to exploit the product."
                 }
-                Cwe::Cwe11 => {
-                    "Debugging messages help attackers learn about the system and plan a form of attack."
-                }
+                Cwe::Cwe11 => "The product has an ASP .NET component that contains a debug binary.",
                 Cwe::Cwe12 => {
                     "An ASP .NET application must enable custom error pages in order to prevent attackers from mining information from the framework's built-in responses."
                 }
@@ -7164,10 +7229,10 @@ pub(crate) mod str {
                     "The product uses external input to construct a pathname that should be within a restricted directory, but it does not properly neutralize absolute path sequences such as \"/abs/path\" that can resolve to a location that is outside of that directory."
                 }
                 Cwe::Cwe37 => {
-                    "The product accepts input in the form of a slash absolute path ('/absolute/pathname/here') without appropriate validation, which can allow an attacker to traverse the file system to unintended locations or access arbitrary files."
+                    "The product accepts input in the form of a slash absolute path ('/absolute/pathname/here') without appropriate neutralization."
                 }
                 Cwe::Cwe38 => {
-                    "The product accepts input in the form of a backslash absolute path ('\\absolute\\pathname\\here') without appropriate validation, which can allow an attacker to traverse the file system to unintended locations or access arbitrary files."
+                    "The product accepts input in the form of a backslash absolute path ('\\absolute\\pathname\\here') without appropriate neutralization."
                 }
                 Cwe::Cwe39 => {
                     "The product accepts input that contains a drive letter or Windows volume letter ('C:dirname') that potentially redirects access to an unintended location or arbitrary file."
@@ -7245,7 +7310,7 @@ pub(crate) mod str {
                     "The product, when opening a file or directory, does not sufficiently handle when the name is associated with a hard link to a target that is outside of the intended control sphere. This could allow an attacker to cause the product to operate on unauthorized files."
                 }
                 Cwe::Cwe66 => {
-                    "The product does not handle or incorrectly handles a file name that identifies a \"virtual\" resource that is not directly specified within the directory that is associated with the file name, causing the product to perform file-based operations on a resource that is not a file."
+                    "The product does not handle or incorrectly handles a file name that identifies a \"virtual\" resource that is not directly specified within the directory that is associated with the file name."
                 }
                 Cwe::Cwe67 => {
                     "The product constructs pathnames from user input, but it does not handle or incorrectly handles a pathname containing a Windows device name such as AUX or CON. This typically leads to denial of service or an information exposure when the application attempts to process the pathname as a regular file."
@@ -7275,7 +7340,7 @@ pub(crate) mod str {
                     "The product constructs all or part of a command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended command when it is sent to a downstream component."
                 }
                 Cwe::Cwe78 => {
-                    "The product constructs all or part of an OS command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended OS command when it is sent to a downstream component."
+                    "The product constructs all or part of an OS command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended OS command before it is sent to a downstream component."
                 }
                 Cwe::Cwe79 => {
                     "The product does not neutralize or incorrectly neutralizes user-controllable input before it is placed in output that is used as a web page that is served to other users."
@@ -7338,10 +7403,10 @@ pub(crate) mod str {
                     "The PHP application receives input from an upstream component, but it does not restrict or incorrectly restricts the input before its usage in \"require,\" \"include,\" or similar functions."
                 }
                 Cwe::Cwe99 => {
-                    "The product receives input from an upstream component, but it does not restrict or incorrectly restricts the input before it is used as an identifier for a resource that may be outside the intended sphere of control."
+                    "The product receives input from an upstream component, but it does not restrict or incorrectly restricts the input before it is used as an identifier for a resource that may be outside the intended control sphere."
                 }
                 Cwe::Cwe102 => {
-                    "The product uses multiple validation forms with the same name, which might cause the Struts Validator to validate a form that the programmer does not expect."
+                    "The product uses multiple Struts validation forms with the same name."
                 }
                 Cwe::Cwe103 => {
                     "The product has a validator form that either does not define a validate() method, or defines a validate() method but does not call super.validate()."
@@ -7358,7 +7423,9 @@ pub(crate) mod str {
                 Cwe::Cwe107 => {
                     "An unused validation form indicates that validation logic is not up-to-date."
                 }
-                Cwe::Cwe108 => "Every Action Form must have a corresponding validation form.",
+                Cwe::Cwe108 => {
+                    "The product contains a Struts Action Form that does not have a corresponding validation form."
+                }
                 Cwe::Cwe109 => {
                     "Automatic filtering via a Struts bean has been turned off, which disables the Struts Validator and custom validation logic. This exposes the application to other weaknesses related to insufficient input validation."
                 }
@@ -7390,16 +7457,16 @@ pub(crate) mod str {
                     "The product does not restrict or incorrectly restricts operations within the boundaries of a resource that is accessed using an index or pointer, such as memory or files."
                 }
                 Cwe::Cwe119 => {
-                    "The product performs operations on a memory buffer, but it reads from or writes to a memory location outside the buffer's intended boundary. This may result in read or write operations on unexpected memory locations that could be linked to other variables, data structures, or internal program data."
+                    "The product performs operations on a memory buffer, but it reads from or writes to a memory location outside the buffer's intended boundary."
                 }
                 Cwe::Cwe120 => {
                     "The product copies an input buffer to an output buffer without verifying that the size of the input buffer is less than the size of the output buffer."
                 }
                 Cwe::Cwe121 => {
-                    "A stack-based buffer overflow condition is a condition where the buffer being overwritten is allocated on the stack (i.e., is a local variable or, rarely, a parameter to a function)."
+                    "The product writes past the end of a buffer that was allocated on the stack."
                 }
                 Cwe::Cwe122 => {
-                    "A heap overflow condition is a buffer overflow, where the buffer that can be overwritten is allocated in the heap portion of memory, generally meaning that the buffer was allocated using a routine such as malloc()."
+                    "The product writes past the end of a buffer that was allocated on the heap."
                 }
                 Cwe::Cwe123 => {
                     "Any condition where the attacker has the ability to write an arbitrary value to an arbitrary location, often as the result of a buffer overflow."
@@ -7426,7 +7493,7 @@ pub(crate) mod str {
                     "The product parses a formatted message or structure, but it does not handle or incorrectly handles a length field that is inconsistent with the actual length of the associated data."
                 }
                 Cwe::Cwe131 => {
-                    "The product does not correctly calculate the size to be used when allocating a buffer, which could lead to a buffer overflow."
+                    "The product does not correctly calculate the size to be used when allocating a buffer."
                 }
                 Cwe::Cwe132 => {
                     "This entry has been deprecated because it was a duplicate of CWE-170. All content has been transferred to CWE-170."
@@ -7483,13 +7550,13 @@ pub(crate) mod str {
                     "The product receives input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could be interpreted as substitution characters when they are sent to a downstream component."
                 }
                 Cwe::Cwe154 => {
-                    "The product receives input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could be interpreted as variable name delimiters when they are sent to a downstream component."
+                    "The product receives input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could be interpreted as variable name delimiters when they are sent to a downstream component, such as a \"$\" that could be used to access an environment variable."
                 }
                 Cwe::Cwe155 => {
                     "The product receives input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could be interpreted as wildcards or matching symbols when they are sent to a downstream component."
                 }
                 Cwe::Cwe156 => {
-                    "The product receives input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could be interpreted as whitespace when they are sent to a downstream component."
+                    "The product receives input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could be interpreted as whitespace when they are sent to a downstream component, e.g., space or tab."
                 }
                 Cwe::Cwe157 => {
                     "The product does not properly handle the characters that are used to mark the beginning and ending of a group of entities, such as parentheses, brackets, and braces."
@@ -7531,14 +7598,12 @@ pub(crate) mod str {
                     "The product does not terminate or incorrectly terminates a string or array with a null character or equivalent terminator."
                 }
                 Cwe::Cwe172 => {
-                    "The product does not properly encode or decode the data, resulting in unexpected values."
+                    "The product does not properly encode or decode data, resulting in unexpected values that are not equivalent to the original data."
                 }
                 Cwe::Cwe173 => {
                     "The product does not properly handle when an input uses an alternate encoding that is valid for the control sphere to which the input is being sent."
                 }
-                Cwe::Cwe174 => {
-                    "The product decodes the same input twice, which can limit the effectiveness of any protection mechanism that occurs in between the decoding operations."
-                }
+                Cwe::Cwe174 => "The product decodes the same input twice.",
                 Cwe::Cwe175 => {
                     "The product does not properly handle when the same input uses several different (mixed) encodings."
                 }
@@ -7552,11 +7617,9 @@ pub(crate) mod str {
                     "The product does not properly account for differences in case sensitivity when accessing or determining the properties of a resource, leading to inconsistent results."
                 }
                 Cwe::Cwe179 => {
-                    "The product validates input before applying protection mechanisms that modify the input, which could allow an attacker to bypass the validation via dangerous inputs that only arise after the modification."
+                    "The product validates input before applying protection mechanisms that modify the input."
                 }
-                Cwe::Cwe180 => {
-                    "The product validates input before it is canonicalized, which prevents the product from detecting data that becomes invalid after the canonicalization step."
-                }
+                Cwe::Cwe180 => "The product validates input before it is canonicalized.",
                 Cwe::Cwe181 => {
                     "The product validates data before it has been filtered, which prevents the product from detecting data that becomes invalid after the filtering step."
                 }
@@ -7573,13 +7636,13 @@ pub(crate) mod str {
                     "The product specifies a regular expression in a way that causes data to be improperly matched or compared."
                 }
                 Cwe::Cwe186 => {
-                    "A regular expression is overly restrictive, which prevents dangerous values from being detected."
+                    "A regular expression is overly restrictive in a way that does not match all intended values."
                 }
                 Cwe::Cwe187 => {
-                    "The product performs a comparison that only examines a portion of a factor before determining whether there is a match, such as a substring, leading to resultant weaknesses."
+                    "The product performs a string comparison that only examines a portion of the string before determining whether there is a match."
                 }
                 Cwe::Cwe188 => {
-                    "The product makes invalid assumptions about how protocol data or memory is organized at a lower level, resulting in unintended program behavior."
+                    "The product makes invalid assumptions about how protocol data or memory is organized at a lower level."
                 }
                 Cwe::Cwe190 => {
                     "The product performs a calculation that can produce an integer overflow or wraparound when the logic assumes that the resulting value will always be larger than the original value. This occurs when an integer value is incremented to a value that is too large to store in the associated representation. When this occurs, the value may become a very small or negative number."
@@ -7594,7 +7657,7 @@ pub(crate) mod str {
                     "A product calculates or uses an incorrect maximum or minimum value that is 1 more, or 1 less, than the correct value."
                 }
                 Cwe::Cwe194 => {
-                    "The product performs an operation on a number that causes it to be sign extended when it is transformed into a larger data type. When the original number is negative, this can produce unexpected values that lead to resultant weaknesses."
+                    "The product performs an operation on a number that causes it to be sign extended when it is transformed into a larger data type."
                 }
                 Cwe::Cwe195 => {
                     "The product uses a signed primitive and performs a cast to an unsigned primitive, which can produce an unexpected value if the value of the signed primitive can not be represented using an unsigned primitive."
@@ -7653,9 +7716,7 @@ pub(crate) mod str {
                 Cwe::Cwe214 => {
                     "A process is invoked with sensitive command-line arguments, environment variables, or other elements that can be seen by other processes on the operating system."
                 }
-                Cwe::Cwe215 => {
-                    "The product inserts sensitive information into debugging code, which could expose this information if the debugging code is not disabled in production."
-                }
+                Cwe::Cwe215 => "The product inserts sensitive information into debugging code.",
                 Cwe::Cwe216 => {
                     "This entry has been deprecated, as it was not effective as a weakness and was structured more like a category. In addition, the name is inappropriate, since the \"container\" term is widely understood by developers in different ways than originally intended by PLOVER, the original source for this entry."
                 }
@@ -7730,13 +7791,13 @@ pub(crate) mod str {
                     "The product does not handle or incorrectly handles when a particular element is not the expected type, e.g. it expects a digit (0-9) but is provided with a letter (A-Z)."
                 }
                 Cwe::Cwe242 => {
-                    "The product calls a function that can never be guaranteed to work safely."
+                    "The product calls a function that can never be guaranteed to work safely, regardless of how it is used."
                 }
                 Cwe::Cwe243 => {
-                    "The product uses the chroot() system call to create a jail, but does not change the working directory afterward. This does not prevent access to files outside of the jail."
+                    "The product uses the chroot() system call to create a jail, but it does not change the working directory afterward."
                 }
                 Cwe::Cwe244 => {
-                    "Using realloc() to resize buffers that store sensitive information can leave the sensitive information exposed to attack, because it is not removed from memory."
+                    "The product uses realloc() to resize buffers that contain sensitive information."
                 }
                 Cwe::Cwe245 => {
                     "The J2EE application directly manages connections, instead of using the container's connection management facilities."
@@ -7755,7 +7816,7 @@ pub(crate) mod str {
                     "The product performs an operation at a privilege level that is higher than the minimum level required, which creates new weaknesses or amplifies the consequences of other weaknesses."
                 }
                 Cwe::Cwe252 => {
-                    "The product does not check the return value from a method or function, which can prevent it from detecting unexpected states and conditions."
+                    "The product does not check the return value from a method or function."
                 }
                 Cwe::Cwe253 => {
                     "The product incorrectly checks a return value from a function, which prevents it from detecting errors or exceptional conditions."
@@ -7768,14 +7829,12 @@ pub(crate) mod str {
                 }
                 Cwe::Cwe258 => "Using an empty string as a password is insecure.",
                 Cwe::Cwe259 => {
-                    "The product contains a hard-coded password, which it uses for its own inbound authentication or for outbound communication to external components."
+                    "The product contains a hard-coded password, which it uses for its own inbound authentication or for outbound authentication to external components."
                 }
                 Cwe::Cwe260 => {
                     "The product stores a password in a configuration file that might be accessible to actors who do not know the password."
                 }
-                Cwe::Cwe261 => {
-                    "Obscuring a password with a trivial encoding does not protect the password."
-                }
+                Cwe::Cwe261 => "The product uses a weak or trivial encoding for a password.",
                 Cwe::Cwe262 => {
                     "The product does not have a mechanism in place for managing password aging."
                 }
@@ -7807,7 +7866,7 @@ pub(crate) mod str {
                     "The product attempts to drop privileges but does not check or incorrectly checks to see if the drop succeeded."
                 }
                 Cwe::Cwe274 => {
-                    "The product does not handle or incorrectly handles when it has insufficient privileges to perform an operation, leading to resultant weaknesses."
+                    "The product does not handle or incorrectly handles when it has insufficient privileges to perform an operation."
                 }
                 Cwe::Cwe276 => {
                     "During installation, installed file permissions are set to allow anyone to modify those files."
@@ -7877,7 +7936,7 @@ pub(crate) mod str {
                     "A certificate expiration is not validated or is incorrectly validated."
                 }
                 Cwe::Cwe299 => {
-                    "The product does not check or incorrectly checks the revocation status of a certificate, which may cause it to use a certificate that has been compromised."
+                    "The product does not check or incorrectly checks the revocation status of a certificate."
                 }
                 Cwe::Cwe300 => {
                     "The product does not adequately verify the identity of actors at both ends of a communication channel, or does not adequately ensure the integrity of the channel, in a way that allows the channel to be accessed or influenced by an actor that is not an endpoint."
@@ -7937,9 +7996,7 @@ pub(crate) mod str {
                     "The product performs a key exchange with an actor without verifying the identity of that actor."
                 }
                 Cwe::Cwe323 => "Nonces should be used for the present occasion and only once.",
-                Cwe::Cwe324 => {
-                    "The product uses a cryptographic key or password past its expiration date, which diminishes its safety significantly by increasing the timing window for cracking attacks against that key."
-                }
+                Cwe::Cwe324 => "The product uses a cryptographic key past its expiration date.",
                 Cwe::Cwe325 => {
                     "The product does not implement a required step in a cryptographic algorithm, resulting in weaker encryption than advertised by the algorithm."
                 }
@@ -7974,7 +8031,7 @@ pub(crate) mod str {
                     "The product uses a Pseudo-Random Number Generator (PRNG) but does not correctly manage seeds."
                 }
                 Cwe::Cwe336 => {
-                    "A Pseudo-Random Number Generator (PRNG) uses the same seed each time the product is initialized."
+                    "The product uses a Pseudo-Random Number Generator (PRNG) that uses the same seed each time the product is initialized."
                 }
                 Cwe::Cwe337 => {
                     "A Pseudo-Random Number Generator (PRNG) is initialized from a predictable seed, such as the process ID or system time."
@@ -8028,10 +8085,10 @@ pub(crate) mod str {
                     "The product uses a transmission protocol that does not include a mechanism for verifying the integrity of the data during transmission, such as a checksum."
                 }
                 Cwe::Cwe354 => {
-                    "The product does not validate or incorrectly validates the integrity check values or \"checksums\" of a message. This may prevent it from detecting if the data has been modified or corrupted in transmission."
+                    "The product does not validate or incorrectly validates the integrity check values or \"checksums\" of a message."
                 }
                 Cwe::Cwe356 => {
-                    "The product's user interface does not warn the user before undertaking an unsafe action on behalf of that user. This makes it easier for attackers to trick users into inflicting damage to their system."
+                    "The product encounters a situation in which some of its behavior is security-critical and should be authorized by a human before progressing, but it does not properly consult with the human user or its proxy (such as UI approval dialogues or pre-set policies) to determine whether it is allowed to perform the potentially dangerous behavior."
                 }
                 Cwe::Cwe357 => {
                     "The user interface provides a warning to a user regarding dangerous or sensitive operations, but the warning is not noticeable enough to warrant attention."
@@ -8078,10 +8135,10 @@ pub(crate) mod str {
                     "The product sends non-cloned mutable data as an argument to a method or function."
                 }
                 Cwe::Cwe375 => {
-                    "Sending non-cloned mutable data as a return value may result in that data being altered or deleted by the calling function."
+                    "The code sends non-cloned mutable data as a return value may result in that data being altered or deleted by the calling function."
                 }
                 Cwe::Cwe377 => {
-                    "Creating and using insecure temporary files can leave application and system data vulnerable to attack."
+                    "This entry has been deprecated. It was focused only on the affected resource (temporary file) and not the behavior or mistake that produced the insecure temporary file, which caused confusion and incorrect mappings."
                 }
                 Cwe::Cwe378 => {
                     "Opening temporary files without appropriate measures or controls can leave the file, its contents and any function that it impacts vulnerable to attack."
@@ -8089,9 +8146,7 @@ pub(crate) mod str {
                 Cwe::Cwe379 => {
                     "The product creates a temporary file in a directory whose permissions allow unintended actors to determine the file's existence or otherwise access that file."
                 }
-                Cwe::Cwe382 => {
-                    "A J2EE application uses System.exit(), which also shuts down its container."
-                }
+                Cwe::Cwe382 => "A J2EE application uses System.exit().",
                 Cwe::Cwe383 => {
                     "Thread management in a Web application is forbidden in some circumstances and is always highly error prone."
                 }
@@ -8108,7 +8163,7 @@ pub(crate) mod str {
                     "The product detects a specific error, but takes no actions to handle the error."
                 }
                 Cwe::Cwe391 => {
-                    "[PLANNED FOR DEPRECATION. SEE MAINTENANCE NOTES AND CONSIDER CWE-252, CWE-248, OR CWE-1069.] Ignoring exceptions and other error conditions may allow an attacker to induce unexpected behavior unnoticed."
+                    "This entry has been deprecated because it used ambiguous terminology and incorporated and confused multiple weaknesses. See Mapping Notes for other recommendations, and see Maintenance Notes for more detailed explanations."
                 }
                 Cwe::Cwe392 => {
                     "The product encounters an error but does not provide a status code or return value to indicate that an error has occurred."
@@ -8126,7 +8181,7 @@ pub(crate) mod str {
                     "Catching overly broad exceptions promotes complex error handling code that is more likely to contain security vulnerabilities."
                 }
                 Cwe::Cwe397 => {
-                    "The product throws or raises an overly broad exceptions that can hide important details and produce inappropriate responses to certain conditions."
+                    "The product throws or raises an overly broad exception that can hide important details and produce inappropriate responses to certain conditions."
                 }
                 Cwe::Cwe400 => {
                     "The product does not properly control the allocation and maintenance of a limited resource."
@@ -8159,13 +8214,13 @@ pub(crate) mod str {
                     "The product does not handle or incorrectly handles a compressed input with a very high compression ratio that produces a large output."
                 }
                 Cwe::Cwe410 => {
-                    "The product's resource pool is not large enough to handle peak demand, which allows an attacker to prevent others from accessing the resource by using a (relatively) large number of requests for resources."
+                    "The product's resource pool is not large enough to handle peak demand."
                 }
                 Cwe::Cwe412 => {
                     "The product properly checks for the existence of a lock, but the lock can be externally controlled or influenced by an actor that is outside of the intended sphere of control."
                 }
                 Cwe::Cwe413 => {
-                    "The product does not lock or does not correctly lock a resource when the product must have exclusive access to the resource."
+                    "The product must have exclusive access to a resource, but it does not lock or does not correctly lock that resource."
                 }
                 Cwe::Cwe414 => {
                     "A product does not check to see if a lock is present before performing sensitive operations on a resource."
@@ -8204,7 +8259,7 @@ pub(crate) mod str {
                 Cwe::Cwe428 => {
                     "The product uses a search path that contains an unquoted element, in which the element contains whitespace or other separators. This can cause the product to access resources in a parent path."
                 }
-                Cwe::Cwe430 => "The wrong \"handler\" is assigned to process an object.",
+                Cwe::Cwe430 => "The wrong \"handler\" is assigned to process an object or request.",
                 Cwe::Cwe431 => "A handler is not available or implemented.",
                 Cwe::Cwe432 => {
                     "The product uses a signal handler that shares state with other signal handlers, but it does not properly mask or prevent those signal handlers from being invoked while the original signal handler is still running."
@@ -8231,7 +8286,7 @@ pub(crate) mod str {
                     "A feature, API, or function does not perform according to its specification."
                 }
                 Cwe::Cwe441 => {
-                    "The product receives a request, message, or directive from an upstream component, but the product does not sufficiently preserve the original source of the request before forwarding the request to an external actor that is outside of the product's control sphere. This causes the product to appear to be the source of the request, leading it to act as a proxy or other intermediary between the upstream component and the external actor."
+                    "The product receives a request, message, or directive from an upstream component, but the product does not sufficiently preserve the original source of the request before forwarding the request to an external actor that is outside of the product's control sphere."
                 }
                 Cwe::Cwe443 => "This weakness can be found at CWE-113.",
                 Cwe::Cwe444 => {
@@ -8262,9 +8317,7 @@ pub(crate) mod str {
                 Cwe::Cwe455 => {
                     "The product does not exit or otherwise modify its operation when security-relevant errors occur during initialization, such as when a configuration file has a format error or a hardware security module (HSM) cannot be activated, which can cause the product to execute in a less secure fashion than intended by the administrator."
                 }
-                Cwe::Cwe456 => {
-                    "The product does not initialize critical variables, which causes the execution environment to use unexpected values."
-                }
+                Cwe::Cwe456 => "The product does not initialize critical variables.",
                 Cwe::Cwe457 => {
                     "The code uses a variable that has not been initialized, leading to unpredictable or unintended results."
                 }
@@ -8275,7 +8328,7 @@ pub(crate) mod str {
                     "The product does not properly \"clean up\" and remove temporary or supporting resources after they have been used."
                 }
                 Cwe::Cwe460 => {
-                    "The product does not clean up its state or incorrectly cleans up its state when an exception is thrown, leading to unexpected state or control flow."
+                    "The product does not clean up its state or incorrectly cleans up its state when an exception is thrown."
                 }
                 Cwe::Cwe462 => {
                     "Duplicate keys in associative lists can lead to non-unique keys being mistaken for an error."
@@ -8290,7 +8343,7 @@ pub(crate) mod str {
                     "A function can return a pointer to memory that is outside of the buffer that the pointer is expected to reference."
                 }
                 Cwe::Cwe467 => {
-                    "The code calls sizeof() on a pointer type, which can be an incorrect calculation if the programmer intended to determine the size of the data that is being pointed to."
+                    "The code calls sizeof() on a pointer type, when the programmer intended to determine the size of the data that is being pointed to."
                 }
                 Cwe::Cwe468 => {
                     "In C and C++, one may often accidentally refer to the wrong memory due to the semantics of when math operations are implicitly scaled."
@@ -8338,14 +8391,12 @@ pub(crate) mod str {
                     "The code uses an operator for comparison when the intention was to perform an assignment."
                 }
                 Cwe::Cwe483 => {
-                    "The code does not explicitly delimit a block that is intended to contain 2 or more statements, creating a logic error."
+                    "The code does not explicitly delimit a block that is intended to contain 2 or more statements."
                 }
                 Cwe::Cwe484 => {
                     "The product omits a break statement within a switch or similar construct, causing code associated with multiple conditions to execute. This can cause problems when the programmer only intended to execute code associated with one condition."
                 }
-                Cwe::Cwe486 => {
-                    "The product compares classes by name, which can cause it to use the wrong class when multiple classes can have the same name."
-                }
+                Cwe::Cwe486 => "The product compares classes by name.",
                 Cwe::Cwe487 => {
                     "Java packages are not inherently closed; therefore, relying on them for code security is not a good practice."
                 }
@@ -8361,9 +8412,7 @@ pub(crate) mod str {
                 Cwe::Cwe492 => {
                     "Inner classes are translated into classes that are accessible at package scope and may expose code that the programmer intended to keep private to attackers."
                 }
-                Cwe::Cwe493 => {
-                    "The product has a critical public variable that is not final, which allows the variable to be modified to contain unexpected values."
-                }
+                Cwe::Cwe493 => "The product has a critical public variable that is not final.",
                 Cwe::Cwe494 => {
                     "The product downloads source code or an executable from a remote location and executes the code without sufficiently verifying the origin and integrity of the code."
                 }
@@ -8380,11 +8429,9 @@ pub(crate) mod str {
                     "The code contains a class with sensitive data, but the class is cloneable. The data can then be accessed by cloning the class."
                 }
                 Cwe::Cwe499 => {
-                    "The code contains a class with sensitive data, but the class does not explicitly deny serialization. The data can be accessed by serializing the class through another class."
+                    "The code contains a class with sensitive data, but the class does not explicitly deny serialization."
                 }
-                Cwe::Cwe500 => {
-                    "An object contains a public static field that is not marked final, which might allow it to be modified in unexpected ways."
-                }
+                Cwe::Cwe500 => "An object contains a public static field that is not marked final.",
                 Cwe::Cwe501 => {
                     "The product mixes trusted and untrusted data in the same data structure or structured message."
                 }
@@ -8439,7 +8486,7 @@ pub(crate) mod str {
                     "The product uses an environment variable to store unencrypted sensitive information."
                 }
                 Cwe::Cwe527 => {
-                    "The product stores a CVS, git, or other repository in a directory, archive, or other resource that is stored, transferred, or otherwise made accessible to unauthorized actors."
+                    "The product stores a CVS, git, or other source-control repository in a directory, archive, or other resource that is stored, transferred, or otherwise made accessible to unauthorized actors."
                 }
                 Cwe::Cwe528 => {
                     "The product generates a core dump file in a directory, archive, or other resource that is stored, transferred, or otherwise made accessible to unauthorized actors."
@@ -8476,7 +8523,7 @@ pub(crate) mod str {
                     "The web application uses persistent cookies, but the cookies contain sensitive information."
                 }
                 Cwe::Cwe540 => {
-                    "Source code on a web server or repository often contains sensitive information and should generally not be accessible to users."
+                    "The product (such as a web server or repository) provides access to source code is not intended to be accessible to users but contains sensitive information."
                 }
                 Cwe::Cwe541 => {
                     "If an include file source is accessible, the file can contain usernames and passwords, as well as sensitive information pertaining to the application and system."
@@ -8488,7 +8535,7 @@ pub(crate) mod str {
                     "The product uses the singleton pattern when creating a resource within a multithreaded environment."
                 }
                 Cwe::Cwe544 => {
-                    "The product does not use a standardized method for handling errors throughout the code, which might introduce inconsistent error handling and resultant weaknesses."
+                    "The product does not use a standardized method for handling errors throughout the code."
                 }
                 Cwe::Cwe545 => {
                     "This weakness has been deprecated because it partially overlaps CWE-470, it describes legitimate programmer behavior, and other portions will need to be integrated into other entries."
@@ -8533,14 +8580,12 @@ pub(crate) mod str {
                     "The product calls umask() with an incorrect argument that is specified as if it is an argument to chmod()."
                 }
                 Cwe::Cwe561 => "The product contains dead code, which can never be executed.",
-                Cwe::Cwe562 => {
-                    "A function returns the address of a stack variable, which will cause unintended program behavior, typically in the form of a crash."
-                }
+                Cwe::Cwe562 => "A function returns the address of a stack variable.",
                 Cwe::Cwe563 => {
-                    "The variable's value is assigned but never used, making it a dead store."
+                    "The variable's value is assigned but never used, i.e., is a dead store. That is, after the assignment, the variable is either assigned another value or goes out of scope."
                 }
                 Cwe::Cwe564 => {
-                    "Using Hibernate to execute a dynamic SQL statement built with user-controlled input can allow an attacker to modify the statement's meaning or to execute arbitrary SQL commands."
+                    "The product uses Hibernate to execute a dynamic HQL or SQL statement, but the statement is built with user-controlled input."
                 }
                 Cwe::Cwe565 => {
                     "The product relies on the existence or values of cookies when performing security-critical operations, but it does not properly ensure that the setting is valid for the associated user."
@@ -8561,7 +8606,7 @@ pub(crate) mod str {
                     "The product contains an expression that will always evaluate to true."
                 }
                 Cwe::Cwe572 => {
-                    "The product calls a thread's run() method instead of calling start(), which causes the code to run in the thread of the caller instead of the callee."
+                    "The product calls a thread's run() method instead of calling start()."
                 }
                 Cwe::Cwe573 => {
                     "The product does not follow or incorrectly follows the specifications as required by the implementation language, environment, framework, protocol, or platform."
@@ -8582,7 +8627,7 @@ pub(crate) mod str {
                     "The product violates the Enterprise JavaBeans (EJB) specification by using the class loader."
                 }
                 Cwe::Cwe579 => {
-                    "The product stores a non-serializable object as an HttpSession attribute, which can hurt reliability."
+                    "The product stores a non-serializable object as an HttpSession attribute."
                 }
                 Cwe::Cwe580 => {
                     "The product contains a clone() method that does not call super.clone() to obtain the new object."
@@ -8594,9 +8639,7 @@ pub(crate) mod str {
                 Cwe::Cwe583 => {
                     "The product violates secure coding principles for mobile code by declaring a finalize() method public."
                 }
-                Cwe::Cwe584 => {
-                    "The code has a return statement inside a finally block, which will cause any thrown exception in the try block to be discarded."
-                }
+                Cwe::Cwe584 => "The code has a return statement inside a finally block.",
                 Cwe::Cwe585 => "The product contains an empty synchronized block.",
                 Cwe::Cwe586 => {
                     "The product makes an explicit call to the finalize() method from outside the finalizer."
@@ -8605,16 +8648,16 @@ pub(crate) mod str {
                     "The product sets a pointer to a specific address other than NULL or 0."
                 }
                 Cwe::Cwe588 => {
-                    "Casting a non-structure type to a structure type and accessing a field can lead to memory access errors or data corruption."
+                    "The product casts a non-structure type to a structure type, then accesses a field within the structure."
                 }
                 Cwe::Cwe589 => {
-                    "The product uses an API function that does not exist on all versions of the target platform. This could cause portability problems or inconsistencies that allow denial of service or other consequences."
+                    "The product uses an API function that does not exist on all versions of the target platform."
                 }
                 Cwe::Cwe590 => {
                     "The product calls free() on a pointer to memory that was not allocated using associated heap allocation functions such as malloc(), calloc(), or realloc()."
                 }
                 Cwe::Cwe591 => {
-                    "The product stores sensitive data in memory that is not locked, or that has been incorrectly locked, which might cause the memory to be written to swap files on disk by the virtual memory manager. This can make the data more accessible to external actors."
+                    "The product stores sensitive data in memory that is not locked, or that has been incorrectly locked."
                 }
                 Cwe::Cwe592 => {
                     "This weakness has been deprecated because it covered redundant concepts already described in CWE-287."
@@ -8623,7 +8666,7 @@ pub(crate) mod str {
                     "The product modifies the SSL context after connection creation has begun."
                 }
                 Cwe::Cwe594 => {
-                    "When the J2EE container attempts to write unserializable objects to disk there is no guarantee that the process will complete successfully."
+                    "The J2EE container attempts to write unserializable objects to disk."
                 }
                 Cwe::Cwe595 => {
                     "The product compares object references instead of the contents of the objects themselves, preventing it from detecting equivalent objects."
@@ -8640,14 +8683,12 @@ pub(crate) mod str {
                 Cwe::Cwe599 => {
                     "The product uses OpenSSL and trusts or uses a certificate without using the SSL_get_verify_result() function to ensure that the certificate satisfies all necessary security requirements."
                 }
-                Cwe::Cwe600 => {
-                    "The Servlet does not catch all exceptions, which may reveal sensitive debugging information."
-                }
+                Cwe::Cwe600 => "The Servlet does not catch all exceptions.",
                 Cwe::Cwe601 => {
                     "The web application accepts a user-controlled input that specifies a link to an external site, and uses that link in a redirect."
                 }
                 Cwe::Cwe602 => {
-                    "The product is composed of a server that relies on the client to implement a mechanism that is intended to protect the server."
+                    "The product includes a server that relies on the client to implement a protection mechanism that is intended to protect the server."
                 }
                 Cwe::Cwe603 => {
                     "A client/server product performs authentication within client code but not in server code, allowing server-side authentication to be bypassed via a modified client that omits the authentication check."
@@ -8662,7 +8703,7 @@ pub(crate) mod str {
                     "A public or protected static final field references a mutable object, which allows the object to be changed by malicious code, or accidentally from another package."
                 }
                 Cwe::Cwe608 => {
-                    "An ActionForm class contains a field that has not been declared private, which can be accessed without using a setter or getter."
+                    "The product uses an ActionForm class that contains a field that has not been declared private."
                 }
                 Cwe::Cwe609 => {
                     "The product uses double-checked locking to access a resource without the overhead of explicit synchronization, but the locking is insufficient."
@@ -8677,16 +8718,16 @@ pub(crate) mod str {
                     "The product creates a search index of private or sensitive documents, but it does not properly limit index access to actors who are authorized to see the original information."
                 }
                 Cwe::Cwe613 => {
-                    "According to WASC, \"Insufficient Session Expiration is when a web site permits an attacker to reuse old session credentials or session IDs for authorization.\""
+                    "This entry has been deprecated because it was insufficiently clear. Consider CWE-1462 and its descendants."
                 }
                 Cwe::Cwe614 => {
                     "The Secure attribute for sensitive cookies in HTTPS sessions is not set."
                 }
                 Cwe::Cwe615 => {
-                    "While adding general comments is very useful, some programmers tend to leave important data, such as: filenames related to the web application, old links or links which were not meant to be browsed by users, old code fragments, etc."
+                    "The product's source code includes comments that contain sensitive information, such as filenames related to the application, old links or links that were not meant to be browsed by users, old code fragments, etc."
                 }
                 Cwe::Cwe616 => {
-                    "The PHP application uses an old method for processing uploaded files by referencing the four global variables that are set for each file (e.g. $varname, $varname_size, $varname_name, $varname_type). These variables could be overwritten by attackers, causing the application to process unauthorized files."
+                    "The PHP application uses an old method for processing uploaded files by referencing the four global variables that are set for each file (e.g. $varname, $varname_size, $varname_name, $varname_type)."
                 }
                 Cwe::Cwe617 => {
                     "The product contains an assert() or similar statement that can be triggered by an attacker, which leads to an application exit or other behavior that is more severe than necessary."
@@ -8695,19 +8736,19 @@ pub(crate) mod str {
                     "An ActiveX control is intended for use in a web browser, but it exposes dangerous methods that perform actions that are outside of the browser's security model (e.g. the zone or domain)."
                 }
                 Cwe::Cwe619 => {
-                    "If a database cursor is not closed properly, then it could become accessible to other users while retaining the same privileges that were originally assigned, leaving the cursor \"dangling.\""
+                    "The product does not close a database cursor properly, leaving the cursor \"dangling.\""
                 }
                 Cwe::Cwe620 => {
                     "When setting a new password for a user, the product does not require knowledge of the original password, or using another form of authentication."
                 }
                 Cwe::Cwe621 => {
-                    "The product uses external input to determine the names of variables into which information is extracted, without verifying that the names of the specified variables are valid. This could cause the program to overwrite unintended variables."
+                    "The product uses external input to determine the names of variables into which information is extracted, without verifying that the names of the specified variables are valid."
                 }
                 Cwe::Cwe622 => {
-                    "The product adds hooks to user-accessible API functions, but it does not properly validate the arguments. This could lead to resultant vulnerabilities."
+                    "The product adds hooks to user-accessible API functions, but it does not properly validate the arguments."
                 }
                 Cwe::Cwe623 => {
-                    "An ActiveX control is intended for restricted use, but it has been marked as safe-for-scripting."
+                    "The product includes an ActiveX control that is intended for restricted use, but the control has been marked as safe-for-scripting."
                 }
                 Cwe::Cwe624 => {
                     "The product uses a regular expression that either (1) contains an executable component with user-controlled inputs, or (2) allows a user to enable execution by inserting pattern modifiers."
@@ -8722,7 +8763,7 @@ pub(crate) mod str {
                     "In a language where the user can influence the name of a variable at runtime, if the variable names are not controlled, an attacker can read or write to arbitrary variables, or access arbitrary functions."
                 }
                 Cwe::Cwe628 => {
-                    "The product calls a function, procedure, or routine with arguments that are not correctly specified, leading to always-incorrect behavior and resultant weaknesses."
+                    "The product calls a function, procedure, or routine with arguments that are not correctly specified."
                 }
                 Cwe::Cwe636 => {
                     "When the product encounters an error condition or failure, its design requires it to fall back to a state that is less secure than other options that are available, such as selecting the weakest encryption algorithm or using the most permissive access control restrictions."
@@ -8746,7 +8787,7 @@ pub(crate) mod str {
                     "The product stores security-critical state information about its users, or the product itself, in a location that is accessible to unauthorized actors."
                 }
                 Cwe::Cwe643 => {
-                    "The product uses external input to dynamically construct an XPath expression used to retrieve data from an XML database, but it does not neutralize or incorrectly neutralizes that input. This allows an attacker to control the structure of the query."
+                    "The product uses external input to dynamically construct an XPath expression used to retrieve data from an XML database, but it does not neutralize or incorrectly neutralizes that input."
                 }
                 Cwe::Cwe644 => {
                     "The product does not neutralize or incorrectly neutralizes web scripting syntax in HTTP headers that can be used by web browser components that can process raw headers, such as Flash."
@@ -8755,10 +8796,10 @@ pub(crate) mod str {
                     "The product contains an account lockout protection mechanism, but the mechanism is too restrictive and can be triggered too easily, which allows attackers to deny service to legitimate users by causing their accounts to be locked out."
                 }
                 Cwe::Cwe646 => {
-                    "The product allows a file to be uploaded, but it relies on the file name or extension of the file to determine the appropriate behaviors. This could be used by attackers to cause the file to be misclassified and processed in a dangerous fashion."
+                    "The product allows a file to be uploaded, but it relies on the file name or extension of the file to determine the appropriate behaviors."
                 }
                 Cwe::Cwe647 => {
-                    "The product defines policy namespaces and makes authorization decisions based on the assumption that a URL is canonical. This can allow a non-canonical URL to bypass the authorization."
+                    "The product defines policy namespaces and makes authorization decisions based on the assumption that a URL is canonical."
                 }
                 Cwe::Cwe648 => {
                     "The product does not conform to the API requirements for a function call that requires extra privileges. This could allow attackers to gain privileges by causing the function to be called incorrectly."
@@ -8767,13 +8808,13 @@ pub(crate) mod str {
                     "The product uses obfuscation or encryption of inputs that should not be mutable by an external actor, but the product does not use integrity checks to detect if those inputs have been modified."
                 }
                 Cwe::Cwe650 => {
-                    "The server contains a protection mechanism that assumes that any URI that is accessed using HTTP GET will not cause a state change to the associated resource. This might allow attackers to bypass intended access restrictions and conduct resource modification and deletion attacks, since some applications allow GET to modify state."
+                    "The server contains a protection mechanism that assumes that any URI that is accessed using HTTP GET will not cause a state change to the associated resource."
                 }
                 Cwe::Cwe651 => {
                     "The Web services architecture may require exposing a Web Service Definition Language (WSDL) file that contains information on the publicly accessible services and how callers of these services should interact with them (e.g. what parameters they expect and what types they return)."
                 }
                 Cwe::Cwe652 => {
-                    "The product uses external input to dynamically construct an XQuery expression used to retrieve data from an XML database, but it does not neutralize or incorrectly neutralizes that input. This allows an attacker to control the structure of the query."
+                    "The product uses external input to dynamically construct an XQuery expression used to retrieve data from an XML database, but it does not neutralize or incorrectly neutralizes that input."
                 }
                 Cwe::Cwe653 => {
                     "The product does not properly compartmentalize or isolate functionality, processes, or resources that require different privilege levels, rights, or permissions."
@@ -8800,7 +8841,7 @@ pub(crate) mod str {
                     "The product does not maintain or incorrectly maintains control over a resource throughout its lifetime of creation, use, and release."
                 }
                 Cwe::Cwe665 => {
-                    "The product does not initialize or incorrectly initializes a resource, which might leave the resource in an unexpected state when it is accessed or used."
+                    "The product does not initialize or incorrectly initializes a resource."
                 }
                 Cwe::Cwe666 => {
                     "The product performs an operation on a resource at the wrong phase of the resource's lifecycle, which can lead to unexpected behaviors."
@@ -8818,7 +8859,7 @@ pub(crate) mod str {
                     "The code contains a control flow path that does not reflect the algorithm that the path is intended to implement, leading to incorrect behavior any time this path is navigated."
                 }
                 Cwe::Cwe671 => {
-                    "The product uses security features in a way that prevents the product's administrator from tailoring security settings to reflect the environment in which the product is being used. This introduces resultant weaknesses or prevents it from operating at a level of security that is desired by the administrator."
+                    "The product uses security features in a way that prevents the product's administrator from tailoring security settings to reflect the environment in which the product is being used."
                 }
                 Cwe::Cwe672 => {
                     "The product uses, accesses, or otherwise operates on a resource after that resource has been expired, released, or revoked."
@@ -8845,7 +8886,7 @@ pub(crate) mod str {
                     "The product performs a calculation that generates incorrect or unintended results that are later used in security-critical decisions or resource management."
                 }
                 Cwe::Cwe683 => {
-                    "The product calls a function, procedure, or routine, but the caller specifies the arguments in an incorrect order, leading to resultant weaknesses."
+                    "The product calls a function, procedure, or routine, but the caller specifies the arguments in an incorrect order."
                 }
                 Cwe::Cwe684 => {
                     "The code does not function according to its published specifications, potentially leading to incorrect usage."
@@ -8872,7 +8913,7 @@ pub(crate) mod str {
                     "The code does not sufficiently manage its control flow during execution, creating conditions in which the control flow can be modified in unexpected ways."
                 }
                 Cwe::Cwe692 => {
-                    "The product uses a denylist-based protection mechanism to defend against XSS attacks, but the denylist is incomplete, allowing XSS variants to succeed."
+                    "The product uses a denylist-based protection mechanism to defend against XSS attacks, but the denylist is incomplete."
                 }
                 Cwe::Cwe693 => {
                     "The product does not use or incorrectly uses a protection mechanism that provides sufficient defense against directed attacks against the product."
@@ -8905,14 +8946,12 @@ pub(crate) mod str {
                     "The product uses a name or reference to access a resource, but the name/reference resolves to a resource that is outside of the intended control sphere."
                 }
                 Cwe::Cwe707 => {
-                    "The product does not ensure or incorrectly ensures that structured messages or data are well-formed and that certain security properties are met before being read from an upstream component or sent to a downstream component."
+                    "The product does not ensure or incorrectly ensures that structured messages or data are well-formed and that certain security properties are met before being used when received from an upstream component, or before being sent to a downstream component."
                 }
                 Cwe::Cwe708 => {
                     "The product assigns an owner to a resource, but the owner is outside of the intended control sphere."
                 }
-                Cwe::Cwe710 => {
-                    "The product does not follow certain coding rules for development, which can lead to resultant weaknesses or increase the severity of the associated vulnerabilities."
-                }
+                Cwe::Cwe710 => "The product does not follow certain coding rules for development.",
                 Cwe::Cwe732 => {
                     "The product specifies permissions for a security-critical resource in a way that allows that resource to be read or modified by unintended actors."
                 }
@@ -8932,7 +8971,7 @@ pub(crate) mod str {
                     "The product does not return custom error pages to the user, possibly exposing sensitive information."
                 }
                 Cwe::Cwe757 => {
-                    "A protocol or its implementation supports interaction between multiple actors and allows those actors to negotiate which algorithm should be used as a protection mechanism such as encryption or authentication, but it does not select the strongest algorithm that is available to both parties."
+                    "A protocol or its implementation supports interaction between multiple actors and allows those actors to negotiate which algorithm should be used in a protection mechanism such as encryption or authentication, but it does not select the strongest algorithm that is available to both parties."
                 }
                 Cwe::Cwe758 => {
                     "The product uses an API function, data structure, or other entity in a way that relies on properties that are not always guaranteed to hold for that entity."
@@ -8965,7 +9004,7 @@ pub(crate) mod str {
                     "The product defines a public method that reads or modifies a private variable."
                 }
                 Cwe::Cwe768 => {
-                    "The product contains a conditional statement with multiple logical expressions in which one of the non-leading expressions may produce side effects. This may lead to an unexpected state in the program after the execution of the conditional, because short-circuiting logic may prevent the side effects from occurring."
+                    "The product contains a conditional statement with multiple logical expressions in which one of the non-leading expressions may produce side effects. "
                 }
                 Cwe::Cwe769 => {
                     "This entry has been deprecated because it was a duplicate of CWE-774. All content has been transferred to CWE-774."
@@ -8992,7 +9031,7 @@ pub(crate) mod str {
                     "The product uses XML documents and allows their structure to be defined with a Document Type Definition (DTD), but it does not properly control the number of recursive definitions of entities."
                 }
                 Cwe::Cwe777 => {
-                    "The product uses a regular expression to perform neutralization, but the regular expression is not anchored and may allow malicious or malformed data to slip through."
+                    "The product uses a regular expression to perform neutralization, but the regular expression omits one or more anchors that may allow malicious or malformed data to slip through."
                 }
                 Cwe::Cwe778 => {
                     "When a security-critical event occurs, the product either does not record the event or omits important details about the event when logging it."
@@ -9001,7 +9040,7 @@ pub(crate) mod str {
                     "The product logs too much information, making log files hard to process and possibly hindering recovery efforts or forensic analysis after an attack."
                 }
                 Cwe::Cwe780 => {
-                    "The product uses the RSA algorithm but does not incorporate Optimal Asymmetric Encryption Padding (OAEP), which might weaken the encryption."
+                    "The product uses the RSA algorithm but does not incorporate Optimal Asymmetric Encryption Padding (OAEP)."
                 }
                 Cwe::Cwe781 => {
                     "The product defines an IOCTL that uses METHOD_NEITHER for I/O, but it does not validate or incorrectly validates the addresses that are provided."
@@ -9031,10 +9070,10 @@ pub(crate) mod str {
                     "The product allocates memory based on an untrusted, large size value, but it does not ensure that the size is within expected limits, allowing arbitrary amounts of memory to be allocated."
                 }
                 Cwe::Cwe790 => {
-                    "The product receives data from an upstream component, but does not filter or incorrectly filters special elements before sending it to a downstream component."
+                    "The product receives data from an upstream component, but it does not filter or incorrectly filters special elements before sending it to a downstream component."
                 }
                 Cwe::Cwe791 => {
-                    "The product receives data from an upstream component, but does not completely filter special elements before sending it to a downstream component."
+                    "The product receives data from an upstream component, but it does not completely filter special elements before sending it to a downstream component."
                 }
                 Cwe::Cwe792 => {
                     "The product receives data from an upstream component, but does not completely filter one or more instances of special elements before sending it to a downstream component."
@@ -9043,7 +9082,7 @@ pub(crate) mod str {
                     "The product receives data from an upstream component, but only filters a single instance of a special element before sending it to a downstream component."
                 }
                 Cwe::Cwe794 => {
-                    "The product receives data from an upstream component, but does not filter all instances of a special element before sending it to a downstream component."
+                    "The product receives data from an upstream component, but it does not filter all instances of a special element before sending it to a downstream component."
                 }
                 Cwe::Cwe795 => {
                     "The product receives data from an upstream component, but only accounts for special elements at a specified location, thereby missing remaining special elements that may exist before sending it to a downstream component."
@@ -9103,7 +9142,7 @@ pub(crate) mod str {
                     "The product imports, requires, or includes executable functionality (such as a library) from a source that is outside of the intended control sphere."
                 }
                 Cwe::Cwe830 => {
-                    "The product includes web functionality (such as a web widget) from another domain, which causes it to operate within the domain of the product, potentially granting total access and control of the product to the untrusted source."
+                    "The product includes web functionality (such as a web widget) from another domain in a way that causes the functionality to operate within the domain of the product, potentially granting total access and control of the product to the untrusted source."
                 }
                 Cwe::Cwe831 => {
                     "The product defines a function that is used as a handler for more than one signal."
@@ -9119,10 +9158,10 @@ pub(crate) mod str {
                     "The product contains an iteration or loop with an exit condition that cannot be reached, i.e., an infinite loop."
                 }
                 Cwe::Cwe836 => {
-                    "The product records password hashes in a data store, receives a hash of a password from a client, and compares the supplied hash to the hash obtained from the data store."
+                    "The product includes a client that computes a hash of a password and sends the hash to another component, which compares the supplied hash to the hash obtained from a data store of password hashes."
                 }
                 Cwe::Cwe837 => {
-                    "The product requires that an actor should only be able to perform an action once, or to have only one unique action, but the product does not enforce or improperly enforces this restriction."
+                    "The product requires that an actor should only be able to perform an action once, or to have only one unique action, but the product does not enforce or incorrectly enforces this restriction."
                 }
                 Cwe::Cwe838 => {
                     "The product uses or specifies an encoding when generating output to a downstream component, but the specified encoding is not the same as the encoding that is expected by the downstream component."
@@ -9131,7 +9170,7 @@ pub(crate) mod str {
                     "The product checks a value to ensure that it is less than or equal to a maximum, but it does not also verify that the value is greater than or equal to the minimum."
                 }
                 Cwe::Cwe841 => {
-                    "The product supports a session in which more than one behavior must be performed by an actor, but it does not properly ensure that the actor performs the behaviors in the required sequence."
+                    "The product supports a session in which more than one behavior must be performed by an actor, but it does not properly ensure that the actor performs the behaviors in the required sequence or timeframe."
                 }
                 Cwe::Cwe842 => {
                     "The product or the administrator places a user into an incorrect group."
@@ -9177,7 +9216,7 @@ pub(crate) mod str {
                     "The web server receives a URL or similar request from an upstream component and retrieves the contents of this URL, but it does not sufficiently ensure that the request is being sent to the expected destination."
                 }
                 Cwe::Cwe920 => {
-                    "The product operates in an environment in which power is a limited resource that cannot be automatically replenished, but the product does not properly restrict the amount of power that its operation consumes."
+                    "The product operates in an environment in which power is a limited resource that cannot be automatically replenished - or has financial restrictions - but the product does not properly restrict the amount of power that its operation consumes."
                 }
                 Cwe::Cwe921 => {
                     "The product stores sensitive information in a file system or device that does not have built-in access control."
@@ -9234,7 +9273,7 @@ pub(crate) mod str {
                     "The product performs a comparison between two entities, but the entities are of different, incompatible types that cannot be guaranteed to provide correct results when they are directly compared."
                 }
                 Cwe::Cwe1025 => {
-                    "The code performs a comparison between two entities, but the comparison examines the wrong factors or characteristics of the entities, which can lead to incorrect results and resultant weaknesses."
+                    "The code performs a comparison between two entities, but the comparison examines the wrong factors or characteristics of the entities."
                 }
                 Cwe::Cwe1037 => {
                     "The developer builds a security-critical protection mechanism into the software, but the processor optimizes the execution of the program such that the mechanism is removed or modified."
@@ -9246,7 +9285,7 @@ pub(crate) mod str {
                     "The product uses an automated mechanism such as machine learning to recognize complex data inputs (e.g. image or audio) as a particular concept or category, but it does not properly detect or handle inputs that have been modified or constructed in a way that causes the mechanism to detect a different, incorrect concept."
                 }
                 Cwe::Cwe1041 => {
-                    "The product has multiple functions, methods, procedures, macros, etc. that contain the same code."
+                    "The product has multiple functions, methods, procedures, macros, etc. that contain the same code, i.e., the code has been copied or duplicated."
                 }
                 Cwe::Cwe1042 => {
                     "The code contains a member element that is declared as static (but not final), in which its parent class element is not a singleton class - that is, a class element that can be used only once in the 'to' association of a Create action."
@@ -9300,13 +9339,13 @@ pub(crate) mod str {
                     "The code contains a function or method that operates in a multi-threaded environment but owns an unsafe non-final static storable or member data element."
                 }
                 Cwe::Cwe1059 => {
-                    "The product does not contain sufficient technical or engineering documentation (whether on paper or in electronic form) that contains descriptions of all the relevant software/hardware elements of the product, such as its usage, structure, architectural components, interfaces, design, implementation, configuration, operation, etc."
+                    "The product does not contain sufficient technical or engineering documentation (whether on paper or in electronic form) that contains descriptions of all of the relevant software/hardware elements of the product. "
                 }
                 Cwe::Cwe1060 => {
                     "The product performs too many data queries without using efficient data processing functionality such as stored procedures."
                 }
                 Cwe::Cwe1061 => {
-                    "The product does not sufficiently hide the internal representation and implementation details of data or methods, which might allow external components or modules to modify data unexpectedly, invoke unexpected functionality, or introduce dependencies that the programmer did not intend."
+                    "The product does not sufficiently hide the internal representation and implementation details of data or methods."
                 }
                 Cwe::Cwe1062 => {
                     "The code has a parent class that contains references to a child class, its methods, or its members."
@@ -9362,7 +9401,7 @@ pub(crate) mod str {
                 }
                 Cwe::Cwe1080 => "A source code file has too many lines of code.",
                 Cwe::Cwe1082 => {
-                    "The code contains a class instance that calls the method or function to delete or destroy itself."
+                    "The code contains a class instance that calls the method or function to delete or destroy itself, e.g., use of \"delete this\" in C++."
                 }
                 Cwe::Cwe1083 => {
                     "The product is intended to manage data access through a particular data manager component such as a relational or non-SQL database, but it contains code that performs data access operations without using that component."
@@ -9373,7 +9412,7 @@ pub(crate) mod str {
                 Cwe::Cwe1085 => {
                     "A function, method, procedure, etc. contains an excessive amount of code that has been commented out within its body."
                 }
-                Cwe::Cwe1086 => "A class contains an unnecessarily large number of children.",
+                Cwe::Cwe1086 => "A class contains an unnecessarily large number of child classes.",
                 Cwe::Cwe1087 => {
                     "A class contains a virtual method, but the method does not have an associated virtual destructor."
                 }
@@ -9450,7 +9489,7 @@ pub(crate) mod str {
                     "The product's documentation does not adequately define inputs, outputs, or system/software interfaces."
                 }
                 Cwe::Cwe1112 => {
-                    "The document does not fully define all mechanisms that are used to control or influence how product-specific programs are executed."
+                    "The document does not fully define all mechanisms that are used to control or influence how product-specific programs are executed, such as environmental variables, configuration files, registry keys, command-line switches or options, or system settings."
                 }
                 Cwe::Cwe1113 => {
                     "The source code uses comment styles or formats that are inconsistent or do not follow expected standards for the product."
@@ -9490,14 +9529,12 @@ pub(crate) mod str {
                 Cwe::Cwe1126 => {
                     "The source code declares a variable in one scope, but the variable is only used within a narrower scope."
                 }
-                Cwe::Cwe1127 => {
-                    "The code is compiled without sufficient warnings enabled, which may prevent the detection of subtle bugs or quality issues."
-                }
+                Cwe::Cwe1127 => "The code is compiled without sufficient warnings enabled.",
                 Cwe::Cwe1164 => {
-                    "The product contains code that is not essential for execution, i.e. makes no state changes and has no side effects that alter data or control flow, such that removal of the code would have no impact to functionality or correctness."
+                    "The product contains code that is not essential for execution, i.e., makes no state changes and has no side effects that alter data or control flow - or is unreachable under any circumstances - such that removal of the code would have no impact to intended functionality or correctness."
                 }
                 Cwe::Cwe1173 => {
-                    "The product does not use, or incorrectly uses, an input validation framework that is provided by the source language or an independent library."
+                    "The product does not use, or incorrectly uses, an input validation framework that is provided by the source language, framework, or an independent library."
                 }
                 Cwe::Cwe1174 => {
                     "The ASP.NET application does not use, or incorrectly uses, the model validation framework."
@@ -9533,10 +9570,10 @@ pub(crate) mod str {
                     "The product uses a cryptographic primitive that uses an Initialization Vector (IV), but the product does not generate IVs that are sufficiently unpredictable or unique according to the expected cryptographic requirements for that primitive. "
                 }
                 Cwe::Cwe1209 => {
-                    "The reserved bits in a hardware design are not disabled prior to production. Typically, reserved bits are used for future capabilities and should not support any functional logic in the design. However, designers might covertly use these bits to debug or further develop new capabilities in production hardware. Adversaries with access to these bits will write to them in hopes of compromising hardware state."
+                    "The reserved bits in a hardware design are not disabled prior to production."
                 }
                 Cwe::Cwe1220 => {
-                    "The product implements access controls via a policy or other feature with the intention to disable or restrict accesses (reads and/or writes) to assets in a system from untrusted agents. However, implemented access controls lack required granularity, which renders the control policy too broad because it allows accesses from unauthorized agents to the security-sensitive assets."
+                    "The product implements access controls via a policy or other feature with the intention to disable or restrict accesses (reads and/or writes) to assets in a system from untrusted agents. However, implemented access controls lack the required granularity"
                 }
                 Cwe::Cwe1221 => {
                     "Hardware description language code incorrectly defines register defaults or hardware Intellectual Property (IP) parameters to insecure values."
@@ -9629,13 +9666,13 @@ pub(crate) mod str {
                     "The product provides software-controllable device functionality for capabilities such as power and clock management, but it does not properly limit functionality that can lead to modification of hardware memory or register bits, or the ability to observe physical side channels."
                 }
                 Cwe::Cwe1257 => {
-                    "Aliased or mirrored memory regions in hardware designs may have inconsistent read/write permissions enforced by the hardware. A possible result is that an untrusted agent is blocked from accessing a memory region but is not blocked from accessing the corresponding aliased memory region. "
+                    "Aliased or mirrored memory regions in hardware designs may have inconsistent read/write permissions enforced by the hardware. "
                 }
                 Cwe::Cwe1258 => {
-                    "The hardware does not fully clear security-sensitive values, such as keys and intermediate values in cryptographic operations, when debug mode is entered."
+                    "The hardware product enters debug mode but does not fully clear security-sensitive values, such as keys and intermediate values in cryptographic operations."
                 }
                 Cwe::Cwe1259 => {
-                    "The System-On-A-Chip (SoC) implements a Security Token mechanism to differentiate what actions are allowed or disallowed when a transaction originates from an entity. However, the Security Tokens are improperly protected."
+                    "The System-On-A-Chip (SoC) implements a Security Token mechanism to differentiate what actions are allowed or disallowed when a transaction originates from an entity. However, the Security Tokens are improperly protected, such as improperly restricting the assignment to trusted components."
                 }
                 Cwe::Cwe1260 => {
                     "The product allows address regions to overlap, which can result in the bypassing of intended memory protection."
@@ -9653,13 +9690,13 @@ pub(crate) mod str {
                     "The hardware logic for error handling and security checks can incorrectly forward data before the security check is complete."
                 }
                 Cwe::Cwe1265 => {
-                    "The product invokes code that is believed to be reentrant, but the code performs a call that unintentionally produces a nested invocation of the non-reentrant code."
+                    "The product invokes code that is believed to be reentrant, but the code performs a call that unintentionally produces a nested invocation of non-reentrant code."
                 }
                 Cwe::Cwe1266 => {
                     "The product does not properly provide a capability for the product administrator to remove sensitive data at the time the product is decommissioned. A scrubbing capability could be missing, insufficient, or incorrect."
                 }
                 Cwe::Cwe1267 => {
-                    "The product uses an obsolete encoding mechanism to implement access controls."
+                    "The product uses an encoding mechanism that is no longer trusted, i.e., an obsolete encoding, to implement access controls."
                 }
                 Cwe::Cwe1268 => {
                     "The product's hardware-enforced access control for a particular resource improperly accounts for privilege discrepancies between control and write policies. "
@@ -9684,7 +9721,7 @@ pub(crate) mod str {
                     "The SameSite attribute for sensitive cookies is not set, or an insecure value is used."
                 }
                 Cwe::Cwe1276 => {
-                    "Signals between a hardware IP and the parent system design are incorrectly connected causing security risks."
+                    "Signals between a hardware IP and the parent system design are incorrectly connected."
                 }
                 Cwe::Cwe1277 => {
                     "The product does not provide its users with the ability to update or patch its firmware to address any vulnerabilities or weaknesses that may be present."
@@ -9726,13 +9763,13 @@ pub(crate) mod str {
                     "The product receives an input value that is used as a resource identifier or other type of reference, but it does not validate or incorrectly validates that the input is equivalent to a potentially-unsafe value."
                 }
                 Cwe::Cwe1290 => {
-                    "The product implements a decoding mechanism to decode certain bus-transaction signals to security identifiers. If the decoding is implemented incorrectly, then untrusted agents can now gain unauthorized access to the asset."
+                    "The product implements a decoding mechanism to decode certain bus-transaction signals to security identifiers, but it decodes an untrusted agent's security identifier into a trusted agent's security identifier."
                 }
                 Cwe::Cwe1291 => {
                     "The same public key is used for signing both debug and production code."
                 }
                 Cwe::Cwe1292 => {
-                    "The product implements a conversion mechanism to map certain bus-transaction signals to security identifiers. However, if the conversion is incorrectly implemented, untrusted agents can gain unauthorized access to the asset."
+                    "The product implements a conversion mechanism to map certain bus-transaction signals to security identifiers, but this conversion between protocols is incorrectly implemented."
                 }
                 Cwe::Cwe1293 => {
                     "The product relies on one source of data, preventing the ability to detect if an adversary has compromised a data source."
@@ -9762,7 +9799,7 @@ pub(crate) mod str {
                     "The product's data removal process does not completely delete all data and potentially sensitive information within hardware components."
                 }
                 Cwe::Cwe1302 => {
-                    "The product implements a security identifier mechanism to differentiate what actions are allowed or disallowed when a transaction originates from an entity. A transaction is sent without a security identifier."
+                    "The product implements a security identifier mechanism to differentiate what actions are allowed or disallowed when a transaction originates from an entity, but the entity does not consistently include the necessary Security Identifier with a security-critical transaction."
                 }
                 Cwe::Cwe1303 => {
                     "Hardware structures shared across execution contexts (e.g., caches and branch predictors) can violate the expected architecture isolation between contexts."
@@ -9774,7 +9811,7 @@ pub(crate) mod str {
                     "Missing an ability to patch ROM code may leave a System or System-on-Chip (SoC) in a vulnerable state."
                 }
                 Cwe::Cwe1311 => {
-                    "The bridge incorrectly translates security attributes from either trusted to untrusted or from untrusted to trusted when converting from one fabric protocol to another."
+                    "The fabric bridge incorrectly translates security attributes from either trusted to untrusted or from untrusted to trusted when converting from one fabric protocol to another."
                 }
                 Cwe::Cwe1312 => {
                     "The firewall in an on-chip fabric protects the main addressed region, but it does not protect any mirrored memory or memory-mapped-IO (MMIO) regions."
@@ -9825,13 +9862,13 @@ pub(crate) mod str {
                     "The product assigns the address 0.0.0.0 for a database server, a cloud service/instance, or any computing resource that communicates remotely."
                 }
                 Cwe::Cwe1328 => {
-                    "Security-version number in hardware is mutable, resulting in the ability to downgrade (roll-back) the boot firmware to vulnerable code versions."
+                    "The security version number in the hardware product is mutable, resulting in the ability to downgrade (roll-back) the boot firmware to vulnerable code versions."
                 }
                 Cwe::Cwe1329 => {
                     "The product contains a component that cannot be updated or patched in order to remove vulnerabilities or significant bugs."
                 }
                 Cwe::Cwe1330 => {
-                    "Confidential information stored in memory circuits is readable or recoverable after being cleared or erased."
+                    "Confidential information stored in memory circuits is readable or recoverable after being cleared or erased, i.e., there is data remanence."
                 }
                 Cwe::Cwe1331 => {
                     "The Network On Chip (NoC) does not isolate or incorrectly isolates its on-chip-fabric and internal resources such that they are shared between trusted and untrusted agents, creating timing channels."
@@ -9846,7 +9883,7 @@ pub(crate) mod str {
                     "An unauthorized agent can inject errors into a redundant block to deprive the system of redundancy or put the system in a degraded operating mode."
                 }
                 Cwe::Cwe1335 => {
-                    "An integer value is specified to be shifted by a negative amount or an amount greater than or equal to the number of bits contained in the value causing an unexpected or indeterminate result."
+                    "An integer value is specified to be shifted by a negative amount or an amount greater than or equal to the number of bits contained in the value."
                 }
                 Cwe::Cwe1336 => {
                     "The product uses a template engine to insert or process externally-influenced input, but it does not neutralize or incorrectly neutralizes special elements or syntax that can be interpreted as template expressions or other code directives when processed by the engine."
@@ -9864,7 +9901,7 @@ pub(crate) mod str {
                     "The processor does not properly clear microarchitectural state after incorrect microcode assists or speculative execution, resulting in transient execution."
                 }
                 Cwe::Cwe1351 => {
-                    "A hardware device, or the firmware running on it, is missing or has incorrect protection features to maintain goals of security primitives when the device is cooled below standard operating temperatures."
+                    "The hardware device, or the firmware running on it, is missing or has incorrect protection mechanisms to maintain goals of security primitives when the device is cooled below standard operating temperatures."
                 }
                 Cwe::Cwe1357 => {
                     "The product is built from multiple separate components, but it uses a component that is not sufficiently trusted to meet expectations for security, reliability, updateability, and maintainability."
@@ -9931,6 +9968,51 @@ pub(crate) mod str {
                 }
                 Cwe::Cwe1434 => {
                     "The product has a component that relies on a generative AI/ML model configured with inference parameters that produce an unacceptably high rate of erroneous or unexpected outputs."
+                }
+                Cwe::Cwe1461 => {
+                    " The hardware design contains structures that are interpreted differently during synthesis than during simulation, which cause inconsistencies in security-relevant behavior between the synthesized implementation and the simulation. "
+                }
+                Cwe::Cwe1462 => {
+                    "The product does not properly manage user-related sessions such as setting appropriate configurations and settings for sessions on creation and handling sessions throughout their lifetime."
+                }
+                Cwe::Cwe1463 => {
+                    "The product establishes an authenticated user session, but it does not properly set a timeout for the session. That is, the timeout is set to an excessively large value or is not set at all."
+                }
+                Cwe::Cwe1464 => {
+                    "The product establishes a session for an authenticated user, but it does not properly invalidate or terminate the session when it is required."
+                }
+                Cwe::Cwe1465 => {
+                    "The product provides a logout functionality or otherwise attempts to end an active session for a user, but it does not properly invalidate the session upon logout."
+                }
+                Cwe::Cwe1466 => {
+                    "The product provides a capability for users to change their authentication credentials, such as username or password, but it does not properly invalidate any current authenticated sessions after this authentication credential change."
+                }
+                Cwe::Cwe1467 => {
+                    "The product provides an authentication artifact, such as an authentication token, for an authenticated user session, but the same artifact is used for every authenticated user session, potentially across multiple different applications."
+                }
+                Cwe::Cwe1469 => {
+                    "The product receives a request that includes a credential such as a key, certificate, password, confirmation code, or token, but the product does not check whether the credential is expired."
+                }
+                Cwe::Cwe1470 => {
+                    " The product supports user accounts that include a user's external identifier or communications channel - such as email, phone number, social media account, or domain name - but it does not properly verify that the user actually controls the associated identifier or channel. "
+                }
+                Cwe::Cwe1471 => {
+                    "The product uses a common specification or format that is shared between multiple components or entities, but the components have different parsers that can interpret the same input in different, security-relevant ways. "
+                }
+                Cwe::Cwe1472 => {
+                    "The product generates or relies on a credential such as a key, certificate, password, confirmation code, or token, but the credential does not expire or has an expiration that is too long, i.e., the expiration is insufficient for the intended security policy of the product. "
+                }
+                Cwe::Cwe1473 => {
+                    " The product uses or supports data in a cache, but it does not properly specify an expiration with a date, time, or time period that is sufficient for the intended security policy of the product or its adminstrators. "
+                }
+                Cwe::Cwe1474 => {
+                    " The product parses or transforms data into another format, structure, or representation, but the newly-produced data is not semantically equivalent to the original data. "
+                }
+                Cwe::Cwe1475 => {
+                    "The product passes control to another component or function, or it performs a state transition, but it does not provide some security-critical data/state that is needed by the receiving component/function."
+                }
+                Cwe::Cwe1476 => {
+                    " The product uses a multi-manager shared bus architecture with an on-chip interconnect that speculatively propagates a request for a write transaction, but it does not ensure that the remaining steps required by the manager module to complete the request are fulfilled in a timely manner. "
                 }
             }
         }
@@ -10906,6 +10988,21 @@ pub(crate) mod str {
                 "CWE-1429" => Ok(Cwe::Cwe1429),
                 "CWE-1431" => Ok(Cwe::Cwe1431),
                 "CWE-1434" => Ok(Cwe::Cwe1434),
+                "CWE-1461" => Ok(Cwe::Cwe1461),
+                "CWE-1462" => Ok(Cwe::Cwe1462),
+                "CWE-1463" => Ok(Cwe::Cwe1463),
+                "CWE-1464" => Ok(Cwe::Cwe1464),
+                "CWE-1465" => Ok(Cwe::Cwe1465),
+                "CWE-1466" => Ok(Cwe::Cwe1466),
+                "CWE-1467" => Ok(Cwe::Cwe1467),
+                "CWE-1469" => Ok(Cwe::Cwe1469),
+                "CWE-1470" => Ok(Cwe::Cwe1470),
+                "CWE-1471" => Ok(Cwe::Cwe1471),
+                "CWE-1472" => Ok(Cwe::Cwe1472),
+                "CWE-1473" => Ok(Cwe::Cwe1473),
+                "CWE-1474" => Ok(Cwe::Cwe1474),
+                "CWE-1475" => Ok(Cwe::Cwe1475),
+                "CWE-1476" => Ok(Cwe::Cwe1476),
                 _ => Err(()),
             };
             if let Ok(cwe) = result {
@@ -11926,6 +12023,21 @@ pub(crate) mod iterable {
                 Cwe::Cwe1429,
                 Cwe::Cwe1431,
                 Cwe::Cwe1434,
+                Cwe::Cwe1461,
+                Cwe::Cwe1462,
+                Cwe::Cwe1463,
+                Cwe::Cwe1464,
+                Cwe::Cwe1465,
+                Cwe::Cwe1466,
+                Cwe::Cwe1467,
+                Cwe::Cwe1469,
+                Cwe::Cwe1470,
+                Cwe::Cwe1471,
+                Cwe::Cwe1472,
+                Cwe::Cwe1473,
+                Cwe::Cwe1474,
+                Cwe::Cwe1475,
+                Cwe::Cwe1476,
             ]
             .into_iter()
         }

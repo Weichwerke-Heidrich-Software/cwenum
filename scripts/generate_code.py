@@ -85,7 +85,7 @@ pub(crate) mod str {{
         /// use cwenum::Cwe;
         ///
         /// let name = Cwe::Cwe89.name();
-        /// assert_eq!(name, "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')");
+        /// assert_eq!(name, "Improper Neutralization of Special Elements used in an SQL Command");
         /// ```
         pub fn name(&self) -> &'static str {{
             match self {{
@@ -243,8 +243,12 @@ def parse_cwec_xml():
     tree = ET.parse(CWEC_XML)
     root = tree.getroot()
     cwec = []
-    namespace = {'cwe': 'http://cwe.mitre.org/cwe-7'}
-    
+    # Derive the namespace from the root element (e.g. '{http://cwe.mitre.org/cwe-8}Weakness_Catalog'),
+    # since MITRE bumps it with schema versions.
+    if not root.tag.startswith('{'):
+        raise RuntimeError(f"Unexpected root element without namespace: {root.tag}")
+    namespace = {'cwe': root.tag[1:].split('}', 1)[0]}
+
     for weakness in root.findall('.//cwe:Weakness', namespace):
         cwe_id = weakness.get('ID')
         cwe_name = weakness.get('Name')
@@ -256,6 +260,9 @@ def parse_cwec_xml():
                      'Name': cwe_name,
                      'Description': cwe_description})
     
+    if not cwec:
+        raise RuntimeError(f"No weaknesses found in {CWEC_XML} (namespace: {namespace['cwe']})")
+
     cwec.sort(key=lambda x: int(x['ID']))
 
     return cwec
